@@ -1,4 +1,4 @@
-# udmpro-utilities
+# udm-utilities
 A collection of things I have made to make live with a UDMP easier
 
 ### on-boot-script
