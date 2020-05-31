@@ -4,6 +4,9 @@
 
 All files described here are in the examples folder, automation is coming soon.
 
+### Compatiblity
+1. Should work on any UDM/UDMPro after 1.6.3
+2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4
 
 Steps
 # 1. Make your script on the UDM/UDMPRO
