@@ -1,5 +1,5 @@
 # udm-utilities
-A collection of things I have made to make live with a UDMP easier
+A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro
 
 ### on-boot-script
 Run any commands when your UDM starts.
