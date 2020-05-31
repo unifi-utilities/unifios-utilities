@@ -5,7 +5,7 @@
 2. Persists through reboots and firmware updates.  After a FW update you will need to resetup your on-boot described in this repo
 
 ### Requirements
-1. You have setup the on boot script described in this repo
+1. You have setup the on boot script described in this repo (https://github.com/boostchicken/udmpro-utilities/tree/master/on-boot-script)
 
 ### Steps
 1. On your controller, make a Corporate network with no DHCP server and give it a vlan.  The files in this repo assume VLAN 5
