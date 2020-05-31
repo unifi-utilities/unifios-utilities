@@ -13,7 +13,7 @@
 3. Create podman macvlan network.  Copy udm-files/20-dns.conflist to /mnt/data/podman/cni (or a place of your choosing and update on_boot.sh symlink)
 3. Update your on_boot.sh to include the commands in udm-files/on_boot.sh.  You can leave out the iptables stuff if you don't want to DNAT all DNS calls to your PiHole
 4. Execute on_boot.sh
-5. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the commmand below.
+5. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the command below.
 
 ```
  podman run -d --network dns \
