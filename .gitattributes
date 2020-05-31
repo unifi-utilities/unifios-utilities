@@ -1,2 +1,5 @@
 *.md filter=lfs diff=lfs merge=lfs -text
+*.sh filter=lfs diff=lfs merge=lfs -text
+*.service filter=lfs diff=lfs merge=lfs -text
+*.conflist filter=lfs diff=lfs merge=lfs -text
 * text !filter !merge !diff
