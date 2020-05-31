@@ -2,6 +2,7 @@
 
 ### Features
 1. Run PiHole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
+2. Persists through reboots and firmware updates.  After a FW update you will need to resetup your on-boot described in this repo
 
 ### Requirements
 1. You have setup the on boot script described in this repo
