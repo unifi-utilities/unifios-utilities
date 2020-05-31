@@ -25,7 +25,7 @@ iptables -t nat -C POSTROUTING -j MASQUERADE || iptables -t nat -A POSTROUTING -
 ```
 podman exec -it unifi-os sh
 
-ssh root@127.0.01 # this is to accept the fingerprint of the udm
+ssh root@127.0.1.1 # this is to accept the fingerprint of the udm
 exit # back to the container shell
 ```
 
