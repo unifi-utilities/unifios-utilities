@@ -1,4 +1,4 @@
-# Run PiHole on your UDM PRo
+# Run PiHole on your UDM
 
 ### Features
 1. Run PiHole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
