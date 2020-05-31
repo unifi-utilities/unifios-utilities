@@ -8,7 +8,8 @@ All files described here are in the examples folder, automation is coming soon.
 1. Should work on any UDM/UDMPro after 1.6.3
 2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4
 
-Steps
+
+## Steps
 # 1. Make your script on the UDM/UDMPRO
 ```
 vi /mnt/data/on_boot.sh 
@@ -24,19 +25,22 @@ iptables -t nat -C PREROUTING -p tcp ! --source 10.0.0.x ! --destination 10.0.0.
 iptables -t nat -C POSTROUTING -j MASQUERADE || iptables -t nat -A POSTROUTING -j MASQUERADE
 ```
 
+
 # 2. Make the unifios docker container execute this script on startup, this has to be done after every firmware update.  It does persist through reboots.
+
+##Automatic
+1. Copy install.sh and install-unifios.sh to your UDM
+2. Execute install.sh
+
+## Manual
 ```
 podman exec -it unifi-os sh
-
-ssh root@127.0.1.1 # this is to accept the fingerprint of the udm
-exit # back to the container shell
 ```
-
 ### make a script that sshs to the udm and runs on our boot script
 Example: examples/unifi-os-files/udm.sh
 ```
 echo "#!/bin/sh
-ssh root@127.0.1.1 '/mnt/data/on_boot.sh'" > /etc/init.d/udm.sh # 127.0.1.1 always points to the UDM
+ssh -o StrictHostKeyChecking=no root@127.0.1.1 '/mnt/data/on_boot.sh'" > /etc/init.d/udm.sh # 127.0.1.1 always points to the UDM
 ```
 #### make said script executable
 ```
