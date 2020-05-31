@@ -2,8 +2,6 @@
 ### Features
 1. Allows you to run a shell script at S95 anytime your UDM starts / reboots
 
-All files described here are in the examples folder, automation is coming soon.
-
 ### Compatiblity
 1. Should work on any UDM/UDMPro after 1.6.3
 2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4
