@@ -4,6 +4,7 @@ mkdir -p /opt/cni
 ln -s /mnt/data/podman/cni/ /opt/cni/bin
 ln -s /mnt/data/podman/cni/20-dns.conflist  /etc/cni/net.d/20-dns.conflist
 
+# Create a new bridge interface so the host can talk to containers inside the podman macvlan network
 # Assumes your Podman network made in the controller is on VLAN 5
 # Adjust the IP to match the address in your cni configuration
 ip link add br5.mac link br5 type macvlan mode bridge
