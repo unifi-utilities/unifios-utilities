@@ -7,7 +7,7 @@
 1. You have setup the on boot script described in this repo
 
 ### Steps
-1. Make a network with no DHCP server and give it a vlan.  The files in this repo assume VLAN5
+1. On your controller, make a Corporate network with no DHCP server and give it a vlan.  The files in this repo assume VLAN 5
 2. Install the CNI plugins with install-cni-plugins.sh
 3. Create podman macvlan network.  Copy udm-files/20-dns.conflist to /mnt/data/podman/cni (or a place of your choosing and update on_boot.sh symlink)
 3. Update your on_boot.sh to include the commands in udm-files/on_boot.sh.  You can leave out the iptables stuff if you don't want to DNAT all DNS calls to your PiHole
