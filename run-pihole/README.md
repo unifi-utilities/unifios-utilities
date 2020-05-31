@@ -2,7 +2,8 @@
 
 ### Features
 1. Run PiHole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
-2. Persists through reboots and firmware updates.  After a FW update you will need to resetup your on-boot described in this repo
+2. Persists through reboots.
+3. PiHole persists through firmware updates. The on-boot script does not.  If you update your FM setup on-boot again and everything should work.
 
 ### Requirements
 1. You have setup the on boot script described in this repo (https://github.com/boostchicken/udmpro-utilities/tree/master/on-boot-script)
