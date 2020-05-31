@@ -2,11 +2,11 @@
 
 ### Features
 1. Run PiHole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
-2. Persists through reboots.
-3. PiHole persists through firmware updates. The on-boot script does not.  If you update your FM setup on-boot again and everything should work.
+2. Persists through reboots and firmware updates.
 
 ### Requirements
 1. You have setup the on boot script described in this repo (https://github.com/boostchicken/udmpro-utilities/tree/master/on-boot-script)
+2. PiHole persists through firmware updates. The on-boot script does not.  If you update your FM setup on-boot again and everything should work.
 
 ### Customization
 * Feel free to change 20-dns.conflist to change the IP address of the container. Make sure to update all ip references and the iptables rules in on_boot.sh.  The IP address can be anywhere from x.x.x.3 to x.x.x.254. .1 is reserved for the gateway and .2 is reserved for the macvlan bridge.
