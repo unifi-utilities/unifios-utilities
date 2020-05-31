@@ -1,0 +1,9 @@
+[Unit]
+Description=Run On Startup UDM
+
+[Service]
+After=network.target
+ExecStart=/etc/init.d/udm.sh
+
+[Install]
+WantedBy=multi-user.target
