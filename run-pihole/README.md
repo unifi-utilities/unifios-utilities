@@ -31,6 +31,7 @@
     -e VIRTUAL_HOST="pi.hole" \
     -e PROXY_LOCATION="pi.hole" \
     -e ServerIP="10.0.5.3" \
+    -e IPv6="False" \
     pihole/pihole:latest
 ```
 
