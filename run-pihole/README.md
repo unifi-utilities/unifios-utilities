@@ -33,5 +33,5 @@
 ```
 podman exec -it pihole pihole -a -p YOURNEWPASSHERE
 ```
-6. Update your DNS Servers to 10.0.5.3 in all your DHCP configs.
-7. Access the pihole like you would normally.  http://10.0.5.3/
+6. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
+7. Access the pihole like you would normally.
