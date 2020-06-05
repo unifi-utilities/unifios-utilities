@@ -6,3 +6,6 @@ Run any commands when your UDM starts.
 
 ### run-pihole
 Run pihole on your UDM with podman.  Utilizes macvlan cni plugins to completely isolate the network stack
+
+### python
+If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container
