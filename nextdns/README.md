@@ -17,7 +17,7 @@
 * If  you want to inject custom DNS names into NextDNS use --add-host docker commands.  The /etc/resolv.conf and /etc/hosts is  generated from that and --dns.
 
 ### Docker
-The official repo is boostchicken/nextdns-udm.  Latest will always refer to the latest builds, there are also tags for each NextDNS release (e.g. 1.6.4).
+The offical repo is boostchicken/nextdns-udm.  Latest will always refer to the latest builds, there are also tags for each NextDNS release (e.g. 1.6.4).
 
 The Dockerfile is included, you can build it locally on your UDM if you don't want to pull from Docker Hub or make customizations
 ```
@@ -39,7 +39,7 @@ If you have already installed PiHole, skip right to step 6.
 6. Make /mnt/data/nextdns and copy [nextdns.conf](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/nextdns.conf) to it.
 7. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
 ```
- podman run -d --network dns \
+ podman run -d --privileged --network dns \
     --name nextdns \
     -v "/mnt/data/nextdns/:/etc/nextdns/" \
     -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
