@@ -8,7 +8,7 @@
 
 ### Requirements
 1. You have already setup the on boot script described [here](https://github.com/boostchicken/udmpro-utilities/tree/master/on-boot-script)
-2. NextDNS persists through firmware updates. The on-boot script does not.  If you update your FM setup on-boot again and everything should work.
+2. NextDNS persists through firmware updates. The on-boot script does not.  If you update your firmware, setup on-boot again and everything should work.
 
 ### Customization
 * Feel free to change [20-dns.conflist](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/20-dns.conflist) to change the IP address of the container. Make sure to update all ip references and the iptables rules in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/on_boot.sh).  The IP address can be anywhere from x.x.x.3 to x.x.x.254. .1 is reserved for the gateway and .2 is reserved for the macvlan bridge.
@@ -21,7 +21,7 @@ The offical repo is boostchicken/nextdns-udm.  Latest will always refer to the l
 
 The Dockerfile is included, you can build it locally on your UDM if you don't want to pull from Docker Hub or make customizations
 ```
-podman build . -t nextdns-udm:latest"
+podman build . -t nextdns-udm:latest
 ```
 Building from another device is possible.  You must have [buildx](https://github.com/docker/buildx/) installed to do cross platform builds. This is useful if you want to mirror to a private repo
 ```
@@ -31,12 +31,12 @@ docker buildx build --platform linux/arm64 -t nextdns-udm:latest .
 ### Steps
 If you have already installed PiHole, skip right to step 6.
 
-1. On your controller, make a Corporate network with no DHCP server and give it a vlan. For this example we are using vlan 5.
+1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
 2. Install the CNI plugins with by executing [install-cni-plugins.sh](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/install-cni-plugins.sh) on your UDM
 3. Copy [20-dns.conflist](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/20-dns.conflist) to /mnt/data/podman/cni (or a place of your choosing and update [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/on_boot.sh) symlink).  This will create your podman macvlan network
-4. Update your on_boot.sh to include the commands in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/on_boot.sh).  You can leave out the iptables rules if you don't want to DNAT all DNS calls to your PiHole
+4. Update your on_boot.sh to include the commands in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/on_boot.sh).  You can leave out the iptables rules if you don't want to DNAT all DNS calls to NextDNS
 5. Execute on_boot.sh
-6. Make /mnt/data/nextdns and copy [nextdns.conf](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/nextdns.conf) to it.
+6. Create /mnt/data/nextdns and copy [nextdns.conf](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/nextdns.conf) to it.
 7. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
 ```
  podman run -d --privileged --network dns \
