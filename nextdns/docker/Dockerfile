@@ -3,7 +3,7 @@ ENV VERSION=1.6.4
 WORKDIR /tmp
 RUN apk add curl \
     && mkdir nextdns \
-    && curl -fsSL https://github.com/nextdns/nextdns/releases/download/v${VERSION}/nextdns_${VERSION}_linux_amd64.tar.gz -o nextdns.tar.gz \
+    && curl -fsSL https://github.com/nextdns/nextdns/releases/download/v${VERSION}/nextdns_${VERSION}_linux_arm64.tar.gz -o nextdns.tar.gz \
     && tar zxf nextdns.tar.gz -C ./nextdns
 
 FROM debian:buster-slim
