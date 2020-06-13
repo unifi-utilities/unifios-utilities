@@ -6,7 +6,9 @@
 
 ### Requirements
 1. You have setup the on boot script described [here](https://github.com/boostchicken/udmpro-utilities/tree/master/on-boot-script)
-2. AdguardHome persists through firmware updates. The on-boot script does not.  If you update your firmware, setup on-boot again and everything should work.
+2. AdguardHome persists through firmware updates as it will store the configuration in a folder (you need to create this)
+It needs 2 folders, a Work and Configuration folder. Plese create the 2 folder in "/mnt/data/". In my example I created "AdguardHome-Confdir" and "AdguardHome-Workdir"
+The on-boot script needs to be setup after firmware update of UDM. When on-boot script is recreated, everything should work.
 
 ### Customization
 * Feel free to change [20-dns.conflist](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/20-dns.conflist) to change the IP address of the container. Make sure to update all ip references and the iptables rules in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/on_boot.sh).  The IP address can be anywhere from x.x.x.3 to x.x.x.254. .1 is reserved for the gateway and .2 is reserved for the macvlan bridge.
@@ -30,6 +32,16 @@ podman run -d --network dns \
     adguard/adguardhome:arm64-latest
 ```
 
-7. Browse to 10.0.5.3:3000 and follow the setup wizard
-8. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
-9. Access the AdguardHome like you would normally.
+7. Change on_boot.sh line 17
+From
+```
+#podman start AdguardHome
+```
+To
+```
+podman start AdguardHome
+```
+This makes sure that the AdguardHome container will start after reboot of UDM. 
+8. Browse to 10.0.5.3:3000 and follow the setup wizard
+9. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
+10. Access the AdguardHome like you would normally.
