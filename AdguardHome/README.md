@@ -18,7 +18,7 @@ The on-boot script needs to be setup after firmware update of UDM. When on-boot 
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
 2. Install the CNI plugins with by executing [install-cni-plugins.sh](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/install-cni-plugins.sh) on your UDM
 3. Copy [20-dns.conflist](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/20-dns.conflist) to /mnt/data/podman/cni (or a place of your choosing and update [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/on_boot.sh) symlink).  This will create your podman macvlan network
-4. Update your on_boot.sh to include the commands in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/on_boot.sh).  You can leave out the iptables rules if you don't want to DNAT all DNS calls to your PiHole
+4. Update your on_boot.sh to include the commands in [on_boot.sh](https://github.com/boostchicken/udm-utilities/blob/master/AdguardHome/udm-files/on_boot.sh).  You can leave out the iptables rules if you don't want to DNAT all DNS calls to your AdGuard instance
 5. Execute on_boot.sh
 6. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
 
