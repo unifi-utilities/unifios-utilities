@@ -16,8 +16,8 @@ ip route add 10.0.5.3/32 dev br5.mac proto static scope link
 #Remove the # on the line below when Docker container is deployed. 
 #podman start AdguardHome
 
-#Adjust these rules to your setup and interfaces
-iptables -t nat -C PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3
-iptables -t nat -C PREROUTING -i br0 -p tcp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p tcp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3
-iptables -t nat -C POSTROUTING -o br0 -d 10.0.5.3 -p tcp --dport 53 -j MASQUERADE || iptables -t nat -A POSTROUTING -o br0  -d 10.0.5.3 -p tcp --dport 53 -j MASQUERADE
-iptables -t nat -C POSTROUTING -o br0 -d 10.0.5.3 -p udp --dport 53 -j MASQUERADE || iptables -t nat -A POSTROUTING -o br0  -d 10.0.5.3 -p udp --dport 53 -j MASQUERADE
+# Uncomment and adjust these rules if you want to use DNAT to force DNS to this container.
+# iptables -t nat -C PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3
+# iptables -t nat -C PREROUTING -i br0 -p tcp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p tcp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3
+# iptables -t nat -C POSTROUTING -o br0 -d 10.0.5.3 -p tcp --dport 53 -j MASQUERADE || iptables -t nat -A POSTROUTING -o br0  -d 10.0.5.3 -p tcp --dport 53 -j MASQUERADE
+# iptables -t nat -C POSTROUTING -o br0 -d 10.0.5.3 -p udp --dport 53 -j MASQUERADE || iptables -t nat -A POSTROUTING -o br0  -d 10.0.5.3 -p udp --dport 53 -j MASQUERADE
