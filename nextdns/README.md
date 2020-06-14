@@ -39,7 +39,7 @@ If you have already installed PiHole, skip right to step 6.
 6. Create /mnt/data/nextdns and copy [nextdns.conf](https://github.com/boostchicken/udm-utilities/blob/master/nextdns/udm-files/nextdns.conf) to it.
 7. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
 ```
- podman run -d --privileged --network dns \
+ podman run -d --privileged --network dns --restart always  \
     --name nextdns \
     -v "/mnt/data/nextdns/:/etc/nextdns/" \
     -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
