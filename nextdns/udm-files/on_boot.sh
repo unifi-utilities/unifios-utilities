@@ -12,7 +12,8 @@ ip link set br5.mac promisc on
 ip addr add 10.0.5.2/24 dev br5.mac
 ip link set br5.mac up
 ip route add 10.0.5.3/32 dev br5.mac proto static scope link
-podman start nextdns
+# Remove the # on the line below when Docker container is deployed.
+#podman start nextdns
 
 # optional if you dont want to force everything through nextdns. also add anymore bridges for other networks (br5, 10 etc)
 iptables -t nat -C PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3

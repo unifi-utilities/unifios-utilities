@@ -50,3 +50,4 @@ If you have already installed PiHole, skip right to step 6.
 ```
 Note: 
 8. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
+9. Uncomment ```podman start nextdns``` in on_boot.sh

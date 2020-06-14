@@ -46,3 +46,4 @@ podman exec -it pihole pihole -a -p YOURNEWPASSHERE
 ```
 8. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
 9. Access the pihole like you would normally.
+9. Uncomment ```podman start pihole``` in on_boot.sh
