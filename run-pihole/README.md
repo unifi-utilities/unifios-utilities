@@ -35,6 +35,11 @@
     pihole/pihole:latest
 ```
 
+The below errors are expected and acceptable
+```
+ERRO[0022] unable to get systemd connection to add healthchecks: dial unix /run/systemd/private: connect: no such file or directory
+ERRO[0022] unable to get systemd connection to start healthchecks: dial unix /run/systemd/private: connect: no such file or directory
+```
 7. Set pihole password
 ```
 podman exec -it pihole pihole -a -p YOURNEWPASSHERE
