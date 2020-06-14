@@ -23,7 +23,7 @@ The on-boot script needs to be setup after firmware update of UDM. When on-boot 
 6. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
 
 ```
-podman run -d --network dns \
+podman run -d --network dns --restart always  \
     --name adguardhome \
     -v "/mnt/data/AdguardHome-Confdir/:/opt/adguardhome/conf/" \
     -v "/mnt/data/AdguardHome-Workdir/:/opt/adguardhome/work/" \

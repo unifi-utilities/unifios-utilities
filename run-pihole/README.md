@@ -21,7 +21,7 @@
 6. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the command below.
 
 ```
- podman run -d --network dns \
+ podman run -d --network dns --restart always \
     --name pihole \
     -e TZ="America/Los Angeles" \
     -v "/mnt/data/etc-pihole/:/etc/pihole/" \
