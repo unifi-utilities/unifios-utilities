@@ -1,14 +1,11 @@
-FROM alpine AS builder
+FROM alpine
 ENV VERSION=1.6.4
-WORKDIR /tmp
-RUN apk add curl \
-    && mkdir nextdns \
-    && curl -fsSL https://github.com/nextdns/nextdns/releases/download/v${VERSION}/nextdns_${VERSION}_linux_arm64.tar.gz -o nextdns.tar.gz \
-    && tar zxf nextdns.tar.gz -C ./nextdns
-
-FROM debian:buster-slim
 LABEL maintainer="John Dorman <dorman@ataxia.cloud>"
-RUN apt update && apt install -y ca-certificates
-COPY --from=builder /tmp/nextdns /opt/nextdns
+RUN apk add --no-cache ca-certificates \
+    && mkdir -p /opt/nextdns \
+    && wget -O /tmp/nextdns.tar.gz https://github.com/nextdns/nextdns/releases/download/v${VERSION}/nextdns_${VERSION}_linux_arm64.tar.gz  \
+    && tar zxf /tmp/nextdns.tar.gz -C /opt/nextdns \
+    && rm /tmp/nextdns.tar.gz
 EXPOSE 53/tcp 53/udp
 ENTRYPOINT ["/opt/nextdns/nextdns","run", "-config-file", "/etc/nextdns/nextdns.conf"]
+CMD []
