@@ -22,7 +22,7 @@ FORCED_INTFC=""
 # uncomment after after the container has been deployed
 #PODMAN_START=1
 
-# container name; e.g. nextdns, pihole, AdguardHome, etc.
+# container name; e.g. nextdns, pihole, adguardhome, etc.
 CONTAINER=nextdns
 
 ## network configuration and startup:
