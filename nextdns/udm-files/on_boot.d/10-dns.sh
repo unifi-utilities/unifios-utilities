@@ -5,24 +5,27 @@ VLAN=5
 IPV4_IP="10.0.5.3"
 IPV4_GW="10.0.5.1/24"
 
-# if you want IPv6 support, generate a ULA, select an IP for nextdns and an
-# appropriate gateway address on the same /64 network. Make sure that the
-# 20-dns.conflist is updated appropriately. It will need the IP and GW added
-# along with a ::/0 route. Also make sure that additional --dns options are
-# passed to podman with your nextdns IPv6 DNS IPs when deploying the nextdns
-# container for the first time.
+# if you want IPv6 support, generate a ULA, select an IP for the dns server
+# and an appropriate gateway address on the same /64 network. Make sure that
+# the 20-dns.conflist is updated appropriately. It will need the IP and GW
+# added along with a ::/0 route. Also make sure that additional --dns options
+# are passed to podman with your IPv6 DNS IPs when deploying the container for
+# the first time.
 IPV6_IP=""
 IPV6_GW=""
 
 # set this to the interface(s) on which you want DNS TCP/UDP port 53 traffic
-# re-routed through nextdns. separate interfaces with spaces.
-#e.g. "br0" or "br0 br1"
+# re-routed through the DNS container. separate interfaces with spaces.
+# e.g. "br0" or "br0 br1" etc.
 FORCED_INTFC=""
 
 # uncomment after after the container has been deployed
 #PODMAN_START=1
 
-## nextdns network configuration and startup:
+# container name; e.g. nextdns, pihole, AdguardHome, etc.
+CONTAINER=nextdns
+
+## network configuration and startup:
 
 mkdir -p /opt/cni
 ln -s /mnt/data/podman/cni/ /opt/cni/bin
@@ -45,20 +48,20 @@ fi
 ip link set br${VLAN}.mac promisc on
 ip link set br${VLAN}.mac up
 
-# add IPv4 route to nextdns
+# add IPv4 route to DNS container
 ip route add ${IPV4_IP}/32 dev br${VLAN}.mac
 
-# (optional) add IPv6 route to nextdns
+# (optional) add IPv6 route to DNS container
 if [ -n "${IPV6_IP}" ]; then
   ip -6 route add ${IPV6_IP}/128 dev br${VLAN}.mac
 fi
 
 # Start the container
 if [ "${PODMAN_START}" == "1" ]; then
-  podman start nextdns
+  podman start ${CONTAINER}
 fi
 
-# (optional) IPv4 force DNS (TCP/UDP 53) through nextdns
+# (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
 for intfc in ${FORCED_INTFC}; do
   for proto in udp tcp; do
     prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
@@ -67,7 +70,7 @@ for intfc in ${FORCED_INTFC}; do
     postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV4_IP} -p ${proto} --dport 53 -j MASQUERADE"
     iptables -t nat -C ${postrouting_rule} || iptables -t nat -A ${postrouting_rule}
 
-    # (optional) IPv6 force DNS (TCP/UDP 53) through nextdns
+    # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
     if [ -n "${IPV6_IP}" ]; then
       prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
       ip6tables -t nat -C ${prerouting_rule} || ip6tables -t nat -A ${prerouting_rule}
