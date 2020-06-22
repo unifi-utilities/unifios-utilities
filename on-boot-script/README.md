@@ -13,16 +13,7 @@
 vi /mnt/data/on_boot.sh 
 chmod u+x /mnt/data/on_boot.sh
 ```
-Example: see examples/udm-files/on_boot.sh
-```
-#!/bin/sh
-podman start wpa_supplicant-udmpro
-
-iptables -t nat -C PREROUTING -p udp ! --source 10.0.0.x ! --destination 10.0.0.x --dport 53 -j DNAT --to 10.0.0.x || iptables -t nat -A PREROUTING -p udp ! --source 10.0.0.x ! --destination 10.0.0.x --dport 53 -j DNAT --to 10.0.0.x
-iptables -t nat -C PREROUTING -p tcp ! --source 10.0.0.x ! --destination 10.0.0.x --dport 53 -j DNAT --to 10.0.0.x || iptables -t nat -A PREROUTING -p tcp ! --source 10.0.0.x ! --destination 10.0.0.x --dport 53 -j DNAT --to 10.0.0.x
-iptables -t nat -C POSTROUTING -j MASQUERADE || iptables -t nat -A POSTROUTING -j MASQUERADE
-```
-
+Example: see examples/udm-files/on_boot.sh, examples/udm-files/on_boot.d/*.sh
 
 # 2. Make the unifios docker container execute this script on startup, this has to be done after every firmware update.  It does persist through reboots.
 
