@@ -16,7 +16,7 @@ ip link set br5.mac up
 
 ip route add 10.0.5.3/32 dev br5.mac
 #Remove the # on the line below when Docker container is deployed. 
-#podman start AdguardHome
+#podman start adguardhome
 
 # Uncomment and adjust these rules if you want to use DNAT to force DNS to this container.
 # iptables -t nat -C PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3 || iptables -t nat -A PREROUTING -i br0 -p udp ! --source 10.0.5.3 ! --destination 10.0.5.3 --dport 53 -j DNAT --to 10.0.5.3
