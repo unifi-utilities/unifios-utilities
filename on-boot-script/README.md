@@ -50,9 +50,9 @@ Example: examples/unifi-os-files/udmboot.service
 ```
 echo "[Unit]
 Description=Run On Startup UDM
+After=network.target
 
 [Service]
-After=network.target
 ExecStart=/etc/init.d/udm.sh
 
 [Install]
