@@ -4,6 +4,9 @@ A collection of things to enhance the capabilities of your Unifi Dream Machine o
 ### on-boot-script
 Run any commands when your UDM starts.
 
+### dns-common
+Configurations for DNS containers, both IPv4 and IPv6
+
 ### run-pihole
 Run pihole on your UDM with podman.  Utilizes macvlan cni plugins to completely isolate the network stack
 

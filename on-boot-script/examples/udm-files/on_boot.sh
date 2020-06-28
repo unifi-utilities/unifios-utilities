@@ -1,5 +1,9 @@
 #!/bin/sh
 
-## example command to run, please replace with your own.
-podman start wpa_supplicant-udmpro
-
+if [ -d /mnt/data/on_boot.d ]; then
+    for i in /mnt/data/on_boot.d/*.sh; do
+        if [ -r $i ]; then
+            . $i
+        fi
+    done
+fi

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo "#!/bin/sh
 ssh -o StrictHostKeyChecking=no root@127.0.1.1 '/mnt/data/on_boot.sh'" > /etc/init.d/udm.sh
 chmod u+x /etc/init.d/udm.sh
