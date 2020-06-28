@@ -12,15 +12,14 @@
 ### Customization
 * Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP address of the container.
 * Update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with your own values
-* If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and [10-dnsipv6.sh](../dns-common/on_boot.d/10-dnsipv6.sh). Also, please provide IPv6 servers to podman using --dns arguments.
+* If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with the IPv6 addresses. Also, please provide IPv6 servers to podman using --dns arguments.
 
 ### Steps
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
-2. Install the CNI plugins with by executing [install-cni-plugins.sh](../cni-plugins/install-cni-plugins.sh) on your UDM
-3. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
-4. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
-5. Execute /mnt/data/on_boot.d/10-dns.sh
-6. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
+1. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
+1. Execute /mnt/data/on_boot.d/10-dns.sh
+1. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+1. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
 
     ```shell script
     podman run -d --network dns --restart always  \

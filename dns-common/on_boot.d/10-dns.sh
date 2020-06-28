@@ -10,7 +10,12 @@ IPV4_GW="10.0.5.1/24"
 # the 20-dns.conflist is updated appropriately. It will need the IP and GW
 # added along with a ::/0 route. Also make sure that additional --dns options
 # are passed to podman with your IPv6 DNS IPs when deploying the container for
-# the first time.
+# the first time. You will also need to configure your VLAN to have a static
+# IPv6 block.
+
+# IPv6 Also works with Prefix Delegation from your provider. The gateway is the
+# IP of br(VLAN) and you can pick any ip address within that subnet that dhcpv6
+# isn't serving
 IPV6_IP=""
 IPV6_GW=""
 
@@ -23,10 +28,22 @@ FORCED_INTFC=""
 CONTAINER=nextdns
 
 ## network configuration and startup:
+CNI_PATH=/mnt/data/podman/cni
+if [ ! -f "$CNI_PATH"/macvlan ]
+then
+    mkdir -p $CNI_PATH
+    curl -L https://github.com/containernetworking/plugins/releases/download/v0.8.6/cni-plugins-linux-arm64-v0.8.6.tgz | tar -xz -C $CNI_PATH
+fi
 
 mkdir -p /opt/cni
-ln -s /mnt/data/podman/cni/ /opt/cni/bin
-ln -s /mnt/data/podman/cni/20-dnsipv6.conflist /etc/cni/net.d/20-dnsipv6.conflist
+ln -s $CNI_PATH /opt/cni/bin
+
+for file in "$CNI_PATH"/*.conflist
+do
+    if [ -f "$file" ]; then
+        ln -s "$file" "/etc/cni/net.d/$(basename "$file")"
+    fi
+done
 
 # set VLAN bridge promiscuous
 ip link set br${VLAN} promisc on
@@ -52,24 +69,30 @@ if [ -n "${IPV6_IP}" ]; then
   ip -6 route add ${IPV6_IP}/128 dev br${VLAN}.mac
 fi
 
-podman container exists ${CONTAINER} && podman start ${CONTAINER}
+if podman container exists ${CONTAINER}; then
+  podman start ${CONTAINER}
+else
+  echo "Container $CONTAINER not found, make sure you set the proper name, if you have you can ignore this error"
+fi
 
 # (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
 for intfc in ${FORCED_INTFC}; do
-  for proto in udp tcp; do
-    prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
-    iptables -t nat -C ${prerouting_rule} || iptables -t nat -A ${prerouting_rule}
+  if [ -d "/sys/class/net/${intfc}" ]; then
+    for proto in udp tcp; do
+      prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
+      iptables -t nat -C ${prerouting_rule} || iptables -t nat -A ${prerouting_rule}
 
-    postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV4_IP} -p ${proto} --dport 53 -j MASQUERADE"
-    iptables -t nat -C ${postrouting_rule} || iptables -t nat -A ${postrouting_rule}
+      postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV4_IP} -p ${proto} --dport 53 -j MASQUERADE"
+      iptables -t nat -C ${postrouting_rule} || iptables -t nat -A ${postrouting_rule}
 
-    # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
-    if [ -n "${IPV6_IP}" ]; then
-      prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
-      ip6tables -t nat -C ${prerouting_rule} || ip6tables -t nat -A ${prerouting_rule}
+      # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
+      if [ -n "${IPV6_IP}" ]; then
+        prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
+        ip6tables -t nat -C ${prerouting_rule} || ip6tables -t nat -A ${prerouting_rule}
 
-      postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV6_IP} -p ${proto} --dport 53 -j MASQUERADE"
-      ip6tables -t nat -C ${postrouting_rule} || ip6tables -t nat -A ${postrouting_rule}
-    fi
-  done
+        postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV6_IP} -p ${proto} --dport 53 -j MASQUERADE"
+        ip6tables -t nat -C ${postrouting_rule} || ip6tables -t nat -A ${postrouting_rule}
+      fi
+    done
+  fi
 done

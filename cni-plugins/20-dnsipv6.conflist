@@ -14,8 +14,8 @@
             "gateway": "10.0.5.1"
           },
           {
-              "address": "fd62:89a2:fda9:e23:0:0:0:2",
-              "gateway": "fd62:89a2:fda9:e23:0:0:0:1"
+              "address": "fd62:89a2:fda9:e23::2/64",
+              "gateway": "fd62:89a2:fda9:e23::1"
             }
         ],
         "routes": [
