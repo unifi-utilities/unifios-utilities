@@ -11,8 +11,8 @@ IPV4_GW="10.0.5.1/24"
 # added along with a ::/0 route. Also make sure that additional --dns options
 # are passed to podman with your IPv6 DNS IPs when deploying the container for
 # the first time.
-IPV6_IP="fd62:89a2:fda9:e23:0:0:0:2"
-IPV6_GW="fd62:89a2:fda9:e23:0:0:0:1"
+IPV6_IP=""
+IPV6_GW=""
 
 # set this to the interface(s) on which you want DNS TCP/UDP port 53 traffic
 # re-routed through the DNS container. separate interfaces with spaces.
@@ -26,7 +26,7 @@ CONTAINER=nextdns
 
 mkdir -p /opt/cni
 ln -s /mnt/data/podman/cni/ /opt/cni/bin
-ln -s /mnt/data/podman/cni/20-dnsipv6.conflist /etc/cni/net.d/20-dnsipv6.conflist
+ln -s /mnt/data/podman/cni/20-dns.conflist /etc/cni/net.d/20-dns.conflist
 
 # set VLAN bridge promiscuous
 ip link set br${VLAN} promisc on
