@@ -1,5 +1,5 @@
 FROM alpine
-ENV VERSION=1.6.4
+ENV VERSION=1.7.0
 LABEL maintainer="John Dorman <dorman@ataxia.cloud>"
 RUN apk add --no-cache ca-certificates \
     && mkdir -p /opt/nextdns \
