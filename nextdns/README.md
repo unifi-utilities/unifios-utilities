@@ -15,7 +15,7 @@
 * The NextDNS docker image is not supported by NextDNS. It is built out of this repo.  If you make any enhancements please contribute back via a Pull Request.
 * If you want to inject custom DNS names into NextDNS use --add-host docker commands.  The /etc/resolv.conf and /etc/hosts is  generated from that and --dns.
 * Edit [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) and update its values to reflect your environment (specifically the container name)
-* If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and [10-dnsipv6.sh](../dns-common/on_boot.d/10-dnsipv6.sh). Also, please provide IPv6 servers to podman using --dns arguments.
+* If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with the IPv6 addresses. Also, please provide IPv6 servers to podman using --dns arguments.
 
 ### Docker
 The official repo is boostchicken/nextdns-udm.  Latest will always refer to the latest builds, there are also tags for each NextDNS release (e.g. 1.6.4).
@@ -33,12 +33,11 @@ docker buildx build --platform linux/arm64 -t nextdns-udm:latest .
 If you have already installed PiHole, skip right to step 6.
 
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
-2. Install the CNI plugins with by executing [install-cni-plugins.sh](../cni-plugins/install-cni-plugins.sh) on your UDM
-3. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
-4. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
-5. Execute /mnt/data/on_boot.d/10-dns.sh
-6. Create /mnt/data/nextdns and copy [nextdns.conf](udm-files/nextdns.conf) to it.
-7. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
+2. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
+3. Execute /mnt/data/on_boot.d/10-dns.sh
+4. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+5. Create /mnt/data/nextdns and copy [nextdns.conf](udm-files/nextdns.conf) to it.
+6. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
     ```shell script
      podman run -d -it --privileged --network dns --restart always  \
         --name nextdns \
@@ -49,5 +48,5 @@ If you have already installed PiHole, skip right to step 6.
         --hostname nextdns \
         boostchicken/nextdns-udm:latest
     ```
-8. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
+7. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Creating on boot script on device"
-echo "#!/bin/sh
+echo '#!/bin/sh
 
 if [ -d /mnt/data/on_boot.d ]; then
     for i in /mnt/data/on_boot.d/*.sh; do
@@ -10,7 +10,8 @@ if [ -d /mnt/data/on_boot.d ]; then
         fi
     done
 fi
-" > /mnt/data/20-python.sh
+' > /mnt/data/on_boot.sh
+
 chmod u+x /mnt/data/on_boot.sh
 mkdir -p /mnt/data/on_boot.d
 
