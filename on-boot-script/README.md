@@ -41,5 +41,5 @@ exit
 4. Copy any shell scripts you want to run to /mnt/data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/sh)
     Examples: 
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
-    * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-start-containers.sh)
+    * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
    
