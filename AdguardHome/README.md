@@ -7,7 +7,6 @@
 ### Requirements
 1. You have setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
 2. AdguardHome persists through firmware updates as it will store the configuration in a folder (you need to create this). It needs 2 folders, a Work and Configuration folder. Please create the 2 folders in "/mnt/data/". In my example I created "AdguardHome-Confdir" and "AdguardHome-Workdir"
-3. The on-boot script needs to be setup after firmware update of UDM. When on-boot script is recreated, everything should work.
 
 ### Customization
 * Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP address of the container.

@@ -8,7 +8,6 @@
 
 ### Requirements
 1. You have already setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
-2. NextDNS persists through firmware updates. The on-boot script does not.  If you update your firmware, setup on-boot again and everything should work.
 
 ### Customization
 * Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP address of the container. 
