@@ -1,7 +1,7 @@
 * NB! THESE WILL NOT PERSIST THROUGH FIRMWARE. They still work however
 ### Automated Setup
 
-1. Copy [install.sh](install.sh) to your UDM and execute it
+1. Copy [install.sh](manual-install/install.sh) to your UDM and execute it
 1. Copy any shell scripts you want to run to /mnt/data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/sh)
     Examples:
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
