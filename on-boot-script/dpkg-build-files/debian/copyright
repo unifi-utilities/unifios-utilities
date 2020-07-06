@@ -1,0 +1,9 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: udm-boot
+Upstream-Contact: John Dorman / Boostchicken
+Source: https://github.com/boostchicken/udm-utilities
+
+Files: *
+Copyright: 2020 dorman@ataxia.cloud
+License: GPLv3
+ https://github.com/boostchicken/udm-utilities/blob/master/LICENSE
