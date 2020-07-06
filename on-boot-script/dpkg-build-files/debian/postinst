@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+
+case "$1" in
+    configure)
+       chmod +x /etc/init.d/udm.sh
+       echo "[Unit]
+       Description=Run On Startup UDM
+       After=network.target
+
+       [Service]
+       ExecStart=/etc/init.d/udm.sh
+
+       [Install]
+       WantedBy=multi-user.target" > /etc/systemd/system/udmboot.service
+       systemctl enable udmboot
+       systemctl start udmboot
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+exit 0

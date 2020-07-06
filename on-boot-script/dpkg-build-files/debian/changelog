@@ -1,0 +1,5 @@
+udm-boot (1.0.0-1) unstable; urgency=medium
+
+  * Initial release, happy firmware persisting!
+
+ -- Boostchicken <dorman@ataxia.cloud>  Sun, 05 Jul 2020 18:46:14 -0700

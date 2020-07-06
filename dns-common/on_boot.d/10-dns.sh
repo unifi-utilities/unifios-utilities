@@ -72,7 +72,7 @@ fi
 if podman container exists ${CONTAINER}; then
   podman start ${CONTAINER}
 else
-  echo "Container $CONTAINER not found, make sure you set the proper name, if you have you can ignore this error"
+  logger Container $CONTAINER not found, make sure you set the proper name, if you have you can ignore this error
 fi
 
 # (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
