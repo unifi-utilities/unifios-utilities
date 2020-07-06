@@ -20,18 +20,24 @@ rm /etc/systemd/system/udmboot.service
 * Built on Ubuntu-20.04 on Windows 10/WSL2
 
 ## Steps
+1. Copy on_boot.sh and make on_boot.d
+    ```shell script
+    vi /mnt/data/on_boot.sh
+    chmod u+x /mnt/data/on_boot.sh
+    mkdir -p /mnt/data/on_boot.d
+    ```
+    Example: [on_boot.sh](examples/udm-files/on_boot.sh)
+1. Copy any shell scripts you want to run to /mnt/data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/sh)
+    Examples: 
+    * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
+    * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-start-containers.sh)
 1. Get into the unifios shell on your udm
 ```shell script
 unifi-os shell
 ```
-2. Download the [udm-boot_1.0.0-1_all.deb](packages/udm-boot_1.0.0-1_all.deb) and install it and go back to the UDM
+1. Download the [udm-boot_1.0.0-1_all.deb](packages/udm-boot_1.0.0-1_all.deb) and install it and go back to the UDM
 ```shell script
 curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.0-1_all.deb -o udm-boot_1.0.0-1_all.deb
 dpkg -i udm-boot_1.0.0-1_all.deb
 exit
 ```
-3. Copy any shell scripts you want to run to /mnt/data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/sh)
-    Examples: 
-    * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
-    * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-start-containers.sh)
-   
