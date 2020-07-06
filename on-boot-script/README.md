@@ -26,7 +26,7 @@ unifi-os shell
 ```
 2. Download the [udm-boot_1.0.0-1_all.deb](packages/udm-boot_1.0.0-1_all.deb) and install it and go back to the UDM
 ```shell script
-wget https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.0-1_all.deb
+wget curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.0-1_all.deb -o udm-boot_1.0.0-1_all.deb
 dpkg -i udm-boot_1.0.0-1_all.deb
 exit
 ```
