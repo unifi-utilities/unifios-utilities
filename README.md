@@ -6,7 +6,7 @@ A collection of things to enhance the capabilities of your Unifi Dream Machine o
 ## General Tools
 ### on-boot-script
 Enables init.d style scripts to run on every boot of your UDM. Includes a wpa-supplicant/eap-proxy example.  
-**It allows complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
+**It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
 
 ### python
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container
