@@ -1,7 +1,7 @@
 # udm-utilities
 A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro. **All solutions in this repo persist through firmware upgrades!**
 
-**Pull Requests welcome! If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!"**
+**Pull Requests welcome! If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!**
 
 ## General Tools
 ### on-boot-script
