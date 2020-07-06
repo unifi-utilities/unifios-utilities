@@ -5,6 +5,8 @@ set -e
 
 case "$1" in
     configure)
+       echo "#!/bin/sh
+            ssh -o StrictHostKeyChecking=no root@127.0.1.1 '/mnt/data/on_boot.sh'" > /etc/init.d/udm.sh
        chmod +x /etc/init.d/udm.sh
        echo "[Unit]
        Description=Run On Startup UDM
