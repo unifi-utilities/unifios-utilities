@@ -1,10 +1,24 @@
 #!/bin/sh
-
 set -e
-
 
 case "$1" in
     configure)
+      echo '#!/bin/sh
+
+            if [ -d /mnt/data/on_boot.d ]; then
+                for i in /mnt/data/on_boot.d/*.sh; do
+                    if [ -r $i ]; then
+                        . $i
+                    fi
+                done
+            fi
+            ' > /tmp/on_boot.sh
+       scp -o StrictHostKeyChecking=no /tmp/on_boot.sh root@127.0.1.1:/mnt/data/on_boot.sh
+       ssh -o StrictHostKeyChecking=no root@127.0.1.1 'chmod +x /mnt/data/on_boot.sh'
+       ssh -o StrictHostKeyChecking=no root@127.0.1.1 'mkdir -p /mnt/data/on_boot.d'
+
+       rm /tmp/on_boot.sh
+
        echo "#!/bin/sh
             ssh -o StrictHostKeyChecking=no root@127.0.1.1 '/mnt/data/on_boot.sh'" > /etc/init.d/udm.sh
        chmod +x /etc/init.d/udm.sh
