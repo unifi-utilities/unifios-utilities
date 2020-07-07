@@ -24,7 +24,7 @@ rm /etc/systemd/system/udmboot.service
 ```shell script
 unifi-os shell
 ```
-2. Download [udm-boot_1.0.1-1_all.deb](packages/udm-boot_1.0.0-1_all.deb) and install it and go back to the UDM
+2. Download [udm-boot_1.0.1-1_all.deb](packages/udm-boot_1.0.1-1_all.deb) and install it and go back to the UDM
 ```shell script
 curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
 dpkg -i udm-boot_1.0.1-1_all.deb
