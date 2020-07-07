@@ -34,4 +34,12 @@ exit
     Examples: 
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
     * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
-   
+
+
+## Version History
+
+### 1.0.1
+* Fully automated install, all that is left is populating /mnt/data/on_boot.d
+
+### 1.0.0
+* First release that persists through firmware   
