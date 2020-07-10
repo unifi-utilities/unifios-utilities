@@ -11,6 +11,11 @@ Enables init.d style scripts to run on every boot of your UDM. Includes a wpa-su
 ### python
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container
 
+## VPN Servers / Clients
+
+### wireguard-go
+Run a Wireguard client/server on your UDM/P.  Utilizes wireguard-go, not linux kernel modules.  The performance will take a hit due to that.
+
 ## DNS Providers
 ### dns-common
 Configurations for DNS containers, both IPv4 and IPv6.  Utilizes MacVLAN CNI plugins to completely isolate the network stack.

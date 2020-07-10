@@ -25,7 +25,7 @@ podman build . -t nextdns-udm:latest
 ```
 Building from another device is possible.  You must have [buildx](https://github.com/docker/buildx/) installed to do cross platform builds. This is useful if you want to mirror to a private repo
 ```shell script
-docker buildx build --platform linux/arm64 -t nextdns-udm:latest .
+docker buildx build --platform linux/arm64/v8 -t nextdns-udm:latest .
 ```
 
 ### Steps
