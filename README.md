@@ -1,7 +1,9 @@
-# udm-utilities
-A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro. **All solutions in this repo persist through firmware upgrades!**
+# udm-utilities [<img src="https://img.shields.io/badge/slack-boostchicken-blue.svg?logo=slack">](https://join.slack.com/t/boostchicken/shared_invite/zt-fcjszaw4-2ZuNFxIQnrpjxixnm17LXQ)
 
-**Pull Requests welcome! If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!**
+A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro.
+
+## Contributing
+Pull Requests welcome! If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!
 
 ## General Tools
 ### on-boot-script
