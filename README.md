@@ -35,8 +35,10 @@ Run AdguardHome on your UDM with podman.
 
 ### multicast-relay 
 https://hub.docker.com/r/scyto/multicast-relay 
-This is a docker container that implements https://github.com/alsmith/multicast-relay to provide mDNS and SSDP on a unfi dream machine. It will likely work on any multi homed host.
+
+This is a docker container that implements https://github.com/alsmith/multicast-relay to provide mDNS and SSDP on a unifi dream machine. It will likely work on any multi homed host.
 
 ### ntopng
 https://github.com/tusc/ntopng-udm
+
 Much better network stats for your UDM/P!  Install this docker container and create an on_boot script to make sure it's always running.
