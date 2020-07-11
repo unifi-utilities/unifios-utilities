@@ -4,4 +4,4 @@
 ## ala /etc/profile.d
 
 ## Start the ntopng-udm container, from https://github.com/tusc/ntopng-udm
-docker start ntopng
+podman start ntopng
