@@ -54,4 +54,4 @@
 
 ### 1.0.0
 
-* First release that persists through firmware   
+* First release that persists through firmware
