@@ -8,7 +8,7 @@
 ## Compatibility
 
 1. Should work on any UDM/UDMPro after 1.6.3
-2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1
+2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7
 
 ### Upgrade from earlier way
 
