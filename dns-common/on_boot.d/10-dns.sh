@@ -29,13 +29,13 @@ CONTAINER=nextdns
 
 ## network configuration and startup:
 CNI_PATH=/mnt/data/podman/cni
-if [ ! -f "$CNI_PATH"/macvlan ]
-then
+if [ ! -f "$CNI_PATH"/macvlan ]; then
     mkdir -p $CNI_PATH
     curl -L https://github.com/containernetworking/plugins/releases/download/v0.8.6/cni-plugins-linux-arm64-v0.8.6.tgz | tar -xz -C $CNI_PATH
 fi
 
 mkdir -p /opt/cni
+rm -f /opt/cni/bin
 ln -s $CNI_PATH /opt/cni/bin
 
 for file in "$CNI_PATH"/*.conflist
@@ -81,17 +81,11 @@ for intfc in ${FORCED_INTFC}; do
     for proto in udp tcp; do
       prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
       iptables -t nat -C ${prerouting_rule} || iptables -t nat -A ${prerouting_rule}
-
-      postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV4_IP} -p ${proto} --dport 53 -j MASQUERADE"
-      iptables -t nat -C ${postrouting_rule} || iptables -t nat -A ${postrouting_rule}
-
+      
       # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
       if [ -n "${IPV6_IP}" ]; then
         prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
         ip6tables -t nat -C ${prerouting_rule} || ip6tables -t nat -A ${prerouting_rule}
-
-        postrouting_rule="POSTROUTING -o ${intfc} -d ${IPV6_IP} -p ${proto} --dport 53 -j MASQUERADE"
-        ip6tables -t nat -C ${postrouting_rule} || ip6tables -t nat -A ${postrouting_rule}
       fi
     done
   fi
