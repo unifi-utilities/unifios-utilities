@@ -25,6 +25,9 @@
 1. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
 
     ```shell script
+    mkdir /mnt/data/AdguardHome-Confdir
+    mkdir /mnt/data/AdguardHome-Workdir
+    
     podman run -d --network dns --restart always  \
         --name adguardhome \
         -v "/mnt/data/AdguardHome-Confdir/:/opt/adguardhome/conf/" \
