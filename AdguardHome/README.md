@@ -31,7 +31,7 @@
         -v "/mnt/data/AdguardHome-Workdir/:/opt/adguardhome/work/" \
         --dns=127.0.0.1 --dns=1.1.1.1 \
         --hostname adguardhome \
-        adguard/adguardhome:arm64-latest
+        adguard/adguardhome:latest
     ```
 
 1. Browse to 10.0.5.3:3000 and follow the setup wizard
