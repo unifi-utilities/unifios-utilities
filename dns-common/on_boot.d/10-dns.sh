@@ -78,7 +78,7 @@ fi
 if podman container exists ${CONTAINER}; then
   podman start ${CONTAINER}
 else
-  logger -s -t podman-dns -p ERROR Container $CONTAINER not found, make sure you set the proper name, if you have you can ignore this error
+  logger -s -t podman-dns -p ERROR Container $CONTAINER not found, make sure you set the proper name, you can ignore this error if it is your first time setting it up
 fi
 
 # (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
