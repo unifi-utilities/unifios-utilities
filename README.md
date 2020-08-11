@@ -23,7 +23,7 @@ If you need python3 on your UDM, generally not recommended, can always use it in
 Run a Wireguard client/server on your UDM/P.  Utilizes wireguard-go, not linux kernel modules.  The performance will take a hit due to that.
 
 ## DNS Providers
-Install a DNS server that functions as a network-wide ad and tracker blocker, and which can also securely proxy encrypted DNS requests to an upstream DNS provider. Begin by following the instructions to setup [on-boot-script](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script) and [dns-common(https://github.com/boostchicken/udm-utilities/tree/master/dns-common/on_boot.d). Then, follow the guides below to setup either Pi-Hole, NextDNS, or AdGuard Home.
+Install a DNS server that functions as a network-wide ad and tracker blocker, and which can also securely proxy encrypted DNS requests to an upstream DNS provider. Begin by following the instructions to setup [on-boot-script](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script) and [dns-common](https://github.com/boostchicken/udm-utilities/tree/master/dns-common/on_boot.d). Then, follow the guides below to setup either Pi-Hole, NextDNS, or AdGuard Home.
 
 ### dns-common
 Base configuration for DNS server containers, both IPv4 and IPv6.  Utilizes MacVLAN CNI plugins to completely isolate the network stack.
