@@ -6,4 +6,5 @@
 *.conf filter=lfs diff=lfs merge=lfs -text
 *.gitignore filter=lfs diff=lfs merge=lfs -text
 *.deb filter=lfs diff=lfs merge=lfs -text
+*.rules filter=lfs diff=lfs merge=lfs -text
 * text !filter !merge !diff
