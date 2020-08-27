@@ -8,6 +8,8 @@ Pull Requests welcome! If you use this functionality to do new cool stuff to you
 
 ## General Tools
 
+### suricata
+Run an updated version of suricata and apply custom rules that survive reboot 
 ### on-boot-script
 Do this first. Enables init.d style scripts to run on every boot of your UDM. Includes examples to run wpa-supplicant/eap-proxy and/or ntop-ng on startup. Follow this [readme](https://github.com/boostchicken/udm-utilities/blob/master/on-boot-script/README.md).  
 **It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
