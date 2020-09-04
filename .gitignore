@@ -1,1 +1,5 @@
 /.idea/
+/**/debian/files
+/**/debian/*.substvars
+debhelper-build-stamp
+.debhelper

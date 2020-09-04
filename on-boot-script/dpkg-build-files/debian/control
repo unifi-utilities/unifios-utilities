@@ -1,5 +1,5 @@
 Source: udm-boot
-Section: unknown
+Section: contrib/utils
 Priority: optional
 Maintainer: Boostchicken <dorman@ataxia.cloud>
 Build-Depends: debhelper-compat (= 12)
@@ -10,5 +10,6 @@ Homepage: https://github.com/boostchicken/udm-utilities
 
 Package: udm-boot
 Architecture: all
+Depends: ${misc:Depends}
 Description: Run things on boot on UDM
  Run things on boot!
