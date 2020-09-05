@@ -20,8 +20,8 @@ set -e
 
 case "$1" in
     configure)
-       scp -o StrictHostKeyChecking=no /usr/share/udm-boot/on_boot.sh root@127.0.1.1:/mnt/data/on_boot.sh
-       ssh -o StrictHostKeyChecking=no root@127.0.1.1 'chmod +x /mnt/data/on_boot.sh && mkdir -p /mnt/data/on_boot.d'
+       scp -P "$(cat /etc/unifi-os/ssh_proxy_port)" -o StrictHostKeyChecking=no -q /usr/share/udm-boot/on_boot.sh root@localhost:/mnt/data/on_boot.sh
+       /sbin/ssh-proxy 'chmod +x /mnt/data/on_boot.sh && mkdir -p /mnt/data/on_boot.d'
 
        deb-systemd-invoke enable udm-boot
        deb-systemd-invoke start udm-boot
