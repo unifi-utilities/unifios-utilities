@@ -8,7 +8,7 @@
 ## Compatibility
 
 1. Should work on any UDM/UDMPro after 1.6.3
-2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7
+2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7, 1.8.0
 
 ### Upgrade from earlier way
 
@@ -20,8 +20,12 @@
     rm /etc/systemd/system/udmboot.service
     ```
 
-* The new package is exactly the old steps packaged in a debian package
-* [dpkg-build-files](dpkg-build-files) contains the scripts that build the package (using dh_make and debuild) if you want to build it yourself / change it
+* [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
+    * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
+    * by default it uses docker or podman to build the debian package
+    * use ```./build_deb.sh build``` to not using a container
+    * the resulting package will be in [packages/](packages/)
+
 * Built on Ubuntu-20.04 on Windows 10/WSL2
 
 ## Steps
@@ -32,21 +36,25 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.1-1_all.deb](packages/udm-boot_1.0.1-1_all.deb) and install it and go back to the UDM
+2. Download [udm-boot_1.0.2_all.deb](packages/udm-boot_1.0.2_all.deb) and install it and go back to the UDM
 
     ```bash
-    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
-    dpkg -i udm-boot_1.0.1-1_all.deb
+    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.2_all.deb -o udm-boot_1.0.2_all.deb
+    dpkg -i udm-boot_1.0.2_all.deb
     exit
     ```
 
-3. Copy any shell scripts you want to run to /mnt/data/on_boot.d on your UDM (not the unifi-os shell)and make sure they are executable and have the correct shebang (#!/bin/sh)
+3. Copy any shell scripts you want to run to /mnt/data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh)
 
     Examples:
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
     * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
 
 ## Version History
+
+### 1.0.2
+
+* Some build improvements and more clean installation
 
 ### 1.0.1
 
