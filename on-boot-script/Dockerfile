@@ -8,7 +8,7 @@ RUN set -ex \
         devscripts \
 	fakeroot \
 	debhelper=12.\* dh-autoreconf=17\* \
-    && apt-get autoremove \
+    && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
 
