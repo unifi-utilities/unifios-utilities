@@ -1,3 +1,15 @@
+udm-boot (1.0.2) unstable; urgency=medium
+
+  * optimized package structure
+
+ -- spali <spali@spali.ch>  Thu, 03 Sep 2020 16:28:40 +0200
+
+udm-boot (1.0.1-1) unstable; urgency=medium
+
+  * Full automation
+
+ -- Boostchicken <dorman@ataxia.cloud>  Sun, 05 Jul 2020 18:46:14 -0700
+
 udm-boot (1.0.0-1) unstable; urgency=medium
 
   * Initial release, happy firmware persisting!
