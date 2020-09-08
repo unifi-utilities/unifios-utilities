@@ -25,28 +25,28 @@ The official repo is boostchicken/nextdns-udm.  Latest will always refer to the 
 
 The Dockerfile is included, you can build it locally on your UDM if you don't want to pull from Docker Hub or make customizations
 
-```shell script
+```sh
 podman build . -t nextdns-udm:latest
 ```
 
 Building from another device is possible.  You must have [buildx](https://github.com/docker/buildx/) installed to do cross platform builds. This is useful if you want to mirror to a private repo
 
-```shell script
+```sh
 docker buildx build --platform linux/arm64/v8 -t nextdns-udm:latest .
 ```
 
 ## Steps
 
-If you have already installed PiHole, skip right to step 6.
+If you have already installed PiHole, skip right to step 5.
 
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
 2. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
-3. Execute /mnt/data/on_boot.d/10-dns.sh
-4. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+3. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+4. Execute /mnt/data/on_boot.d/[10-dns.sh](../dns-common/on_boot.d/10-dns.sh) 
 5. Create /mnt/data/nextdns and copy [nextdns.conf](udm-files/nextdns.conf) to it.
 6. Run the NextDNS docker container.  Mounting dbus and running in privileged is only required for mDNS. Also, please change the --dns arguments to whatever was provided by NextDNS.
 
-    ```shell script
+    ```sh
      podman run -d -it --privileged --network dns --restart always  \
         --name nextdns \
         -v "/mnt/data/nextdns/:/etc/nextdns/" \
