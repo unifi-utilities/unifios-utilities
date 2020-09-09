@@ -43,6 +43,7 @@ case "$1" in
                                                --hostname=udm-boot \
                                                --name=udm-boot \
                                                --volume /sys/fs/cgroup:/sys/fs/cgroup:ro \
+					       --volume /etc/localtime:/etc/localtime:ro \
                                                localhost/udm-boot" | sed 's/^/  /'
 
        # cleanup and move old files
