@@ -1,12 +1,15 @@
 [Unit]
-Description=Run On Startup UDM
+Description=Run On UDM Startup
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/sbin/ssh-proxy '/mnt/data/on_boot.sh'
-RemainAfterExit=true
-StandardOutput=journal
+RemainAfterExit=yes
+ExecStartPre=/sbin/ssh-proxy "/bin/rm -f /run/udm-boot.service-pid /run/udm-boot.service-cid"
+ExecStart=/sbin/ssh-proxy "/usr/bin/podman start udm-boot"
+ExecStop=/sbin/ssh-proxy "/usr/bin/podman stop udm-boot"
+ExecStopPost=/sbin/ssh-proxy "/bin/rm -f /run/udm-boot.service-pid /run/udm-boot.service-cid"
+KillMode=none
 
 [Install]
 WantedBy=multi-user.target

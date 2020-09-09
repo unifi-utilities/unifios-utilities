@@ -1,0 +1,22 @@
+FROM localhost/systemd
+
+RUN set -ex \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates \
+        iptables \
+        curl \
+        gnupg2 \
+    && echo 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list \
+    && (curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key | apt-key add -) \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        podman \
+    && systemctl enable io.podman.service \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
+
+# iptables must match the host's iptables
+RUN update-alternatives --set iptables /usr/sbin/iptables-legacy
+RUN update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy

@@ -20,11 +20,59 @@ set -e
 
 case "$1" in
     configure)
-       scp -P "$(cat /etc/unifi-os/ssh_proxy_port)" -o StrictHostKeyChecking=no -q /usr/share/udm-boot/on_boot.sh root@localhost:/mnt/data/on_boot.sh
-       /sbin/ssh-proxy 'chmod +x /mnt/data/on_boot.sh && mkdir -p /mnt/data/on_boot.d'
+       echo "Create udm-boot file structure"
+       /sbin/ssh-proxy 'mkdir -p /mnt/data/udm-boot/on_boot.d'
+       scp -P "$(cat /etc/unifi-os/ssh_proxy_port)" -o StrictHostKeyChecking=no -q /usr/share/udm-boot/host/* root@localhost:/mnt/data/udm-boot/
+       /sbin/ssh-proxy 'chmod +x /mnt/data/udm-boot/on_boot.sh'
+       /sbin/ssh-proxy 'chmod +x /mnt/data/udm-boot/build.sh'
 
-       deb-systemd-invoke enable udm-boot
-       deb-systemd-invoke start udm-boot
+       # build images
+       echo "Build new images"
+       /sbin/ssh-proxy "cd /mnt/data/udm-boot && ./build.sh" | sed 's/^/  /'
+
+       # create containerA
+       echo "Remove old container"
+       /sbin/ssh-proxy "/usr/bin/podman container exists udm-boot && /usr/bin/podman rm --force --volumes udm-boot || true" | sed 's/^/  /'
+       /sbin/ssh-proxy "[ -f /run/udm-boot.service-cid ] && rm -v /run/udm-boot.service-cid || true" | sed 's/^/  /'
+       /sbin/ssh-proxy "[ -f /run/udm-boot.service-pid ] && rm -v /run/udm-boot.service-pid || true" | sed 's/^/  /'
+
+       echo "Create new container"
+       /sbin/ssh-proxy "/usr/bin/podman create --tty --conmon-pidfile /run/udm-boot.service-pid --cidfile /run/udm-boot.service-cid -d \
+                                               --network=host \
+                                               --privileged \
+                                               --hostname=udm-boot \
+                                               --name=udm-boot \
+                                               --volume /sys/fs/cgroup:/sys/fs/cgroup:ro \
+                                               localhost/udm-boot" | sed 's/^/  /'
+
+       # cleanup and move old files
+       echo "Cleanup and move old files"
+       #/sbin/ssh-proxy "[ -d /mnt/data/on_boot.d ] && ([ -f "/mnt/data/on_boot.d/*" ] && mv -v /mnt/data/on_boot.d/* /mnt/data/udm-boot/on_boot.d/ || true && rmdir -v /mnt/data/on_boot.d) || true"  | sed 's/^/  /'
+       #/sbin/ssh-proxy "[ -f /mnt/data/on_boot.sh ] && rm -v /mnt/data/on_boot.sh || true" | sed 's/^/  /'
+
+       # enable and start udm-boot
+       echo "Enable and start container"
+       deb-systemd-invoke enable udm-boot.service || true
+       deb-systemd-invoke start udm-boot.service || true
+
+       echo ""
+       echo ""
+       echo "udm-boot container started on the udm."
+       echo "some example commands to manage it from inside the unifi-os shell:"
+       echo ""
+       echo "  - systemctl start udm-boot"
+       echo "  - systemctl stop udm-boot"
+       echo "  - systemctl restart udm-boot"
+       echo "  - systemctl status udm-boot"
+       echo "  - ssh-proxy podman stop udm-boot"
+       echo "  - ssh-proxy podman start udm-boot"
+       echo "  - ssh-proxy podman restart udm-boot"
+       echo "  - ssh-proxy podman ps -a -f name=udm-boot"
+       echo "  - ssh-proxy podman logs udm-boot"
+       echo "  - ssh-proxy podman exec -it udm-boot /bin/bash"
+       echo ""
+
+
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

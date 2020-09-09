@@ -1,2 +1,6 @@
-on_boot.sh usr/share/udm-boot/
+host/on_boot.sh usr/share/udm-boot/host/
+host/build.sh usr/share/udm-boot/host/
+host/Dockerfile.systemd usr/share/udm-boot/host/
+host/Dockerfile.podman usr/share/udm-boot/host/
+host/Dockerfile usr/share/udm-boot/host/
 udm-boot.service lib/systemd/system/

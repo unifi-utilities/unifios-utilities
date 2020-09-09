@@ -1,3 +1,9 @@
+udm-boot (1.1.0) unstable; urgency=medium
+
+  * use systemd in container for full service management
+
+ -- spali <spali@spali.ch>  Sun, 06 Sep 2020 14:24:28 +0200
+
 udm-boot (1.0.2) unstable; urgency=medium
 
   * optimized package structure

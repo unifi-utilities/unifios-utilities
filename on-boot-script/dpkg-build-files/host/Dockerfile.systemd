@@ -1,0 +1,66 @@
+FROM debian:buster-slim
+
+ENV LC_ALL C
+
+# not required (at least by podman)
+#ENV container docker
+
+RUN set -ex \
+    && apt-get update \
+    # skip the post install of resolvconf (see https://github.com/moby/moby/issues/1297)
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        debconf-utils \
+    && echo resolvconf resolvconf/linkify-resolvconf boolean false | debconf-set-selections \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        systemd \
+        systemd-sysv \
+        systemd-container \
+        resolvconf \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
+
+#RUN /bin/bash -c '(cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done)' \
+    #&& rm -fv /lib/systemd/system/multi-user.target.wants/* \
+        #/lib/systemd/system/apt-daily* \
+        #/lib/systemd/system/fstrim.timer
+
+        #/etc/systemd/system/*.wants/* \
+        #/lib/systemd/system/local-fs.target.wants/* \
+        #/lib/systemd/system/sockets.target.wants/*udev* \
+        #/lib/systemd/system/sockets.target.wants/*initctl* \
+        #/lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
+        #/lib/systemd/system/systemd-update-utmp* \
+
+# was for debian stretch
+RUN systemctl mask --   \
+     # was for debian stretch
+     #dev-hugepages.mount \
+     # was for debian stretch
+     #sys-fs-fuse-connections.mount \
+     console-getty.service
+
+# enable and set console to autologin root (makes only sense when container is started interactive)
+#RUN set -ex \
+#    && mkdir -p /etc/systemd/system/console-getty.service.d/ \
+#    && /bin/echo -e '[Service]\nExecStart=\nExecStart=-/sbin/agetty --noclear --autologin root --keep-baud console 115200,38400,9600 $TERM' >/etc/systemd/system/console-getty.service.d/override.conf \
+#    && systemctl unmask console-getty.service
+
+
+# we do not use graphical.target by default
+#RUN systemctl set-default multi-user.target
+
+# cleanup machine-id to let systemd initialize it
+RUN rm -f \
+    /etc/machine-id \
+    /var/lib/dbus/machine-id
+
+# systemd expects this to for a shutdown
+STOPSIGNAL SIGRTMIN+3
+
+# cgroups has to be mounted read only: -v /sys/fs/cgroup:/sys/fs/cgroup:ro
+# the rest has to be tmpfs or CAP_SYS_ADMIN is required (debian stretch requires CAP_SYS_ADMIN anyway)
+VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
+
+CMD ["/sbin/init"]
+
