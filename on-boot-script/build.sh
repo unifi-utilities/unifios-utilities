@@ -9,6 +9,12 @@ TARGET_DIR_IMAGES="${SOURCE_DIR_DEB}/host"
 TARGET_DIR_DEB="${WORK_DIR}/packages"
 CONTAINER_FILE="${WORK_DIR}/Dockerfile"
 
+UDM_HOST="${UDM_HOST:-"127.0.0.1"}"
+UDM_SSH_PORT="${UDM_SSH_PORT:-"22"}"
+UDM_USERNAME="${UDM_USERNAME:-"root"}"
+UDM_DEPLOY_DIR="/mnt/data/unifi-os"
+UDM_UNIFI_DEPLOY_DIR="/data"
+
 
 fatal() {
 	echo "ERROR: ${1}" 1>&2
@@ -104,6 +110,28 @@ build_container() {
 	build_deb "/source" "/target" 
 }
 
+
+deploy() {
+	version="$(dpkg-parsechangelog --show-field version -l "${SOURCE_DIR_DEB}/debian/changelog")"
+	name="$(dpkg-parsechangelog --show-field source -l "${SOURCE_DIR_DEB}/debian/changelog")"
+	package_name="${name}_${version}_all.deb"
+	package_path="${TARGET_DIR_DEB}/${package_name}"
+	if [ ! -f "${package_path}" ]; then
+		fatal "package ${package_path} not found"
+	fi
+	scp -P ${UDM_SSH_PORT} -o StrictHostKeyChecking=no "${package_path}" "${UDM_USERNAME}@${UDM_HOST}:${UDM_DEPLOY_DIR}/"
+}
+
+
+install() {
+	version="$(dpkg-parsechangelog --show-field version -l "${SOURCE_DIR_DEB}/debian/changelog")"
+	name="$(dpkg-parsechangelog --show-field source -l "${SOURCE_DIR_DEB}/debian/changelog")"
+	package_name="${name}_${version}_all.deb"
+	package_path="${UDM_UNIFI_DEPLOY_DIR}/${package_name}"
+	ssh -p ${UDM_SSH_PORT} -o StrictHostKeyChecking=no "${UDM_USERNAME}@${UDM_HOST}" /usr/bin/podman exec unifi-os dpkg -i "${package_path}"
+}
+
+
 if [ $# -eq 0 ]; then
 	build_in_container
 fi
@@ -113,5 +141,11 @@ if [ "${1}" = "build" ]; then
 fi
 if [ "${1}" = "build_container" ]; then
 	build_container
+fi
+if [ "${1}" = "deploy" ]; then
+	deploy
+fi
+if [ "${1}" = "install" ]; then
+	install
 fi
 
