@@ -24,19 +24,8 @@ case "$1" in
 
         if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 
-            echo "Remove container"
-            /sbin/ssh-proxy "/usr/bin/podman container exists udm-boot && /usr/bin/podman rm --force --volumes udm-boot || true" | sed 's/^/  /' 
-            /sbin/ssh-proxy "[ -f /run/udm-boot.service-cid ] && rm -v /run/udm-boot.service-cid || true" | sed 's/^/  /'
-            /sbin/ssh-proxy "[ -f /run/udm-boot.service-pid ] && rm -v /run/udm-boot.service-pid || true" | sed 's/^/  /'
-
-        fi
-
-        if [ "$1" = "purge" ]; then
-
-            echo "Clean images and volumes"
-            /sbin/ssh-proxy "/usr/bin/podman image rm localhost/udm-boot localhost/podman localhost/systemd" | sed 's/^/  /'
-            /sbin/ssh-proxy "/usr/bin/podman image prune" | sed 's/^/  /'
-            /sbin/ssh-proxy "/usr/bin/podman volume prune --force" | sed 's/^/  /'
+		/sbin/ssh-proxy "/mnt/data/udm-boot/uninstall.sh purge"
+		echo "Successfully uninstalled udm-boot, please cleanup /mnt/data/udm-boot if desired"
 
         fi
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=Run On UDM Startup
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ssh-proxy "/mnt/data/udm-boot/on_boot.sh"
+RemainAfterExit=yes
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+

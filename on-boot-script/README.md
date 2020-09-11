@@ -20,10 +20,12 @@
     rm /etc/systemd/system/udmboot.service
     ```
 
-* [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
+    Note: since 1.1.0 all scripts get automatically moved to /mnt/data/udm-boot/...
+
+* [build_deb.sh](build.sh) can be used to build the package by yourself.
     * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
-    * by default it uses docker or podman to build the debian package
-    * use ```./build_deb.sh build``` to not using a container
+    * by default it uses buildah to build the container images and the debian package inside a container
+    * use ```./build.sh build``` to build not using a container (buildah has to be installed anyway)
     * the resulting package will be in [packages/](packages/)
 
 * Built on Ubuntu-20.04 on Windows 10/WSL2
@@ -39,12 +41,12 @@
 2. Download [udm-boot_1.0.2_all.deb](packages/udm-boot_1.0.2_all.deb) and install it and go back to the UDM
 
     ```bash
-    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.2_all.deb -o udm-boot_1.0.2_all.deb
-    dpkg -i udm-boot_1.0.2_all.deb
+    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.1.0_all.deb -o udm-boot_1.1.0_all.deb
+    dpkg -i udm-boot_1.1.0_all.deb
     exit
     ```
 
-3. Copy any shell scripts you want to run to /mnt/data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh)
+3. Copy any shell scripts you want to run to /mnt/data/udm-boot/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh)
 
     Examples:
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
