@@ -10,7 +10,7 @@ if [ -f /run/udm-boot.service-cid ]; then
 	rm -v /run/udm-boot.service-cid
 fi
 if [ -f /run/udm-boot.service-pid ]; then
-	/run/udm-boot.service-pid
+	rm -v /run/udm-boot.service-pid
 fi
 
 # purge images and volumes
