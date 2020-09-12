@@ -13,6 +13,7 @@ RUN set -ex \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         podman \
     && systemctl enable io.podman.service \
+    && systemctl enable podman.service \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
