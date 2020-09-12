@@ -22,13 +22,23 @@
 
     Note: since 1.1.0 all scripts get automatically moved to /mnt/data/udm-boot/...
 
-* [build_deb.sh](build.sh) can be used to build the package by yourself.
-    * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
-    * by default it uses buildah to build the container images and the debian package inside a container
-    * use ```./build.sh build``` to build not using a container (buildah has to be installed anyway)
-    * the resulting package will be in [packages/](packages/)
+* [build.sh](build.sh) can be used to build the package by yourself.
+    * Be sure to have at least "buildah" installed for the default container based build.
+    * The following command builds everything that is needed and even deploys and install udm-boot onto your device (you need a working ssh key based auth to your udm!):
+      ```
+        export UDM_HOST=<MY UDM IP>
+	./build.sh && ./build.sh deploy && ./build.sh install
+      ```
+    * Overview
+        * [dpkg-build-files](dpkg-build-files)
+          contains the most scripts and all sources that debuild uses to build the package if you want to build it yourself
+        * [images](images)
+          contains the dockerfiles to build the udm-boot container itself.
+          for maintainability it's split in three depending files.
+        * [packages/](packages)
+          the required build debian package will be put here
+    * Built on Ubuntu-20.04 on Windows 10/WSL2
 
-* Built on Ubuntu-20.04 on Windows 10/WSL2
 
 ## Steps
 
