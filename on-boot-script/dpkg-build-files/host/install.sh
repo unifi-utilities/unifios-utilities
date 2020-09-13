@@ -4,6 +4,8 @@ set -e
 
 mkdir -p /mnt/data/udm-boot/on_boot.d
 chmod +x /mnt/data/udm-boot/on_boot.sh
+mkdir -p /mnt/data/udm-boot/data/var/lib/containers
+mkdir -p /mnt/data/udm-boot/data/etc/systemd/system
 
 # import new udm-boot image
 iid=$(podman pull oci-archive:/mnt/data/udm-boot/udm-boot_arm64.tar)
@@ -27,6 +29,8 @@ podman tag $iid udm-boot
 	--name udm-boot \
 	--volume "/sys/fs/cgroup:/sys/fs/cgroup:ro" \
 	--volume "/etc/localtime:/etc/localtime:ro" \
+	--volume "/mnt/data/udm-boot/data/var/lib/containers:/var/lib/containers:rw" \
+	--volume "/mnt/data/udm-boot/data/etc/systemd/system:/etc/systemd/system:rw" \
 	udm-boot
 
 # cleanup and move legacy udm-boot files

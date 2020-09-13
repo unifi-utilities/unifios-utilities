@@ -25,7 +25,7 @@
 * [build.sh](build.sh) can be used to build the package by yourself.
     * Be sure to have at least "buildah" installed for the default container based build.
     * The following command builds everything that is needed and even deploys and install udm-boot onto your device (you need a working ssh key based auth to your udm!):
-      ```
+      ```bash
         export UDM_HOST=<MY UDM IP>
 	./build.sh && ./build.sh deploy && ./build.sh install
       ```
@@ -61,6 +61,40 @@
     Examples:
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
     * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
+
+4. Example creating a container that preserves and autostart on boot:
+
+    * On the UDM shell (not unifi-os):
+      ```bash
+      podman exec -it udm-boot /bin/bash
+      podman create --detach --restart always --network host --cap-add SYS_TIME --name ntpd tusc/chrony-udm
+      podman generate systemd ntpd >/etc/systemd/system/ntpd.service
+      systemctl daemon-reload
+      systemctl enable ntpd.service
+      systemctl start ntpd.service
+      ```
+
+## Uninstall
+
+1. Get into the unifios shell on your udm
+
+    ```bash
+    unifi-os shell
+    ```
+
+2. Uninstall udm-boot (`-P` will cleanup the 
+
+    ```bash
+    dpkg -P udm-boot
+    ```
+
+3. (Optional) Cleanup data if you want. **WARNING**: this will remove all your customizations (scripts, services, containers etc.)!
+
+    ```bash
+    exit # to drop out of the unifi-os shell and execute on the udm itself
+    rm -rf /mnt/data/udm-boot
+    ```
+
 
 ## Version History
 
