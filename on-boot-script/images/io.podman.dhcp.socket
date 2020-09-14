@@ -1,0 +1,9 @@
+[Unit]
+Description=DHCP Client for CNI
+
+[Socket]
+ListenStream=%t/cni/dhcp.sock
+SocketMode=0600
+
+[Install]
+WantedBy=sockets.target

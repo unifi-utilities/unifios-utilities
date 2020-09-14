@@ -1,0 +1,14 @@
+[Unit]
+Description=DHCP Client CNI Service
+Requires=io.podman.dhcp.socket
+After=io.podman.dhcp.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/cni/dhcp daemon
+TimeoutStopSec=30
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+Also=io.podman.dhcp.socket

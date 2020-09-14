@@ -12,8 +12,8 @@ RUN set -ex \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         podman \
-    && systemctl enable io.podman.service \
-    && systemctl enable podman.service \
+    && systemctl enable io.podman.socket \
+    && systemctl enable podman.socket \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
@@ -21,3 +21,10 @@ RUN set -ex \
 # iptables must match the host's iptables
 RUN update-alternatives --set iptables /usr/sbin/iptables-legacy
 RUN update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+
+COPY io.podman.dhcp.socket /etc/systemd/system/
+COPY io.podman.dhcp.service /etc/systemd/system/
+RUN set -ex \
+    && for plugin in "/opt/cni/bin/"*; do ln -vs "${plugin}" "/usr/libexec/cni/$(basename "${plugin}")"; done \
+    && systemctl enable io.podman.dhcp.socket
+
