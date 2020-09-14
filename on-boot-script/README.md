@@ -92,7 +92,9 @@
 
     ```bash
     exit # to drop out of the unifi-os shell and execute on the udm itself
-    rm -rf /mnt/data/udm-boot
+    rm -rf /mnt/data/udm-boot # delete all udm-boot data on the disk
+    podman image prune # cleanup container images (not only from udm-boot, is save if you didn't create images by yourself)
+    podman volume prune # cleanup container volumes (not only from udm-boot, is save if you didn't create containers or volumes by yourself)
     ```
 
 

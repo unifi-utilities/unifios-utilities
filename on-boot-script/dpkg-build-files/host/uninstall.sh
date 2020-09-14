@@ -15,11 +15,9 @@ fi
 
 # purge images and volumes
 if [ "$1" = "purge" ]; then
-        if /usr/bin/podman image exists udm-boot; then
+	if /usr/bin/podman image exists udm-boot; then
 		/usr/bin/podman image rm udm-boot
 	fi
-	/usr/bin/podman image prune
-	/usr/bin/podman volume prune --force
 fi
 
 
