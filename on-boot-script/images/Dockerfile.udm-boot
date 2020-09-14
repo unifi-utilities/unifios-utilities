@@ -14,5 +14,7 @@ RUN set -ex \
 
 RUN /bin/bash -c 'echo -e "udm-boot\nudm-boot" |(passwd root)'
 
+VOLUME ["/var/lib/containers", "/etc/systemd/system"]
+
 # cockpit
 EXPOSE 9090/tcp
