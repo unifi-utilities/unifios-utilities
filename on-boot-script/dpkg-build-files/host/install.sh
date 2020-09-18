@@ -27,10 +27,12 @@ podman tag $iid udm-boot
 	--network host \
 	--hostname udm-boot \
 	--name udm-boot \
-	--volume "/sys/fs/cgroup:/sys/fs/cgroup:ro" \
-	--volume "/etc/localtime:/etc/localtime:ro" \
-	--volume "/mnt/data/udm-boot/data/var/lib/containers:/var/lib/containers:rw" \
-	--volume "/mnt/data/udm-boot/data/etc/systemd/system:/etc/systemd/system:rw" \
+	--mount "type=bind,source=/sys/fs/cgroup,target=/sys/fs/cgroup,ro=true" \
+	--mount "type=bind,source=/etc/localtime,target=/etc/localtime,ro=true" \
+	--mount "type=bind,source=/mnt/data/ssh/id_rsa,target=/root/.ssh/id_rsa,ro=true" \
+	--mount "type=bind,source=/var/run,target=/mnt/host_var_run,ro=true" \
+	--mount "type=bind,source=/mnt/data/udm-boot/data/var/lib/containers,target=/var/lib/containers,rw=true" \
+	--mount "type=bind,source=/mnt/data/udm-boot/data/etc/systemd/system,target=/etc/systemd/system,rw=true" \
 	udm-boot
 
 # cleanup and move legacy udm-boot files

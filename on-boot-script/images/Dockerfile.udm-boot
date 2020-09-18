@@ -5,6 +5,7 @@ RUN set -ex \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         procps \
         net-tools \
+        openssh-client \
         vim \
         cockpit \
     && systemctl enable cockpit.socket \
@@ -13,6 +14,16 @@ RUN set -ex \
     && rm -rf /tmp/* /var/tmp/* /var/log/* /var/lib/apt/lists/* /var/log/alternatives.log
 
 RUN /bin/bash -c 'echo -e "udm-boot\nudm-boot" |(passwd root)'
+
+# setup ssh proxy
+COPY ssh-proxy /sbin/
+RUN set -ex \
+    && chmod +x /sbin/ssh-proxy
+
+# setup init style script service
+COPY udm-boot-script.service /lib/systemd/system/
+RUN set -ex \
+    && /bin/systemctl enable udm-boot-script.service
 
 VOLUME ["/var/lib/containers", "/etc/systemd/system", "/etc/cni/net.d"]
 

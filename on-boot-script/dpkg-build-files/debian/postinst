@@ -27,11 +27,9 @@ case "$1" in
        /sbin/ssh-proxy '/mnt/data/udm-boot/install.sh'
 
        # enable and start udm-boot
-       echo "Enable udm-boot services"
+       echo "Enable udm-boot service"
        deb-systemd-invoke enable udm-boot.service
-       deb-systemd-invoke enable udm-boot-script.service
        deb-systemd-invoke start udm-boot.service
-       deb-systemd-invoke start udm-boot-script.service
 
        echo ""
        echo ""

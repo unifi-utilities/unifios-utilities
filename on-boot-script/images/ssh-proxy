@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh -p "$(cat /mnt/host_var_run/ssh_proxy_port)" -o StrictHostKeyChecking=no -q root@localhost -- "$@"

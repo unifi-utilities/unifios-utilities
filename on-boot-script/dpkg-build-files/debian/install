@@ -3,4 +3,3 @@ host/install.sh usr/share/udm-boot/host/
 host/uninstall.sh usr/share/udm-boot/host/
 host/udm-boot_arm64.tar usr/share/udm-boot/host/
 udm-boot.service lib/systemd/system/
-udm-boot-script.service lib/systemd/system/

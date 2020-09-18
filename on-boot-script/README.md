@@ -24,11 +24,14 @@
 
 * [build.sh](build.sh) can be used to build the package by yourself.
     * Be sure to have at least "buildah" installed for the default container based build.
+
     * The following command builds everything that is needed and even deploys and install udm-boot onto your device (you need a working ssh key based auth to your udm!):
+
       ```bash
         export UDM_HOST=<MY UDM IP>
 	./build.sh && ./build.sh deploy && ./build.sh install
       ```
+
     * Overview
         * [dpkg-build-files](dpkg-build-files)
           contains the most scripts and all sources that debuild uses to build the package if you want to build it yourself
@@ -37,6 +40,7 @@
           for maintainability it's split in three depending files.
         * [packages/](packages)
           the required build debian package will be put here
+
     * Built on Ubuntu-20.04 on Windows 10/WSL2
 
 
@@ -48,7 +52,7 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.2_all.deb](packages/udm-boot_1.0.2_all.deb) and install it and go back to the UDM
+2. Download [udm-boot_1.1.0_all.deb](packages/udm-boot_1.1.0_all.deb) and install it and go back to the UDM
 
     ```bash
     curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.1.0_all.deb -o udm-boot_1.1.0_all.deb
@@ -99,6 +103,10 @@
 
 
 ## Version History
+
+### 1.1.0
+
+* move everything into udm-boot container
 
 ### 1.0.2
 
