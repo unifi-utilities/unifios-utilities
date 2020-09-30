@@ -4,8 +4,13 @@ RUN set -ex \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         procps \
-        net-tools \
         openssh-client \
+        net-tools \
+        iputils-arping \
+        iputils-ping \
+        iputils-tracepath \
+        traceroute \
+        dnsutils \
         vim \
         cockpit \
     && systemctl enable cockpit.socket \
