@@ -17,6 +17,10 @@ podman tag $iid udm-boot
 # cleanup old udm-boot container
 /mnt/data/udm-boot/uninstall.sh
 
+if [ -d /mnt/data_ext ]; then
+  mount_ext='--mount type=bind,source=/mnt/data_ext,target=/mnt/data_ext,rw=true'
+fi
+
 # create new udm-boot container
 /usr/bin/podman create \
 	--conmon-pidfile "/run/udm-boot.service-pid" \
@@ -33,6 +37,8 @@ podman tag $iid udm-boot
 	--mount "type=bind,source=/var/run,target=/mnt/host_var_run,ro=true" \
 	--mount "type=bind,source=/mnt/data/udm-boot/data/var/lib/containers,target=/var/lib/containers,rw=true" \
 	--mount "type=bind,source=/mnt/data/udm-boot/data/etc/systemd/system,target=/etc/systemd/system,rw=true" \
+        --mount "type=bind,source=/mnt/data,target=/mnt/data,rw=true" \
+        ${mount_ext} \
 	udm-boot
 
 # cleanup and move legacy udm-boot files
