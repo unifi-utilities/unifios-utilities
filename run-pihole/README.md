@@ -20,6 +20,17 @@
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
 2. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
 3. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
+
+   ```
+   ...
+   VLAN=5
+   IPV4_IP="10.0.5.3"
+   IPV4_GW="10.0.5.1/24"
+   ...
+   CONTAINER=pihole
+   ...
+   ```   
+
 4. Execute /mnt/data/on_boot.d/10-dns.sh
 5. Create directories for persistent pihole configuration
 
