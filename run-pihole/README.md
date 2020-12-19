@@ -21,7 +21,14 @@
 2. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
 3. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
 4. Execute /mnt/data/on_boot.d/10-dns.sh
-5. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the command below.
+5. Create directories for persistent pihole configuration
+
+   ```
+   mkdir -p /mnt/data/etc-pihole
+   mkdir -p /mnt/data/pihole/etc-dnsmasq.d
+   ```
+   
+6. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the command below.
 
     ```sh
      podman run -d --network dns --restart always \
