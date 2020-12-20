@@ -1,8 +1,8 @@
-# Run PiHole on your UDM
+# Run Pi-hole on your UDM
 
 ## Features
 
-1. Run PiHole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
+1. Run Pi-hole on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti
 2. Persists through reboots and firmware updates.
 
 ## Requirements
@@ -32,14 +32,14 @@
    ```   
 
 4. Execute /mnt/data/on_boot.d/10-dns.sh
-5. Create directories for persistent pihole configuration
+5. Create directories for persistent Pi-hole configuration
 
    ```
    mkdir -p /mnt/data/etc-pihole
    mkdir -p /mnt/data/pihole/etc-dnsmasq.d
    ```
    
-6. Run the pihole docker container, be sure to make the directories for your persistent pihole configuration.  They are mounted as volumes in the command below.
+6. Create and run the Pi-hole docker container. The following command sets the upstream DNS servers to 1.1.1.1 and 8.8.8.8.
 
     ```sh
      podman run -d --network dns --restart always \
@@ -71,5 +71,5 @@
     podman exec -it pihole pihole -a -p YOURNEWPASSHERE
     ```
 
-7. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs. You can do this for selected Networks or in your WAN configuration.
+7. Update your DNS Servers to 10.0.5.3 (or your custom ip) for each of your Networks (UDM GUI | Networks | Advanced | DHCP Name Server)
 8. Access the pihole like you would normally, e.g. http://10.0.5.3 if using examples above
