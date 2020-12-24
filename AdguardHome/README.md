@@ -12,7 +12,7 @@
 
 ## Customization
 
-* Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP address of the container.
+* Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP and MAC address of the container.
 * Update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with your own values
 * If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with the IPv6 addresses. Also, please provide IPv6 servers to podman using --dns arguments.
 
