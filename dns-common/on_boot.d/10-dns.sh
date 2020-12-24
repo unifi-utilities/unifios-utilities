@@ -31,7 +31,7 @@ CONTAINER=nextdns
 CNI_PATH=/mnt/data/podman/cni
 if [ ! -f "$CNI_PATH"/macvlan ]; then
     mkdir -p $CNI_PATH
-    curl -L https://github.com/containernetworking/plugins/releases/download/v0.8.6/cni-plugins-linux-arm64-v0.8.6.tgz | tar -xz -C $CNI_PATH
+    curl -L https://github.com/containernetworking/plugins/releases/download/v0.9.0/cni-plugins-linux-arm64-v0.9.0.tgz | tar -xz -C $CNI_PATH
 fi
 
 mkdir -p /opt/cni
