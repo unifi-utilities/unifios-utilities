@@ -13,7 +13,7 @@
 
 ## Customization
 
-* Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP address of the container.
+* Feel free to change [20-dns.conflist](../cni-plugins/20-dns.conflist) to change the IP and MAC address of the container.
 * The NextDNS docker image is not supported by NextDNS. It is built out of this repo.  If you make any enhancements please contribute back via a Pull Request.
 * If you want to inject custom DNS names into NextDNS use --add-host docker commands.  The /etc/resolv.conf and /etc/hosts is  generated from that and --dns.
 * Edit [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) and update its values to reflect your environment (specifically the container name)
