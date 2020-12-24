@@ -1,0 +1,20 @@
+{
+  "cloudflare": [
+    {
+      "authentication": {
+          "api_token": "cloudflare_api_token_here", 
+          "api_key": {
+              "api_key": "api_key_if_you_don't_have_a_token",
+              "account_email": "your_email_here_if_you_don't_have_a_token"
+	        }
+      },
+      "zone_id": "your_zone_id_here",
+      "subdomains": [
+        "each",
+        "subdomain"
+      ],
+      "proxied": false,
+      "ttl": 120
+    }
+  ]
+}

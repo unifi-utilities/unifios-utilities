@@ -42,6 +42,10 @@ Run NextDNS on your UDM with podman.
 
 Run AdguardHome on your UDM with podman.
 
+### Cloudflare DDNS
+
+Update your cloudflare domains from your UDM with podman.
+
 ## Cool projects you can use with this
 
 ### multicast-relay
@@ -65,3 +69,4 @@ Provision and renew LetsEncrypt SSL certs from your UDM/P
 ### OpenConnect VPN
 <https://github.com/shuguet/openconnect-udm>
 OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial)
+
