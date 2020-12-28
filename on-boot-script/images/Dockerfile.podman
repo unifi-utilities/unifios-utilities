@@ -1,6 +1,7 @@
 FROM localhost/systemd
 
 RUN set -ex \
+    && echo "deb http://ftp.debian.org/debian buster-backports main" >>/etc/apt/sources.list \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -10,6 +11,7 @@ RUN set -ex \
     && echo 'deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list \
     && (curl -sSL https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key | apt-key add -) \
     && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends -t buster-backports libseccomp-dev \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         podman \
     && systemctl enable io.podman.socket \
