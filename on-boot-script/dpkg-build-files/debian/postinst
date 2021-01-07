@@ -28,8 +28,7 @@ case "$1" in
 
        # enable and start udm-boot
        echo "Enable udm-boot service"
-       systemctl enable udm-boot.service
-       systemctl start udm-boot.service
+       systemctl enable --now udm-boot.service
 
        echo ""
        echo ""

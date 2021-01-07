@@ -11,6 +11,5 @@ podman create --detach --restart always --network host --cap-add SYS_TIME --name
 podman generate systemd ntpd >/etc/systemd/system/ntpd.service
 # reload and enable service
 systemctl daemon-reload
-systemctl enable ntpd.service
-systemctl start ntpd.service
+systemctl enable --now ntpd.service
 ```
