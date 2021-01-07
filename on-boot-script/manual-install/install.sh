@@ -32,8 +32,7 @@ ExecStart=/etc/init.d/udm.sh
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/udmboot.service
 
-systemctl enable udmboot
-systemctl start udmboot
+systemctl enable --now udmboot
 ' > /tmp/install-unifios.sh
 
 podman cp /tmp/install-unifios.sh unifi-os:/root/install-unifios.sh

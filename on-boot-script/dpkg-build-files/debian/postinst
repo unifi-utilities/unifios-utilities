@@ -23,8 +23,7 @@ case "$1" in
        scp -P "$(cat /etc/unifi-os/ssh_proxy_port)" -o StrictHostKeyChecking=no -q /usr/share/udm-boot/on_boot.sh root@localhost:/mnt/data/on_boot.sh
        /sbin/ssh-proxy 'chmod +x /mnt/data/on_boot.sh && mkdir -p /mnt/data/on_boot.d'
 
-       systemctl enable udm-boot
-       systemctl start udm-boot
+       systemctl enable --now udm-boot
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

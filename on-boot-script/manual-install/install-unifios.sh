@@ -14,5 +14,4 @@ ExecStart=/etc/init.d/udm.sh
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/udmboot.service
 
-systemctl enable udmboot
-systemctl start udmboot
+systemctl enable --now udmboot
