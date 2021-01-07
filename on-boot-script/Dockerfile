@@ -10,10 +10,10 @@ RUN set -ex \
     && (curl -sSL https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key | apt-key add -) \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-	build-essential \
+        build-essential \
         devscripts \
-	fakeroot \
-	debhelper \
+        fakeroot \
+        debhelper \
         qemu-user-static \
         buildah \
     && apt-get -y autoremove \
