@@ -66,17 +66,9 @@
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
     * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
 
-4. Example creating a container that preserves and autostart on boot:
+## Examples
 
-    * On the UDM shell (not unifi-os):
-      ```bash
-      podman exec -it udm-boot /bin/bash
-      podman create --detach --restart always --network host --cap-add SYS_TIME --name ntpd tusc/chrony-udm
-      podman generate systemd ntpd >/etc/systemd/system/ntpd.service
-      systemctl daemon-reload
-      systemctl enable ntpd.service
-      systemctl start ntpd.service
-      ```
+* [Chrony-udm (NTP Server)](examples/chrony-udm.md)
 
 ## Uninstall
 
