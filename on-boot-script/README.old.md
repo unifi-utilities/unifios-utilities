@@ -56,8 +56,7 @@
 5. enable it and test
 
     ```sh
-    systemctl enable udmboot
-    systemctl start udmboot
+    systemctl enable --now udmboot
     ```
 
 6. back to the udm
