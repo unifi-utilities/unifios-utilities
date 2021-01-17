@@ -70,3 +70,9 @@ Provision and renew LetsEncrypt SSL certs from your UDM/P
 <https://github.com/shuguet/openconnect-udm>
 OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial)
 
+
+### Unifi API Browser
+
+https://hub.docker.com/r/scyto/unifibrowser
+
+This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.  Great if you are using the REST API for your own puposes and want to explore. Works with multiple controler versions.
