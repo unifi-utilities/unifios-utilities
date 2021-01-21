@@ -2,7 +2,7 @@
 
 ## Features
 
-1. **Stable disk usage footprint**: Sets a limit to maximum log size any podman container log can grow up to (from unlimited size to 100Mb). Log file is truncated when a limit is reached.
+1. **Stable disk usage footprint**: Sets a maximum log size any podman container log is allowed to grow up to (from unlimited size to 100Mb). Log "max size" is not a hard limit, but a point when Container Monitor attempts to truncate container log file. **NOTE:** application-specific logs that may be written outside container logs are not truncated by Container Monitor at set limits.
 
 ## Requirements
 
