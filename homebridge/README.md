@@ -7,6 +7,7 @@
 
 ### Requirements
 1. You have successfully setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script).
+2. You have applied [container-common](https://github.com/boostchicken/udm-utilities/tree/master/container-common) change to prevent UDM storage to fill up with Homebridge logs and addon error messages that can move fast.
 
 ### Customization
 
