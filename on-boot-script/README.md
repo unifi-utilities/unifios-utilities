@@ -36,10 +36,10 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.3_all.deb) and install it and go back to the UDM
+2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.3_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
-    curl -L http://udm-boot.boostchicken.dev -o udm-boot_1.0.3_all.deb
+    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.3_all.deb
     dpkg -i udm-boot_1.0.3_all.deb
     exit
     ```
@@ -56,6 +56,7 @@
 ### 1.0.3
 
 * Fix not working after firmware upgrade
+* Added udm-boot.boostchicken.dev domain
 
 ### 1.0.2
 
