@@ -36,7 +36,7 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.4_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
+2. Download [udm-boot_1.0.4_all.deb](packages/udm-boot_1.0.4_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
     curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.4_all.deb
