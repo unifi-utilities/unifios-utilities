@@ -36,11 +36,11 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.3_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
+2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.4_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
-    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.3_all.deb
-    dpkg -i udm-boot_1.0.3_all.deb
+    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.4_all.deb
+    dpkg -i udm-boot_1.0.4_all.deb
     exit
     ```
 
@@ -52,6 +52,11 @@
     * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-key.sh](examples/udm-files/on_boot.d/15-add-root-ssh-key.sh)
 
 ## Version History
+
+### 1.0.4
+
+* Fix 600s timeout issues
+* Fix rc.d policy issue
 
 ### 1.0.3
 
