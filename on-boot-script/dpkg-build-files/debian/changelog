@@ -1,3 +1,9 @@
+udm-boot (1.0.3) unstable; urgency=high
+
+  * fixed on-boot not working after firmware upgrade
+
+ -- boostchicken <dorman@ataxia.cloud>  Fri, 29 Jan 2021 15:43:09 -0800
+
 udm-boot (1.0.2) unstable; urgency=medium
 
   * optimized package structure

@@ -8,7 +8,7 @@
 ## Compatibility
 
 1. Should work on any UDM/UDMPro after 1.6.3
-2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7, 1.8.0
+2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7, 1.8.0+
 
 ### Upgrade from earlier way
 
@@ -36,11 +36,11 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.2_all.deb](packages/udm-boot_1.0.2_all.deb) and install it and go back to the UDM
+2. Download [udm-boot_1.0.3_all.deb](packages/udm-boot_1.0.3_all.deb) and install it and go back to the UDM
 
     ```bash
-    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.2_all.deb -o udm-boot_1.0.2_all.deb
-    dpkg -i udm-boot_1.0.2_all.deb
+    curl -L http://udm-boot.boostchicken.dev -o udm-boot_1.0.3_all.deb
+    dpkg -i udm-boot_1.0.3_all.deb
     exit
     ```
 
@@ -52,6 +52,10 @@
     * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-key.sh](examples/udm-files/on_boot.d/15-add-root-ssh-key.sh)
 
 ## Version History
+
+### 1.0.3
+
+* Fix not working after firmware upgrade
 
 ### 1.0.2
 
