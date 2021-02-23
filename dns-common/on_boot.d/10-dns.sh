@@ -41,7 +41,7 @@ ln -s $CNI_PATH /opt/cni/bin
 for file in "$CNI_PATH"/*.conflist
 do
     if [ -f "$file" ]; then
-        ln -s "$file" "/etc/cni/net.d/$(basename "$file")"
+        ln -fs "$file" "/etc/cni/net.d/$(basename "$file")"
     fi
 done
 
