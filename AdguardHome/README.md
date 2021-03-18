@@ -19,9 +19,9 @@
 ## Steps
 
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
-1. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
-1. Execute /mnt/data/on_boot.d/10-dns.sh
-1. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
+1. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to `/mnt/data/on_boot.d` and update its values to reflect your environment
+1. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to `/mnt/data/podman/cni` after generating a MAC address. This will create your podman macvlan network.
+1. Execute `/mnt/data/on_boot.d/10-dns.sh`
 1. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration.  They are mounted as volumes in the command below.
 
     ```shell script
@@ -40,3 +40,23 @@
 1. Browse to 10.0.5.3:3000 and follow the setup wizard
 1. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
 1. Access the AdguardHome like you would normally.
+
+## Troubleshooting
+
+If you get the following error:
+
+```
+Error adding network: failed to create macvlan: cannot assign requested address
+```
+
+When starting the container then the MAC address you generated is not good. You can cheat at this point and look at the address of `br$VLAN.mac` with `ifconfig br$VLAN.mac` and use that value.
+
+To start over you must remove the container and the macvlan device:
+
+```
+podman container rm adguardhome
+podman network rm dns -f # expect an error here
+ip link delete br$VLAN.mac
+```
+
+You can now run `10-dns.sh` again and start the container again.
