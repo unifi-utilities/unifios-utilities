@@ -81,3 +81,10 @@ OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial)
 <https://hub.docker.com/r/scyto/unifibrowser>
 
 This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.  Great if you are using the REST API for your own puposes and want to explore. Works with multiple controler versions.
+
+
+### Unifi UDM-Pro auto fan speed
+
+<https://github.com/renedis/ubnt-auto-fan-speed>
+
+A shell script with the goal to make the UDM-Pro silenced while still having good thermal values. It stops the build in service that monitors the thermal values, fan speed and connection of a HDD/SSD. After that it sets the thermal/fan chip (adt7475) to automatic mode. Once that is done it changes the thermal and fan values specified in the script.
