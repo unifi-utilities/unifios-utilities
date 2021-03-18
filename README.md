@@ -15,9 +15,6 @@ Do this first. Enables init.d style scripts to run on every boot of your UDM. In
 ### container-common
 Apply this after on-boot-script. Updates container defaults to maintain **stable disk usage footprint** of custom containers. **Prevents logs filling up UDM storage full**.
 
-### suricata NO LONGER NEEDED AS OF 1.9.0
-Run an updated version of suricata and apply custom rules that survive reboot/
-
 ### python
 
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container
