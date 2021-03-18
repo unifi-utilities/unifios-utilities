@@ -3,7 +3,7 @@
 ## Features
 
 1. Allows you to run a shell script at S95 anytime your UDM starts / reboots
-1. Persists through reboot and **firmware updates**! It is able to do this because Ubiquiti caches all debian package installs on the UDM in /mnt/data, then re-installs them on every boot
+1. Persists through reboot and **firmware updates**! It is able to do this because Ubiquiti caches all debian package installs on the UDM in /mnt/data, then re-installs them on reset of unifi-os container.
 
 ## Compatibility
 
