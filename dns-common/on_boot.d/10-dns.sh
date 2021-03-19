@@ -3,7 +3,11 @@
 ## configuration variables:
 VLAN=5
 IPV4_IP="10.0.5.3"
+# This is the IP address of the container. You may want to set it to match
+# your own network structure such as 192.168.5.3 or similar.
 IPV4_GW="10.0.5.1/24"
+# As above, this should match the gateway of the VLAN for the container
+# network as above which is usually the .1/24 range of the IPV4_IP
 
 # if you want IPv6 support, generate a ULA, select an IP for the dns server
 # and an appropriate gateway address on the same /64 network. Make sure that
@@ -41,7 +45,7 @@ ln -s $CNI_PATH /opt/cni/bin
 for file in "$CNI_PATH"/*.conflist
 do
     if [ -f "$file" ]; then
-        ln -s "$file" "/etc/cni/net.d/$(basename "$file")"
+        ln -fs "$file" "/etc/cni/net.d/$(basename "$file")"
     fi
 done
 

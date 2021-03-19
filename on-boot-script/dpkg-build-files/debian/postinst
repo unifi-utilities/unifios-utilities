@@ -21,8 +21,6 @@ alias deb-systemd-invoke='systemctl --no-block --'
 
 case "$1" in
     configure)
-       scp -P "$(cat /etc/unifi-os/ssh_proxy_port)" -o StrictHostKeyChecking=no -q /usr/share/udm-boot/on_boot.sh root@localhost:/mnt/data/on_boot.sh
-       /sbin/ssh-proxy 'chmod +x /mnt/data/on_boot.sh && mkdir -p /mnt/data/on_boot.d'
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
