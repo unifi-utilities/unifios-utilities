@@ -6,6 +6,12 @@ A collection of things to enhance the capabilities of your Unifi Dream Machine o
 
 Pull Requests welcome! If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!
 
+## Custom Kernel
+If you want to do a custom kernel with wireguard support, multicast, multipath routing that is now a possiblity.  Please see the repo and please use at your own risk  This a much larger change than anything in this repo.
+
+
+[udm-kernel-tools](https://github.com/fabianishere/udm-kernel-tools)
+
 ## General Tools
 
 ### on-boot-script
