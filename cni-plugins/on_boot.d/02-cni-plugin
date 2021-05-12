@@ -1,19 +1,21 @@
 #!/bin/sh
 # Script to automate installing the CNI library
 
-#Variables - Note - use a different folder for NETD if you are setting auto-update to Yes
-VERSION="latest" | # Set the Version to latest or to a specific version in the form v#.#.# (e.g. v0.9.1)
+#Variables
+VERSION="latest" # Set the Version to latest or to a specific version in the form v#.#.# (e.g. v0.9.1)
 CNI_PATH=/mnt/data/podman/cni
-CNI_BIN_PATH=${CNI_PATH}/bin
-CNI_NETD_PATH=${CNI_PATH}/net.d
-CNI_VERSION_FILE=${CNI_PATH}/version.info
+CNI_BIN_PATH=${CNI_PATH}/bin # Try to keep this seperate to the other folders
+CNI_NETD_PATH=${CNI_PATH}/net.d # Should avoid putting this in the bin path to stop contents getting deleted
+CNI_VERSION_FILE=${CNI_PATH}/version.info # Should avoid putting this in the bin path to stop contents getting deleted
 
 # Install script
 # Ensure the paths exist
 mkdir -p ${CNI_PATH} ${CNI_BIN_PATH} ${CNI_NETD_PATH} /opt/cni /etc/cni/net.d
-# Use the latest version if specified
+# Use the latest version if specified, otherwise it will use the version stated.
 if [ $VERSION = "latest" ]; then
   VERSION=$(curl --silent "https://api.github.com/repos/containernetworking/plugins/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+else
+  if [ 
 fi
 # Check there is version.info file and set the version number based on that
 if [ -f ${CNI_VERSION_FILE} ]; then
@@ -23,7 +25,7 @@ else
 fi
 # Check the versions match and test for macvlan and ipvlan - could add more tests if using more modules - if any issues redownload the cni plugin module and put it in the bin folder.
 if [ $CURRENT_VERSION != ${VERSION} ] || [ ! -f ${CNI_BIN_PATH}/macvlan ] || [! -f ${CNI_BIN_PATH}/ipvlan ]; then
-  rm -f ${CNI_VERSION_FILE} ${CNI_BIN_PATH}/*
+  rm -f ${CNI_VERSION_FILE} ${CNI_BIN_PATH}/!(*.conflist)
   curl -L https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-arm64-${VERSION}.tgz -o /tmp/cni.tgz
   tar xf /tmp/cni.tgz -C ${CNI_BIN_PATH}
   touch ${CNI_PATH}/version.info
