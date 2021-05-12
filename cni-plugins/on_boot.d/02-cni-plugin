@@ -1,0 +1,42 @@
+#!/bin/sh
+# Script to automate installing the CNI library
+
+#Variables - Note - use a different folder for NETD if you are setting auto-update to Yes
+VERSION="latest" | # Set the Version to latest or to a specific version in the form v#.#.# (e.g. v0.9.1)
+CNI_PATH=/mnt/data/podman/cni
+CNI_BIN_PATH=${CNI_PATH}/bin
+CNI_NETD_PATH=${CNI_PATH}/net.d
+CNI_VERSION_FILE=${CNI_PATH}/version.info
+
+# Install script
+# Ensure the paths exist
+mkdir -p ${CNI_PATH} ${CNI_BIN_PATH} ${CNI_NETD_PATH} /opt/cni /etc/cni/net.d
+# Use the latest version if specified
+if [ $VERSION = "latest" ]; then
+  VERSION=$(curl --silent "https://api.github.com/repos/containernetworking/plugins/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+fi
+# Check there is version.info file and set the version number based on that
+if [ -f ${CNI_VERSION_FILE} ]; then
+  CURRENT_VERSION=$(cat $CNI_VERSION_FILE)
+else
+  CURRENT_VERSION="0"
+fi
+# Check the versions match and test for macvlan and ipvlan - could add more tests if using more modules - if any issues redownload the cni plugin module and put it in the bin folder.
+if [ $CURRENT_VERSION != ${VERSION} ] || [ ! -f ${CNI_BIN_PATH}/macvlan ] || [! -f ${CNI_BIN_PATH}/ipvlan ]; then
+  rm -f ${CNI_VERSION_FILE} ${CNI_BIN_PATH}/*
+  curl -L https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-arm64-${VERSION}.tgz -o /tmp/cni.tgz
+  tar xf /tmp/cni.tgz -C ${CNI_BIN_PATH}
+  touch ${CNI_PATH}/version.info
+  echo ${VERSION} > ${CNI_VERSION_FILE}
+  rm /tmp/cni.tgz
+fi
+# Setup CNI bin folder
+rm -f /opt/cni/bin
+ln -s $CNI_BIN_PATH /opt/cni/bin
+# Setup CNI net.d folder
+for file in ${CNI_NETD_PATH}/*.conflist
+do
+        if [ -f ${file} ]; then
+                ln -fs ${file} /etc/cni/net.d/$(basename ${file})
+        fi
+done
