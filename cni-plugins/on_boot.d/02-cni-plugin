@@ -22,7 +22,7 @@ else
   CURRENT_VERSION="0"
 fi
 # Check the versions match and test for macvlan and ipvlan - could add more tests if using more modules - if any issues redownload the cni plugin module and put it in the bin folder.
-if [ $CURRENT_VERSION != ${VERSION} ] || [ ! -f ${CNI_BIN_PATH}/macvlan ] || [! -f ${CNI_BIN_PATH}/ipvlan ]; then
+if [ $CURRENT_VERSION != ${VERSION} ] || [ ! -f ${CNI_BIN_PATH}/macvlan ] || [ ! -f ${CNI_BIN_PATH}/ipvlan ]; then
   rm -f ${CNI_VERSION_FILE} ${CNI_BIN_PATH}/*
   curl -L https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-arm64-${VERSION}.tgz -o /tmp/cni.tgz
   tar xf /tmp/cni.tgz -C ${CNI_BIN_PATH}
