@@ -31,17 +31,13 @@ FORCED_INTFC=""
 # container name; e.g. nextdns, pihole, adguardhome, etc.
 CONTAINER=nextdns
 
-## network configuration and startup:
-CNI_PATH=/mnt/data/podman/cni
-if [ ! -f "$CNI_PATH"/macvlan ]; then
-    mkdir -p $CNI_PATH
-    curl -L https://github.com/containernetworking/plugins/releases/download/v0.9.0/cni-plugins-linux-arm64-v0.9.0.tgz | tar -xz -C $CNI_PATH
+if ! test -f /opt/cni/bin/macvlan; then
+    echo "Error: CNI plugins not found. You can install it with the following command:" >&2
+    echo "       curl -fsSLo /mnt/data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/boostchicken/udm-utilities/master/cni-plugins/05-install-cni-plugins.sh && /bin/sh /mnt/data/on_boot.d/05-install-cni-plugins.sh" >&2
+    exit 1
 fi
 
-mkdir -p /opt/cni
-rm -f /opt/cni/bin
-ln -s $CNI_PATH /opt/cni/bin
-
+CNI_PATH=/mnt/data/podman/cni
 for file in "$CNI_PATH"/*.conflist
 do
     if [ -f "$file" ]; then
