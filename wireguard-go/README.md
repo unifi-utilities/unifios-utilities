@@ -29,7 +29,7 @@
 
     ```sh
     podman run -i --rm --net=host --name wireguard_conf masipcat/wireguard-go wg genkey > /mnt/data/wireguard/privatekey
-    podman run -i --rm --net=host --name wireguard_conf masipcat/wireguard-go wg genkey < /mnt/data/wireguard/privatekey > /mnt/data/wireguard/publickey
+    podman run -i --rm --net=host --name wireguard_conf masipcat/wireguard-go wg pubkey < /mnt/data/wireguard/privatekey > /mnt/data/wireguard/publickey
     ```
 
 3. Create a [Wireguard configuration](configs/wg0.conf) in /mnt/data/wireguard
