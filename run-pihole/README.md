@@ -17,6 +17,8 @@
 
 ## Steps
 
+1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
+1. Execute /mnt/data/on_boot.d/05-install-cni-plugins.sh
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.
 2. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to /mnt/data/podman/cni.  This will create your podman macvlan network
 3. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
