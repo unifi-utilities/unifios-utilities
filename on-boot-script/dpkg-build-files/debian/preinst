@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
     install|upgrade)
-	    # reserved for future use
+	    /sbin/ssh-proxy rm /mnt/data/on_boot.sh
 	    true
     ;;
 
