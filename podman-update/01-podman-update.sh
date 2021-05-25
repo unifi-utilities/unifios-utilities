@@ -21,7 +21,7 @@ fi
 ln -s $CONMON_DL /usr/libexec/podman/conmon
 
 if [ ! -f $PODMAN_DL ]; then
-  curl -fsSLo $PODMAN_DL https://raw.githubusercontent.com/boostchicken/udm-utilities/master/podman-update/bin/podman-$PODMAN_VERSION
+  curl -fsSLo $PODMAN_DL https://github.com/boostchicken/udm-utilities/blob/master/podman-update/bin/podman-$PODMAN_VERSION?raw=true
 fi
 chmod +x $PODMAN_DL
 if [ ! -f /usr/bin/podman.old ]; then
@@ -30,7 +30,7 @@ fi
 ln -s $PODMAN_DL /usr/bin/podman
 
 if [ ! -f $RUNC_DL ]; then
-  curl -fsSLo $RUNC_DL https://raw.githubusercontent.com/boostchicken/udm-utilities/master/podman-update/bin/runc-$RUNC_VERSION
+  curl -fsSLo $RUNC_DL https://github.com/boostchicken/udm-utilities/blob/master/podman-update/bin/runc-$RUNC_VERSION?raw=true
 fi
 chmod +x $RUNC_DL
 if [ ! -f /usr/bin/runc.old ]; then
@@ -40,7 +40,7 @@ ln -s $RUNC_DL /usr/bin/runc
 
 if [ ! -f $SECCOMP ]; then
   mkdir -p /usr/share/container/
-  curl -fsSLo /usr/share/container/seccomp.json https://raw.githubusercontent.com/boostchicken/udm-utilities/master/podman-update/bin/seccomp.json
+  curl -fsSLo /usr/share/container/seccomp.json https://github.com/boostchicken/udm-utilities/blob/master/podman-update/bin/seccomp.json?raw=true
 fi
 sed -i 's/driver = ""/driver = "overlay"/' /etc/containers/storage.conf
 # Comment out if you don't want to enable docker-compose or remote docker admin
