@@ -36,11 +36,11 @@
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.4_all.deb](packages/udm-boot_1.0.4_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
+2. Download [udm-boot_1.0.5_all.deb](packages/udm-boot_1.0.5_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
-    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.4_all.deb
-    dpkg -i udm-boot_1.0.4_all.deb
+    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.5_all.deb
+    dpkg -i udm-boot_1.0.5_all.deb
     exit
     ```
 
@@ -57,6 +57,7 @@
 
 * Remove on_boot.sh from UDM
 * Follow symlinks
+* move to network-online.target
 
 ### 1.0.4
 

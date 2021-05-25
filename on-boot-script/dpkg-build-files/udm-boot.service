@@ -1,6 +1,7 @@
 [Unit]
 Description=Run On Startup UDM
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=oneshot
