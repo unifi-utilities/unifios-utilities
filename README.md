@@ -95,3 +95,5 @@ A shell script with the goal to make the UDM-Pro silenced while still having goo
 ## Unsupported / No longer maintained
 ### nextdns
 Run NextDNS on your UDM with podman.
+### suricata
+Updates suricata to a recent version.  
