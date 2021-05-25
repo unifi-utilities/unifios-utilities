@@ -23,7 +23,7 @@ minecraft_1  | [init] Starting the Minecraft server...
 
 ## Customization
 
-* You can not expose the docker daemon by commenting out the podman service in  [00-podman-update.sh](00-podman-update.sh)
+* You can not expose the docker daemon by commenting out the podman service in  [00-podman-update.sh](01-podman-update.sh)
   
 ## Podman Build Process
 * This is a custom-built binary by me.  It was cross compiled on Ubuntu-20.04 in WSL2. 
@@ -40,11 +40,11 @@ make CC="aarch64-linux-gnu-gcc" local-cross
 ```
 ## Steps
 
-1. Copy [00-podman-update.sh](00-podman-update.sh) to /mnt/data/on_boot.d
+1. Copy [01-podman-update.sh](01-podman-update.sh) to /mnt/data/on_boot.d. Make sure anything needed to enable internet connectivity (wpa-supplicant, eap-proxy) runs before it
     1.  Comment out the Podman service if you do not wish to expose the Docker/Podman Daemon
 1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
    1. Recommended: Copy [05-container-common.sh](../container-common/on_boot.d/05-container-common.sh) to /mnt/data/on_boot.d
-1. Execute /mnt/data/on_boot.d/[00-podman-update.sh](00-podman-update.sh) and /mnt/data/on_boot.d/[05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh)
+1. Execute /mnt/data/on_boot.d/[01-podman-update.sh](01-podman-update.sh) and /mnt/data/on_boot.d/[05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh)
 1. Verify Podman version
 ```sh
 $ podman version
