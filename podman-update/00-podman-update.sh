@@ -14,7 +14,7 @@ mv /usr/libexec/podman/conmon /usr/libexec/podman/conmon.old
 ln -s $CONMON_DL /usr/libexec/podman/conmon
 
 if [ ! -f $PODMAN_DL ]; then
-  curl -fsSLo $PODMAN_DL https://raw.githubusercontent.com/boostchicken/udm-utilities/master/podman-update/bin/podman
+  curl -fsSLo $PODMAN_DL https://raw.githubusercontent.com/boostchicken/udm-utilities/master/podman-update/bin/podman-3.2.0-dev
 fi
 chmod +x $PODMAN_DL
 mv /usr/bin/podman /usr/bin/podman.old

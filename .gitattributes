@@ -8,4 +8,6 @@
 *.deb filter=lfs diff=lfs merge=lfs -text
 *.rules filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
+*.0-dev filter=lfs diff=lfs merge=lfs -text
+*.patch filter=lfs diff=lfs merge=lfs -text
 * text !filter !merge !diff
