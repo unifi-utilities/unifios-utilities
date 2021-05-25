@@ -23,7 +23,7 @@
 * [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
     * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
     * by default it uses docker or podman to build the debian package
-    * use ```./build_deb.sh build``` to not using a container
+    * use ```./build_deb.sh build``` to not use a container
     * the resulting package will be in [packages/](packages/)
 
 * Built on Ubuntu-20.04 on Windows 10/WSL2
@@ -52,6 +52,11 @@
     * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-key.sh](examples/udm-files/on_boot.d/15-add-root-ssh-key.sh)
 
 ## Version History
+
+### 1.0.5
+
+* Remove on_boot.sh from UDM
+* Follow symlinks
 
 ### 1.0.4
 
