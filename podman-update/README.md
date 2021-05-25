@@ -42,7 +42,9 @@ make CC="aarch64-linux-gnu-gcc" local-cross
 
 1. Copy [00-podman-update.sh](00-podman-update.sh) to /mnt/data/on_boot.d
     1.  Comment out the Podman service if you do not wish to expose the Docker/Podman Daemon
-1. Execute /mnt/data/on_boot.d/[00-podman-update.sh](00-podman-update.sh)
+1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
+   1. Recommended: Copy [05-container-common.sh](../container-common/on_boot.d/05-container-common.sh) to /mnt/data/on_boot.d
+1. Execute /mnt/data/on_boot.d/[00-podman-update.sh](00-podman-update.sh) and /mnt/data/on_boot.d/[05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh)
 1. Verify Podman version
 ```sh
 $ podman version
