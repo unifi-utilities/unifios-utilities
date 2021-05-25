@@ -20,10 +20,11 @@ minecraft_1  | [init] Starting the Minecraft server...
 ## Requirements
 
 1. You have successfully set up the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) installed
 
 ## Customization
 
-* You can not expose the docker daemon by commenting out the podman service in  [00-podman-update.sh](01-podman-update.sh)
+* You can disable exposing the docker daemon by commenting out the podman service in  [01-podman-update.sh](01-podman-update.sh)
   
 ## Podman Build Process
 * This is a custom-built binary by me.  It was cross compiled on Ubuntu-20.04 in WSL2. 
@@ -57,7 +58,7 @@ OS/Arch:      linux/arm64
 ```
 
 ## Docker Compose
-There is no docker-compose binary to run on the UDMP yet, so please use docker-compose from a remote system and specify to run on your UDM.
+There is no docker-compose binary to run on the UDM yet, so please use docker-compose from a remote system and specify to run on your UDM.
     
 ```docker-compose -H 10.0.0.1:2375 up```
 
