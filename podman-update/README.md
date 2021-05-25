@@ -2,7 +2,7 @@
 
 ## Features
 
-1. Podman 3.2.0
+1. Podman 3.2.0 (w/ updated conmon, and runc)
 1. Persists through reboots and firmware updates
 1. Full Docker / Docker Compose compatibility!
 ```sh
