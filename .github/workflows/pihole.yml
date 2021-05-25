@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     paths:
-     - run-pihole/Dockerfile
+     - run-pihole/*
 
 jobs:
   buildx:
@@ -31,4 +31,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}  
       -
         name: build pihole
-        run: docker buildx build --platform=linux/amd64,linux/arm64 ./run-pihole/Dockerfile -t boostchicken/pihole:latest --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 run-pihole -t boostchicken/pihole:latest --push
