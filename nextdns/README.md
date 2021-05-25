@@ -1,5 +1,5 @@
 # Run NextDNS on your UDM
-
+# THIS IS NO LONGER MAINTAINED
 ## Features
 
 1. Run NextDNS on your UDM with a completely isolated network stack.  This will not port conflict or be influenced by any changes on by Ubiquiti.
