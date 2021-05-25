@@ -10,14 +10,14 @@ RUNC_DL=/mnt/data/.cache/runc-$RUNC_VERSION
 CONMON_DL=/mnt/data/.cache/conmon-$CONMON_VERSION
 SECCOMP=/usr/share/container/seccomp.json
 
-if [ ! -f CONMON_DL ]; then
+while [ ! -f $CONMON_DL ]; do
   curl -fsSLo $CONMON_DL https://github.com/containers/conmon/releases/download/v$CONMON_VERSION/conmon.arm64
-fi
+  sleep 1
+done
 chmod +x $CONMON_DL
 if [ ! -f /usr/libexec/podman/conmon.old ]; then
   mv /usr/libexec/podman/conmon /usr/libexec/podman/conmon.old
 fi
-
 ln -s $CONMON_DL /usr/libexec/podman/conmon
 
 if [ ! -f $PODMAN_DL ]; then
