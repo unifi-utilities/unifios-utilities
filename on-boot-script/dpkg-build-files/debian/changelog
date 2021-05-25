@@ -2,6 +2,7 @@ udm-boot (1.0.5) stable; urgency=medium
 
   * follow symlinks for on_boot
   * remove need for on_boot.sh file
+  * moved to run after network-online.target
 
  -- boostchicken <dorman@ataxia.cloud>  Tue, 25 May 2021 01:53:48 -0700
 
