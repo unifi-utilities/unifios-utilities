@@ -18,6 +18,9 @@ If you want to do a custom kernel with wireguard support, multicast, multipath r
 Do this first. Enables init.d style scripts to run on every boot of your UDM. Includes examples to run wpa-supplicant/eap-proxy and/or ntop-ng on startup. Follow this [readme](https://github.com/boostchicken/udm-utilities/blob/master/on-boot-script/README.md).  
 **It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
 
+### podman-update
+Updates Podman, conmon, and runc to a recent version.  This allows docker-compose usage as well.
+
 ### container-common
 Apply this after on-boot-script. Updates container defaults to maintain **stable disk usage footprint** of custom containers. **Prevents logs filling up UDM storage full**.
 
@@ -39,11 +42,7 @@ Base configuration for DNS server containers, both IPv4 and IPv6.  Utilizes MacV
 
 ### run-pihole
 
-Run pihole on your UDM with podman.
-
-### nextdns
-
-Run NextDNS on your UDM with podman.
+Run pihole on your UDM with podman. Also contains custom image for Pihole with cloudflared
 
 ### AdguardHome
 
@@ -91,3 +90,10 @@ This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi
 <https://github.com/renedis/ubnt-auto-fan-speed>
 
 A shell script with the goal to make the UDM-Pro silenced while still having good thermal values. It stops the build in service that monitors the thermal values, fan speed and connection of a HDD/SSD. After that it sets the thermal/fan chip (adt7475) to automatic mode. Once that is done it changes the thermal and fan values specified in the script.
+
+
+## Unsupported / No longer maintained
+### nextdns
+Run NextDNS on your UDM with podman.
+### suricata
+Updates suricata to a recent version.  

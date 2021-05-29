@@ -1,8 +1,8 @@
 # Run Suricata 5.0.3 with custom rules
-
+## UBNT updated Suricata in 1.9.x firmwares make this unneeded
 ## Features
 
-1. Run a newer surifcated with custom rules
+1. Run a newer suricata with custom rules
 2. Persists through reboots and firmware updates.
 
 ## Requirements
