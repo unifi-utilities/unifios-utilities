@@ -26,7 +26,7 @@ populate_netd()
     fi
   done
 }
-# This function checks a valid checksum has been selected
+# This function checks a valid checksum has been selected. It requires the checksum is given as the first argument
 checksum_check()
 {
   if [ "$#" -eq 0 ]; then
@@ -43,7 +43,7 @@ checksum_check()
       ;;
    esac
 }
-# Test a fike against it's checksum - 1 is the checksum type, 2 is the file to test and 3 is the checksum file
+# Test a file against it's checksum - 1 is the checksum type, 2 is the file to test and 3 is the checksum file
 checksum_test()
 {
   if [ ! -f ${2} ] || [ ! -f ${3} ]; then
@@ -63,7 +63,7 @@ checksum_test()
   fi
 }
 
-# Install function
+# Install function - it requires the first argument to be the version to install
 install()
 {
   if [ "$#" -eq 0 ]; then
@@ -84,11 +84,12 @@ install()
   echo "No CNI Plugin available to install"
   return 1
 }
-# Download function
+# Download function - the first argument is the version to download. It will default to latest if a invalid option is given.
 download()
 {
   # To stop infinite recursion
   if [ ${MAX_TRIES} -lt 1 ]; then
+    # install the last installed version if latest and specified version have both failed.
     install
     return 1
   fi
