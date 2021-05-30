@@ -2,16 +2,30 @@
 
 ## Set the version of cni plugin to use
 CNI_PLUGIN_VER=latest
+# location of the CNI Plugin cached tar files
 CNI_CACHE="/mnt/data/.cache/cni-plugins"
+# location of the conf files to go in the net.d folder of the cni-plugin directory
+CNI_NETD="/mnt/data/podman/cni"
+# The checksum to use. For CNI Plugin sha1, sha256 and sha512 are available.
 CNI_CHECKSUM="sha256"
 # Maximum number of loops to attempt to download the plugin if required - setting a 0 or negative value will reinstalled the currently installed version (if in cache)
 MAX_TRIES=3
 
-mkdir -p "${CNI_CACHE}"
+mkdir -p "${CNI_CACHE}" "${CNI_NETD}"
 # The script will attempt to use the nominated version first, and falls back to latest version if that fails
 if [ "$#" -eq 0 ]; then
   set ${CNI_PLUGIN_VER}
 fi
+# Insert conf files for podman networks into the net.d folder
+populate_netd()
+{
+  for file in "${CNI_NETD}"/*.conflist
+  do
+    if [ -f "$file" ]; then
+        ln -fs "$file" "/etc/cni/net.d/$(basename "$file")"
+    fi
+  done
+}
 # This function checks a valid checksum has been selected
 checksum_check()
 {
@@ -117,3 +131,4 @@ download()
 }
 
 download
+populate_netd
