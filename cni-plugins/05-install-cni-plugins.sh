@@ -1,6 +1,7 @@
 #!/bin/sh
 
-## Set the version of cni plugin to use
+## Set the version of cni plugin to use. It will revert to latest if an invalid version is given, and the installer will use the last installed version if that fails.
+# Examples of valid version code would be "latest", "v0.9.1" and "v0.9.0". 
 CNI_PLUGIN_VER=latest
 # location of the CNI Plugin cached tar files
 CNI_CACHE="/mnt/data/.cache/cni-plugins"
