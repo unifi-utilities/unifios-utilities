@@ -2,7 +2,7 @@
 
 mkdir -p /mnt/data/.cache
 
-PODMAN_VERSION=3.2.0-dev
+PODMAN_VERSION=3.2.0
 RUNC_VERSION=1.0.0-rc95
 CONMON_VERSION=2.0.27
 PODMAN_DL=/mnt/data/.cache/podman-$PODMAN_VERSION
