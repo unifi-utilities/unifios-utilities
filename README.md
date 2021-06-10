@@ -91,9 +91,14 @@ This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi
 
 A shell script with the goal to make the UDM-Pro silenced while still having good thermal values. It stops the build in service that monitors the thermal values, fan speed and connection of a HDD/SSD. After that it sets the thermal/fan chip (adt7475) to automatic mode. Once that is done it changes the thermal and fan values specified in the script.
 
+### split-vpn
+
+<https://github.com/peacey/split-vpn>
+
+A split tunnel VPN script for the UDM with policy based routing. This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection. It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network.
 
 ## Unsupported / No longer maintained
 ### nextdns
 Run NextDNS on your UDM with podman.
 ### suricata
-Updates suricata to a recent version.  
+Updates suricata to a recent version.
