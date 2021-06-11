@@ -1,5 +1,5 @@
 #!/bin/sh
-# store crontab files in /mnt/data/cronjobs/
+# store crontab files in /mnt/data/cronjobs/ (you will need to create this foler)
 # this script will re-add them on startup
 
 cp /mnt/data/cronjobs/* /etc/cron.d/
