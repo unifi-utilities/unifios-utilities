@@ -75,6 +75,11 @@
 1. Update your DNS Servers to 10.0.5.3 (or your custom ip) for each of your Networks (UDM GUI | Networks | Advanced | DHCP Name Server)
 1. Access the pihole like you would normally, e.g. http://10.0.5.3 if using examples above
 
+## Upgrading your PiHole container
+1. Edit upd_pihole.sh script to use the same `podman run` command you used at installation. 
+2. Copy the upd_pihole.sh script to /mnt/data/scripts
+3. Anytime you want to update your pihole installation, simply run `/mnt/data/scripts/upd_pihole.sh`
+
 ## PiHole with CloudFlareD Command
     ```sh
      podman run -d --network dns --restart always \
