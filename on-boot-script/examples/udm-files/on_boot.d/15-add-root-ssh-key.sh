@@ -26,6 +26,6 @@ echo $counter keys added to $KEYS_FILE
 
 echo Converting SSH private key to dropbear format 
 #convert ssh key to dropbear for shell interaction
-dropbearconvert openssh dropbear /mnt/data/ssh/id_rsa /root/.ssh/id_rsa
+dropbearconvert openssh dropbear /mnt/data/ssh/id_rsa /root/.ssh/id_dropbear
 
 exit 0;
