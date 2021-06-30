@@ -2,13 +2,13 @@
 
 mkdir -p /mnt/data/.cache
 
-PODMAN_VERSION=3.2.0
+PODMAN_VERSION=3.2.0-dev
 RUNC_VERSION=1.0.0-rc95
 CONMON_VERSION=2.0.27
 PODMAN_DL=/mnt/data/.cache/podman-$PODMAN_VERSION
 RUNC_DL=/mnt/data/.cache/runc-$RUNC_VERSION
 CONMON_DL=/mnt/data/.cache/conmon-$CONMON_VERSION
-SECCOMP=/usr/share/container/seccomp.json
+SECCOMP=/usr/share/containers/seccomp.json
 
 while [ ! -f $CONMON_DL ]; do
   curl -fsSLo $CONMON_DL https://github.com/containers/conmon/releases/download/v$CONMON_VERSION/conmon.arm64
