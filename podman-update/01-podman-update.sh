@@ -39,8 +39,8 @@ fi
 ln -s $RUNC_DL /usr/bin/runc
 
 if [ ! -f $SECCOMP ]; then
-  mkdir -p /usr/share/container/
-  curl -fsSLo /usr/share/container/seccomp.json https://github.com/boostchicken/udm-utilities/blob/master/podman-update/bin/seccomp.json?raw=true
+  mkdir -p /usr/share/containers/
+  curl -fsSLo $SECCOMP https://github.com/boostchicken/udm-utilities/blob/master/podman-update/bin/seccomp.json?raw=true
 fi
 sed -i 's/driver = ""/driver = "overlay"/' /etc/containers/storage.conf
 # Comment out if you don't want to enable docker-compose or remote docker admin
