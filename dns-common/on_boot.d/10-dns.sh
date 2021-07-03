@@ -37,14 +37,6 @@ if ! test -f /opt/cni/bin/macvlan; then
     exit 1
 fi
 
-CNI_PATH=/mnt/data/podman/cni
-for file in "$CNI_PATH"/*.conflist
-do
-    if [ -f "$file" ]; then
-        ln -fs "$file" "/etc/cni/net.d/$(basename "$file")"
-    fi
-done
-
 # set VLAN bridge promiscuous
 ip link set br${VLAN} promisc on
 
