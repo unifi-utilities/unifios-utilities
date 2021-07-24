@@ -16,7 +16,6 @@ else
     -v /mnt/data/rclone/sync.sh:/data/sync.sh \
     --name "$CONTAINER" \
     --security-opt=no-new-privileges \
-    -p 80:5590 \
     rclone/rclone:latest \
     rcd --rc-web-gui --rc-addr :5572 \
     --rc-user rclone --rc-pass randompassword12345
