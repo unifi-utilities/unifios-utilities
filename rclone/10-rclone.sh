@@ -13,7 +13,7 @@ else
     -v /data/unifi/data/backup/autobackup:/data/backups//data/unifi/data/backup/autobackup \
     -v /mnt/data/podman/cni:/data/backups/podman/cni \
     -v /mnt/data/rclone/rclone.conf:/config/rclone/rclone.conf \
-    -v /mnt/data/rclone/sync.sh:/etc/periodic/hourly/sync.sh \
+    -v /mnt/data/rclone/sync.sh:/data/sync.sh \
     --name "$CONTAINER" \
     --security-opt=no-new-privileges \
     -p 80:5590 \

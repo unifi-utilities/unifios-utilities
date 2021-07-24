@@ -21,6 +21,8 @@
 4. Copy [10-rclone.sh](10-rclone.sh) to `/mnt/data/on_boot.d` and update it to meet your needs.
 5. Execute `/mnt/data/on_boot.d/10-rclone.sh`
 6. Execute `podman logs rclone`, this will provide a link to the Web GUI.
+7. Copy [rclone](rclone) in `/etc/cron.hourly/`.
+8. Set permissions to executable `chmod +x /etc/cron.hourly/rclone`.
 
 ## Customization
 
