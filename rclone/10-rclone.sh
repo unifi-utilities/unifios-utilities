@@ -6,7 +6,6 @@ if podman container exists "$CONTAINER"; then
 else
   podman run -i -d --rm \
     --net=host \
-    # Backups
     -v /mnt/data/rclone:/data/backups/rclone \
     -v /mnt/data/pihole:/data/backups/pihole \
     -v /mnt/data/on_boot.d:/data/backups/on_boot.d \
