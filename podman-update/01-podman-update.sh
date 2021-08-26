@@ -45,3 +45,4 @@ fi
 sed -i 's/driver = ""/driver = "overlay"/' /etc/containers/storage.conf
 # Comment out if you don't want to enable docker-compose or remote docker admin
 /usr/bin/podman system service --time=0 tcp:0.0.0.0:2375 &
+
