@@ -1,0 +1,3 @@
+#!/bin/sh
+
+podman exec -ti rclone sh -x /data/sync.sh
