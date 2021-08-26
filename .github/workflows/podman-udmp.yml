@@ -1,6 +1,7 @@
 name: UDMP Podman
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'podman-update/build/Dockerfile'
