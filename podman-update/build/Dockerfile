@@ -31,6 +31,6 @@ COPY seccomp.json /tmp/install/usr/share/containers/
 COPY containers.conf /tmp/install/etc/containers/
 RUN cp /podman-$PODMAN_VERSION /tmp/install/usr/bin/podman && cp /runc-$RUNC_VERSION /tmp/install/usr/bin/runc && cp /conmon-$CONMON_VERSION /tmp/install/usr/libexec/podman/conmon
 WORKDIR /tmp/install
-zip -r /tmp/release/podman-install.zip *
+RUN zip -r /tmp/release/podman-install.zip *
 
 
