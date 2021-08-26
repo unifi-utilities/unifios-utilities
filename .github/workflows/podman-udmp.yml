@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build ./podman-update/build/ --file Dockerfile --tag boostchicken:udmp-podman-$(date +%s)
+      run: docker build --file podman-update/build/Dockerfile --tag boostchicken:udmp-podman-$(date +%s) podman-update/build/
     - name: Docker Extract
       uses: shrink/actions-docker-extract@v1
       with:
