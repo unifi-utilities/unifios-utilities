@@ -23,7 +23,7 @@ jobs:
         # Docker Image to extract files from
         image: boostchicken:udmp-podman
         # Path (from root) to a file or directory within Image
-        path: /tmp/release/podman-install.zip
+        path: tmp/release/podman-install.zip
     - name: Upload Podman Install
       uses: actions/upload-artifact@v2
       with:
