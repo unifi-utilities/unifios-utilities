@@ -15,12 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile --tag boostchicken:udmp-podman-$(date +%s) podman-update/build/
+      run: docker build --file podman-update/build/Dockerfile --tag boostchicken:udmp-podman podman-update/build/
     - name: Docker Extract
       uses: shrink/actions-docker-extract@v1
       with:
         # Docker Image to extract files from
-        image: boostchicken:udmp-podman-$(date +%s)
+        image: boostchicken:udmp-podman
         # Path (from root) to a file or directory within Image
         path: /tmp/release/.
     - name: Upload Podman Install
