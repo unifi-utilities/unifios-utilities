@@ -28,7 +28,7 @@ minecraft_1  | [init] Starting the Minecraft server...
   
 ## Podman Build Process
 * This is a custom-built binary by me.  It was cross compiled on Ubuntu-20.04 in WSL2. 
-* The Makefile needs tweaks. I have supplied the [Makefile.patch](build/Makefile.patch). Apply it to a fresh [podman](https://github.com/containers/podman/) checkout
+* The Makefile needs tweaks. I have supplied the [Makefile.patch](build/podman.Makefile.patch). Apply it to a fresh [podman](https://github.com/containers/podman/) checkout
 * You will need [libseccomp-dev:arm64](build/libseccomp-dev_2.2.3-3ubuntu3_arm64.deb) package installed
 * You will need [go](https://golang.org/doc/install#download) > 1.12.1 installed
 * Setup Cross-Compiler
