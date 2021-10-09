@@ -97,6 +97,10 @@ A shell script with the goal to make the UDM-Pro silenced while still having goo
 
 A split tunnel VPN script for the UDM with policy based routing. This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection. It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network.
 
+### Jumbo Frames
+Make your Jumbo frames work!
+https://github.com/kalenarndt/udmp-jumbo-frames
+
 ### rclone
 
 <https://rclone.org/>
