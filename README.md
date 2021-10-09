@@ -13,7 +13,7 @@ If you want to do a custom kernel with wireguard support, multicast, multipath r
 [udm-kernel-tools](https://github.com/fabianishere/udm-kernel-tools)
 ## Custom Podman Builds for UDMP-SE
 https://github.com/boostchicken/udm-utilities/actions
-
+Extract the zip to the root of your device!
 Look at the assets on the Podman workflow
 ## General Tools
 
