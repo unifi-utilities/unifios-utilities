@@ -110,6 +110,10 @@ https://github.com/kalenarndt/udmp-jumbo-frames
 
 Run rclone container with Web GUI for offsite backups.
 
+### PiHole with DoTe
+Alternative to mine which uses DoH
+https://github.com/chrisstaite/DoTe/
+
 ## Unsupported / No longer maintained
 ### nextdns
 Run NextDNS on your UDM with podman.
