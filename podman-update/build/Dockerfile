@@ -4,9 +4,9 @@ FROM golang:bullseye
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y zip git pkg-config libc6-arm64-cross libc6-dev-arm64-cross binutils-aarch64-linux-gnu libncurses5-dev build-essential bison flex libssl-dev bc gcc-aarch64-linux-gnu
 RUN dpkg --add-architecture arm64 && apt-get update && apt-get install -y libseccomp-dev:arm64  && apt-get install -y libglib2.0-dev:arm64
-ARG PODMAN_VERSION=v3.3.0
+ARG PODMAN_VERSION=v3.4.0
 ARG RUNC_VERSION=v1.0.2
-ARG CONMON_VERSION=v2.0.29
+ARG CONMON_VERSION=v2.0.30
 ENV PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig/
 ENV GOOS=linux
 ENV GOARCH=arm64

@@ -11,7 +11,10 @@ If you want to do a custom kernel with wireguard support, multicast, multipath r
 
 
 [udm-kernel-tools](https://github.com/fabianishere/udm-kernel-tools)
-
+## Custom Podman Builds for UDMP-SE
+https://github.com/boostchicken/udm-utilities/actions
+Extract the zip to the root of your device!
+Look at the assets on the Podman workflow
 ## General Tools
 
 ### on-boot-script
@@ -97,11 +100,19 @@ A shell script with the goal to make the UDM-Pro silenced while still having goo
 
 A split tunnel VPN script for the UDM with policy based routing. This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection. It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network.
 
+### Jumbo Frames
+Make your Jumbo frames work!
+https://github.com/kalenarndt/udmp-jumbo-frames
+
 ### rclone
 
 <https://rclone.org/>
 
 Run rclone container with Web GUI for offsite backups.
+
+### PiHole with DoTe
+Alternative to mine which uses DoH
+https://github.com/chrisstaite/DoTe/
 
 ## Unsupported / No longer maintained
 ### nextdns
