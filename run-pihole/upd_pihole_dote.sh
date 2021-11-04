@@ -1,11 +1,23 @@
 #!/bin/sh
 
-podman pull pihole/pihole:latest
-podman build -t pihole:latest --format docker -f /dev/fd/0 <<EOF
+set -e
+
+tmpdir="$(mktemp -d)"
+curl -sSLo "${tmpdir}/dote" https://github.com/chrisstaite/DoTe/releases/latest/download/dote_arm64
+
+cat > "${tmpdir}/Dockerfile" <<EOF
 FROM pihole/pihole:latest
 ENV DOTE_OPTS="-s 127.0.0.1:5053"
-RUN echo -e  "#!/bin/sh\ncurl -fsSLo /opt/dote https://github.com/chrisstaite/DoTe/releases/latest/download/dote_arm64\nchmod +x /opt/dote\n/opt/dote \\\$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh
+COPY dote /opt/dote
+RUN chmod +x /opt/dote && echo -e  "#!/bin/sh\n/opt/dote \\\$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh
 EOF
+
+podman pull pihole/pihole:latest
+podman build -t pihole:latest --format docker -f "${tmpdir}/Dockerfile" "${tmpdir}"
+rm -rf "${tmpdir}"
+
+set +e
+
 podman stop pihole
 podman rm pihole
 podman run -d --network dns --restart always \
@@ -22,4 +34,3 @@ podman run -d --network dns --restart always \
     -e ServerIP="10.0.5.3" \
     -e IPv6="False" \
     pihole:latest
-
