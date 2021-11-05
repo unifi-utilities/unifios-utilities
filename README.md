@@ -117,7 +117,7 @@ Similar to `udm-le`, adding different providers for SSL/TLS certificates (LE, Ze
 
 <https://hub.docker.com/r/scyto/unifibrowser>
 
-This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.  Great if you are using the REST API for your own puposes and want to explore. Works with multiple controller versions.
+This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.  Great if you are using the REST API for your own purposes and want to explore. Works with multiple controller versions.
 
 ### Unifi UDM-Pro auto fan speed
 
