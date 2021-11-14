@@ -38,52 +38,56 @@ if ! test -f /opt/cni/bin/macvlan; then
 fi
 
 # set VLAN bridge promiscuous
-ip link set br${VLAN} promisc on
+ip link set "br${VLAN}" promisc on
 
 # create macvlan bridge and add IPv4 IP
-ip link add br${VLAN}.mac link br${VLAN} type macvlan mode bridge
-ip addr add ${IPV4_GW} dev br${VLAN}.mac noprefixroute
+ip link add "br${VLAN}.mac" link "br${VLAN}" type macvlan mode bridge
+ip addr add "${IPV4_GW}" dev "br${VLAN}.mac" noprefixroute
 
 # (optional) add IPv6 IP to VLAN bridge macvlan bridge
 if [ -n "${IPV6_GW}" ]; then
-  ip -6 addr add ${IPV6_GW} dev br${VLAN}.mac noprefixroute
+  ip -6 addr add "${IPV6_GW}" dev "br${VLAN}.mac" noprefixroute
 fi
 
 # set macvlan bridge promiscuous and bring it up
-ip link set br${VLAN}.mac promisc on
-ip link set br${VLAN}.mac up
+ip link set "br${VLAN}.mac" promisc on
+ip link set "br${VLAN}.mac" up
 
 # add IPv4 route to DNS container
-ip route add ${IPV4_IP}/32 dev br${VLAN}.mac
+ip route add "${IPV4_IP}/32" dev "br${VLAN}.mac"
 
 # (optional) add IPv6 route to DNS container
 if [ -n "${IPV6_IP}" ]; then
-  ip -6 route add ${IPV6_IP}/128 dev br${VLAN}.mac
+  ip -6 route add "${IPV6_IP}/128" dev "br${VLAN}.mac"
 fi
 
 # Make DNSMasq listen to the container network for split horizon or conditional forwarding
-if ! grep -qxF interface=br$VLAN.mac /run/dnsmasq.conf.d/custom.conf; then
-    echo interface=br$VLAN.mac >> /run/dnsmasq.conf.d/custom.conf
-    kill -9 `cat /run/dnsmasq.pid`
+if ! grep -qxF "interface=br${VLAN}.mac" /run/dnsmasq.conf.d/custom.conf; then
+    echo "interface=br${VLAN}.mac" >> /run/dnsmasq.conf.d/custom.conf
+    kill -9 "$(cat /run/dnsmasq.pid)"
 fi
 
-if podman container exists ${CONTAINER}; then
-  podman start ${CONTAINER}
+if podman container exists "${CONTAINER}"; then
+  podman start "${CONTAINER}"
 else
-  logger -s -t podman-dns -p ERROR Container $CONTAINER not found, make sure you set the proper name, you can ignore this error if it is your first time setting it up
+  logger -s -t podman-dns -p "ERROR Container ${CONTAINER} not found, make sure you set the proper name, you can ignore this error if it is your first time setting it up"
 fi
 
 # (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
 for intfc in ${FORCED_INTFC}; do
   if [ -d "/sys/class/net/${intfc}" ]; then
     for proto in udp tcp; do
+      prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j LOG --log-prefix [DNAT-${intfc}-${proto}]"
+      iptables -t nat -C ${prerouting_rule} 2>/dev/null || iptables -t nat -A ${prerouting_rule}
       prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
-      iptables -t nat -C ${prerouting_rule} || iptables -t nat -A ${prerouting_rule}
-      
+      iptables -t nat -C ${prerouting_rule} 2>/dev/null || iptables -t nat -A ${prerouting_rule}
+
       # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
       if [ -n "${IPV6_IP}" ]; then
+        prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j LOG --log-prefix [DNAT-${intfc}-${proto}]"
+        ip6tables -t nat -C ${prerouting_rule} 2>/dev/null || ip6tables -t nat -A ${prerouting_rule}
         prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
-        ip6tables -t nat -C ${prerouting_rule} || ip6tables -t nat -A ${prerouting_rule}
+        ip6tables -t nat -C ${prerouting_rule} 2>/dev/null || ip6tables -t nat -A ${prerouting_rule}
       fi
     done
   fi
