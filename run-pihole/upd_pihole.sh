@@ -1,4 +1,9 @@
-podman pull pihole/pihole:latest
+
+# Change to boostchicken/pihole:latest for DoH
+# Change to boostchicken/pihole-dote:latest for DoTE
+IMAGE=pihole/pihole:latest
+
+podman pull $IMAGE
 podman stop pihole
 podman rm pihole
 podman run -d --network dns --restart always \
@@ -14,4 +19,4 @@ podman run -d --network dns --restart always \
     -e PROXY_LOCATION="pi.hole" \
     -e ServerIP="10.0.5.3" \
     -e IPv6="False" \
-    pihole/pihole:latest
+    $IMAGE
