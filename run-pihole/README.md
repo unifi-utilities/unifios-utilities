@@ -61,10 +61,10 @@
     ```
       The below errors are expected and acceptable
       
-          ```sh
+          
           ERRO[0022] unable to get systemd connection to add healthchecks: dial unix /run/systemd/private: connect: no such file or directory
           ERRO[0022] unable to get systemd connection to start healthchecks: dial unix /run/systemd/private: connect: no such file or directory
-          ```
+          
 
 1. Set pihole password
 
@@ -122,8 +122,8 @@ has a tiny memory footprint and operates on an event loop with some major
 optimisations for connection caching.  It allows you to forward traffic to any
 DNS-over-TLS provider.
 
-#### Migration Instructions
-Simply copy the `upd_pihole_dote.sh` script to `/mnt/data/scripts` and run it
+#### Custom Build Instructions
+Simply copy the `custom_pihole_dote.sh` script to `/mnt/data/scripts` and run it
 to forward all DNS traffic over TLS to Cloudflare 1.1.1.1.  You can modify the
 script to forward to different services with ease and full configuration
 options including certificate pinning is available in the DoTe README here:
