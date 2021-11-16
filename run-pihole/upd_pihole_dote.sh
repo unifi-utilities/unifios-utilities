@@ -2,6 +2,7 @@
 
 podman stop pihole
 podman rm pihole
+podman pull boostchicken/pihole-dote:latest
 podman run -d --network dns --restart always \
     --name pihole \
     -e TZ="America/Chicago" \
