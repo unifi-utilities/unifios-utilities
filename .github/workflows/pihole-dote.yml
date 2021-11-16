@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Pihole Dockerbuild
+
+# Controls when the action will run. 
+on:
+  workflow_dispatch:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    paths:
+     - run-pihole/DoTE.Dockerfile
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}  
+      -
+        name: build pihole dote
+        run: docker buildx build --platform=linux/amd64,linux/arm64 run-pihole/DoTE.Dockerfile -t boostchicken/pihole-dote:latest --push
