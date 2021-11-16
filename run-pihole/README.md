@@ -81,7 +81,7 @@
 3. Anytime you want to update your pihole installation, simply run `/mnt/data/scripts/upd_pihole.sh`
 
 ## PiHole with CloudFlareD Command
-    ```sh
+    
      podman run -d --network dns --restart always \
         --name pihole \
         -e TZ="America/Los Angeles" \
@@ -97,22 +97,36 @@
         -e PIHOLE_DNS_="127.0.0.1#5053" \
         -e IPv6="False" \
         boostchicken/pihole:latest
-    ```
 
-## PiHole with DoTe
+### PiHole with DoTe
 
+     podman run -d --network dns --restart always \
+     --name pihole \
+     -e TZ="America/Los Angeles" \
+     -v "/mnt/data/etc-pihole/:/etc/pihole/" \
+     -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
+     --dns=127.0.0.1 \
+     --dns=1.1.1.1 \
+     --hostname pi.hole \
+     -e CLOUDFLARED_OPTS="--port 5053 --address 0.0.0.0" \
+     -e VIRTUAL_HOST="pi.hole" \
+     -e PROXY_LOCATION="pi.hole" \
+     -e ServerIP="10.0.5.3" \
+     -e PIHOLE_DNS_="127.0.0.1#5053" \
+     -e IPv6="False" \
+     boostchicken/pihole-dote:latest
+     
 The cloudflared command is written in Go and is not very lightweight.  In my
 experience, it's not made for long-term running.  Instead, the project DoTe
 has a tiny memory footprint and operates on an event loop with some major
 optimisations for connection caching.  It allows you to forward traffic to any
 DNS-over-TLS provider.
 
+#### Migration Instructions
 Simply copy the `upd_pihole_dote.sh` script to `/mnt/data/scripts` and run it
 to forward all DNS traffic over TLS to Cloudflare 1.1.1.1.  You can modify the
 script to forward to different services with ease and full configuration
 options including certificate pinning is available in the DoTe README here:
 https://github.com/chrisstaite/DoTe/
 
-Whenever pihole says an update is available, simply re-run the script to
-update it to the latest.  DoTe will automatically download the latest version
-on every restart of the container.
+New releases will be made when PiHole updates their labels
