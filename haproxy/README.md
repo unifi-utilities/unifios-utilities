@@ -27,6 +27,6 @@
 
 ## Upgrading Easily (if at all)
 
-1. Edit [update-pihole.sh](./update-pihole.sh) to use the same command you used at installation (if changed).
-2. Copy the [update-pihole.sh](./update-pihole.sh) to `/mnt/data/scripts`
-3. Anytime you want to update your installation, simply run `/mnt/data/scripts/update-pihole.sh`
+1. Edit [update-haproxy.sh](./update-haproxy.sh) to use the same command you used at installation (if changed).
+2. Copy the [update-haproxy.sh](./update-haproxy.sh) to `/mnt/data/scripts`
+3. Anytime you want to update your installation, simply run `/mnt/data/scripts/update-haproxy.sh`
