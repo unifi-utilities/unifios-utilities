@@ -1,4 +1,4 @@
-FROM golang:bullseye
+FROM golang:1.16-stretch
 
 
 ARG DEBIAN_FRONTEND=noninteractive
