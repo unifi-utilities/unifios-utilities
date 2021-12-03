@@ -7,7 +7,7 @@ index 15d6d9fb6..8b44da6ae 100644
  BUILDFLAGS := -mod=vendor $(BUILDFLAGS)
 
 -BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_overlay
-+BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_overlay seccomp systemd
++BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_overlay seccomp $(shell hack/systemd_tag.sh)
  CONTAINER_RUNTIME := $(shell command -v podman 2> /dev/null || echo docker)
  OCI_RUNTIME ?= ""
 
