@@ -38,4 +38,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}  
       -
         name: build pihole dote
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-args VERSION=${{ env.VERSION }} run-pihole -f run-pihole/DoTE.Dockerfile -t boostchicken/pihole-dote:latest  -t boostchicken/pihole-dote:${{ env.VERSION }} --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -f run-pihole/DoTE.Dockerfile -t boostchicken/pihole-dote:latest  -t boostchicken/pihole-dote:${{ env.VERSION }} --push
