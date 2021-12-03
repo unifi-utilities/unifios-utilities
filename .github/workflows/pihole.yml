@@ -38,4 +38,4 @@ jobs:
 
       -
         name: build pihole $VERSION
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:${{ env.VERSION }} --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -t boostchicken/pihole:latest -t boostchicken/pihole:${{ env.VERSION }} --push
