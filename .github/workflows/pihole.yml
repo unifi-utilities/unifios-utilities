@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Pihole Dockerbuild
+name: BoostChicken Pihole DoH Dockerbuild
 
 # Controls when the action will run. 
 on:
@@ -39,4 +39,5 @@ jobs:
         run: docker pull boostchicken/pihole:$VERSION
       -
         name: build pihole
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=$VERSIONp -e VERSION=$VERSION run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:$VERSION --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=$VERSION run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:$VERSION --push
+
