@@ -1,0 +1,34 @@
+name: UDPSE Podman
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'podman-update/build/Dockerfile.Se'
+  pull_requests:
+    paths:
+      - 'podman-update/build/Dockerfile.Se'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build --file podman-update/build/Dockerfile.Se --tag boostchicken:udm-podman podman-update/build/
+    - name: Docker Extract
+      id: extract
+      uses: shrink/actions-docker-extract@v1
+      with:
+        # Docker Image to extract files from
+        image: boostchicken:udm-podman
+        # Path (from root) to a file or directory within Image
+        path: tmp/release/podman-install.zip
+    - name: Upload Podman Install
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ steps.extract.outputs.destination }}
+        name: udmse-podman-install.zip
