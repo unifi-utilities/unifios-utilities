@@ -1,5 +1,6 @@
 FROM golang:1.16-stretch
 
+# Run build
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y libsystemd-dev zip git pkg-config libc6-arm64-cross libc6-dev-arm64-cross binutils-aarch64-linux-gnu libncurses5-dev build-essential bison flex libssl-dev bc gcc-aarch64-linux-gnu
