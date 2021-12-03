@@ -35,13 +35,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
-          
-      - name: install jq and get latest version
-        run: sudo apt update && sudo apt install -y curl jq
-        
-      - name: set version
-        run: env.VERSION=$(
-        
+
       -
         name: build pihole $VERSION
         run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:${{ env.VERSION }} --push
