@@ -1,4 +1,4 @@
-# udm-utilities [![Slack](https://img.shields.io/badge/slack-boostchicken-blue.svg?logo=slack "Boostchicken Slack")](https://join.slack.com/t/boostchicken/shared_invite/zt-fcjszaw4-2ZuNFxIQnrpjxixnm17LXQ)
+# udm-utilities [![Slack](https://img.shields.io/badge/slack-boostchicken-blue.svg?logo=slack "Boostchicken Slack")](https://join.slack.com/t/boostchicken/shared_invite/zt-fcjszaw4-2ZuNFxIQnrpjxixnm17LXQ) [![UDMP Podman](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml)
 
 A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro.
 
