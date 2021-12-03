@@ -71,15 +71,16 @@ Install a DNS server that functions as a network-wide ad and tracker blocker, an
 
 Base configuration for DNS server containers, both IPv4 and IPv6.  Utilizes MacVLAN CNI plugins to completely isolate the network stack.
 
-### run-pihole
+### run-pihole [![!Docker Pulls](https://img.shields.io/docker/pulls/boostchicken/pihole.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/u/boostchicken)
 
+PiHole w/ DoH Image 
 Run Pi-hole on your UDM with podman. Also contains custom image for Pi-hole with `cloudflared`.
 
-### PiHole with DoTe
+### PiHole with DoTe  [![!Docker Pulls](https://img.shields.io/docker/pulls/boostchicken/pihole-dote.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/u/boostchicken)
 
-<https://github.com/chrisstaite/DoTe/>
+Desigened by: <https://github.com/chrisstaite/DoTe/>
 
-Alternative to mine which uses DoH.
+Alternative to mine which uses DoTe
 
 ### AdguardHome
 
