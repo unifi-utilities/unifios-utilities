@@ -14,6 +14,11 @@ jobs:
   buildx:
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Set the version
+        id: ic
+        run: |
+          echo VERSION=$(curl --silent "https://api.github.com/repos/pi-hole/docker-pi-hole/releases/latest" | jq -r '.["tag_name"]')>> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -32,7 +37,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
           
       - name: install jq and get latest version
-        run: sudo apt update && sudo apt install -y curl jq && export VERSION=$(curl --silent "https://api.github.com/repos/pi-hole/docker-pi-hole/releases/latest" | jq -r '.["tag_name"]')
+        run: sudo apt update && sudo apt install -y curl jq
+        
+      - name: set version
+        run: env.VERSION=$(
+        
       -
         name: build pihole $VERSION
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=$VERSION run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:$VERSION --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:${{ env.VERSION }} --push
