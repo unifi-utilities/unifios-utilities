@@ -9,6 +9,9 @@ on:
   push:
     paths:
      - run-pihole/Dockerfile
+  schedule:
+    - cron: "* 12 */14 * *"
+  
 
 jobs:
   buildx:
