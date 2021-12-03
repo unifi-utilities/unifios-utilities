@@ -16,7 +16,7 @@ jobs:
     steps:
     
       - name: Set the version
-        id: ic
+        id: set_version
         run: |
           echo VERSION=$(curl --silent "https://api.github.com/repos/pi-hole/docker-pi-hole/releases/latest" | jq -r '.["tag_name"]')>> $GITHUB_ENV
       -
