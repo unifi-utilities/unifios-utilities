@@ -3,7 +3,7 @@ FROM golang:1.16-stretch
 # Run build
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y systemd libsystemd-dev zip git pkg-config libc6-arm64-cross libc6-dev-arm64-cross binutils-aarch64-linux-gnu libncurses5-dev build-essential bison flex libssl-dev bc gcc-aarch64-linux-gnu
+RUN apt-get update && apt-get install -y zip git pkg-config libc6-arm64-cross libc6-dev-arm64-cross binutils-aarch64-linux-gnu libncurses5-dev build-essential bison flex libssl-dev bc gcc-aarch64-linux-gnu
 RUN dpkg --add-architecture arm64 && apt-get update && apt-get install -y libseccomp-dev:arm64  && apt-get install -y libglib2.0-dev:arm64 && apt-get install -y libsystemd-dev:arm64
 ARG PODMAN_VERSION=v3.4.2
 ARG RUNC_VERSION=v1.0.2
@@ -33,5 +33,4 @@ COPY containers.conf /tmp/install/etc/containers/
 RUN cp /tmp/release/podman-$PODMAN_VERSION /tmp/install/usr/bin/podman && cp /tmp/release/runc-$RUNC_VERSION /tmp/install/usr/bin/runc && cp /tmp/release/conmon-$CONMON_VERSION /tmp/install/usr/libexec/podman/conmon
 WORKDIR /tmp/install
 RUN zip -r /tmp/release/podman-install.zip *
-
 
