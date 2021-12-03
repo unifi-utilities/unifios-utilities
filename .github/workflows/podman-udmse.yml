@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'podman-update/build/Dockerfile.Se'
-  pull_requests:
+  pull_request:
     paths:
       - 'podman-update/build/Dockerfile.Se'
 
