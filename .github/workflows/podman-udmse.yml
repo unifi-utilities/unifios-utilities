@@ -1,4 +1,4 @@
-name: UDPSE Podman
+name: UDPSE Podman Install
 
 on:
   workflow_dispatch:
