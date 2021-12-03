@@ -11,13 +11,13 @@ ENV PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig/
 ENV GOOS=linux
 ENV GOARCH=arm64
 ENV CC='aarch64-linux-gnu-gcc'
-COPY ./podman.Makefile.patch /tmp
+COPY ./podman.Makefile.se.patch /tmp
 COPY ./runc.Makefile.patch /tmp
 RUN mkdir -p /build && mkdir -p /tmp/release
 WORKDIR /build
 RUN  git clone https://github.com/containers/podman && git clone https://github.com/opencontainers/runc && git clone https://github.com/containers/conmon
 WORKDIR /build/podman
-RUN git checkout $PODMAN_VERSION && patch Makefile /tmp/podman.Makefile.patch && make vendor local-cross && \
+RUN git checkout $PODMAN_VERSION && patch Makefile /tmp/podman.Makefile.se.patch && make vendor local-cross && \
   cp ./bin/podman.cross.linux.arm64 /tmp/release/podman-$PODMAN_VERSION && chmod +x /tmp/release/podman-$PODMAN_VERSION
 WORKDIR /build/runc
 RUN git checkout $RUNC_VERSION && patch Makefile /tmp/runc.Makefile.patch && make vendor localcross && \
