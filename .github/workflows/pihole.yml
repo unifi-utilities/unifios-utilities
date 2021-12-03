@@ -6,9 +6,10 @@ name: Pihole Dockerbuild
 on:
   workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    paths:
-     - run-pihole/Dockerfile
+  schedule:
+    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    - cron: '00 12 1/15 * *'
+      
 
 jobs:
   buildx:
@@ -33,6 +34,9 @@ jobs:
           
       - name: get latest version
         run: export VERSION=$(curl --silent "https://api.github.com/repos/pi-hole/docker-pi-hole/releases/latest" | jq -r '.["tag_name"]')
+      
+      - name: docker check
+        run: docker pull boostchicken/pihole:$VERSION
       -
         name: build pihole
         run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=$VERSION run-pihole -t boostchicken/pihole:latest -t boostchicken:/pihole:$VERSION --push
