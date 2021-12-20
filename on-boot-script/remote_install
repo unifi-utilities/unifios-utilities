@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-UDM_BOOT_RAW_URL="https://raw.githubusercontent.com/boostchicken/udm-utilities/HEAD/on-boot-script/dpkg-build-files/udm-boot.service"
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
@@ -14,6 +13,21 @@ CNI_BRIDGE_ON_BOOT_FILENAME="06-cni-bridge.sh"
 GITHUB_API_URL="https://api.github.com/repos"
 GITHUB_REPOSITORY="boostchicken/udm-utilities"
 
+
+# --- Functions ---
+
+header() {
+cat << EOF
+  _   _ ___  __  __   ___           _   
+ | | | |   \|  \/  | | _ ) ___  ___| |_ 
+ | |_| | |) | |\/| | | _ \/ _ \/ _ \  _|
+  \___/|___/|_|  |_| |___/\___/\___/\__|
+                                        
+ Execute any script when your udm system
+ starts.
+
+EOF
+}
 
 command_exists() {
   command -v "${1:-}" >/dev/null 2>&1
@@ -138,6 +152,10 @@ install_on_boot_udr_se() {
 
   [ -e "$SYMLINK_SYSTEMCTL" ]
 }
+
+# --- main ---
+
+header
 
 depends_on ubnt-device-info
 depends_on curl
