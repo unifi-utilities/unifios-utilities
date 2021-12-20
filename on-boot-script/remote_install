@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 UDM_BOOT_RAW_URL="https://raw.githubusercontent.com/boostchicken/udm-utilities/HEAD/on-boot-script/dpkg-build-files/udm-boot.service"
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
@@ -151,7 +151,6 @@ esac
 
 
 echo "Downloading CNI plugins script..."
- 
 if
   ! download_on_path "${ON_BOOT_D_PATH}/${CNI_PLUGINS_ON_BOOT_FILENAME}" "$CNI_PLUGINS_SCRIPT_RAW_URL"
 then
@@ -159,11 +158,8 @@ then
   echo "Failed to download CNI plugins script" 1>&2
   exit 1
 fi
-
 chmod +x "${ON_BOOT_D_PATH}/${CNI_PLUGINS_ON_BOOT_FILENAME}"
 echo "CNI plugins script installed"
-echo
-
 echo "Executing CNI plugins script..."
 "${ON_BOOT_D_PATH}/${CNI_PLUGINS_ON_BOOT_FILENAME}" || true
 echo
@@ -176,14 +172,12 @@ then
   echo "Failed to download CNI bridge script" 1>&2
   exit 1
 fi
-
 chmod +x "${ON_BOOT_D_PATH}/${CNI_BRIDGE_ON_BOOT_FILENAME}"
 echo "CNI bridge script installed"
-echo
-
 echo "Executing CNI bridge script..."
 "${ON_BOOT_D_PATH}/${CNI_BRIDGE_ON_BOOT_FILENAME}" || true
 echo
+
 
 echo "On boot script installation finished"
 echo
