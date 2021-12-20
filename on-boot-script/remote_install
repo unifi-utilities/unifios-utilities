@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 UDM_BOOT_RAW_URL="https://raw.githubusercontent.com/boostchicken/udm-utilities/HEAD/on-boot-script/dpkg-build-files/udm-boot.service"
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
