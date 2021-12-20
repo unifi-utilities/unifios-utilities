@@ -18,11 +18,11 @@ GITHUB_REPOSITORY="boostchicken/udm-utilities"
 
 
 command_exists() {
-  command -v "$@" >/dev/null 2>&1
+  command -v "${1:-}" >/dev/null 2>&1
 }
 
 depends_on() {
-  ! command_exists "$@" && echo "Missing dependencie(s): \`$*\`" 1>&2 && exit 1
+  ! command_exists "${1:-}" && echo "Missing dependencie(s): \`$*\`" 1>&2 && exit 1
 }
 
 udm_model() {
@@ -124,6 +124,8 @@ ON_BOOT_D_PATH="$(get_persistent_path "on_boot.d")"
 
 case "$(udm_model)" in
   udm|udmpro)
+    depends_on podman
+
     if ! install_on_boot_udm_series; then
       echo
       echo "Failed to install on-boot script service" 1>&2
