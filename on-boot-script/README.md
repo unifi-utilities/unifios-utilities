@@ -49,7 +49,7 @@
     Examples:
     * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
     * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
-    * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-key.sh](examples/udm-files/on_boot.d/15-add-root-ssh-key.sh)
+    * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-keys.sh](examples/udm-files/on_boot.d/15-add-root-ssh-keys.sh)
 
 ## Version History
 
