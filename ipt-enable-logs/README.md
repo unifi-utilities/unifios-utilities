@@ -17,8 +17,10 @@ This mod builds a small Go program that modifies the existing iptables to add `-
 Here's an example snippet of an iptable modified by this program:
 
 ```
--A UBIOS_PREROUTING_USER_HOOK -p tcp -m set --match-set UBIOS_ADDRv4_eth8 dst -m tcp --dport 15060 -j LOG --log-prefix "[DNAT-PRER_U_HK-4294967310] "
--A UBIOS_PREROUTING_USER_HOOK -p tcp -m set --match-set UBIOS_ADDRv4_eth8 dst -m tcp --dport 15060 -m comment --comment 00000000004294967310 -j DNAT --to-destination 192.168.36.10:15060
+-A UBIOS_WAN_IN_USER -d 192.168.16.10/32 -p udp -m udp --dport 51820 -m conntrack --ctstate NEW -j LOG --log-prefix "[FW-A-WAN_IN_U-3010] "
+-A UBIOS_WAN_IN_USER -d 192.168.16.10/32 -p udp -m udp --dport 51820 -m conntrack --ctstate NEW -m comment --comment 00000000008589937602 -j RETURN
+-A UBIOS_WAN_IN_USER -d 192.168.16.10/32 -p udp -m udp --dport 51821 -m conntrack --ctstate NEW -j LOG --log-prefix "[FW-A-WAN_IN_U-3011] "
+-A UBIOS_WAN_IN_USER -d 192.168.16.10/32 -p udp -m udp --dport 51821 -m conntrack --ctstate NEW -m comment --comment 00000000008589937603 -j RETURN
 ```
 
 ## Steps
@@ -54,12 +56,12 @@ function logunifi() {
 Here's what the output of `logunifi` looks like:
 
 ```
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
-Nov 14 10:58:31 - A-LAN_LOCAL_U-1097364144127	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
+Nov 14 10:58:31 - A-LAN_LOCAL_U-2000	IN=br0  	TCP	SRC=192.168.16.10@55804	DST=192.168.16.1@443	LEN=52
 ```
 
 ## Acknowledgements
