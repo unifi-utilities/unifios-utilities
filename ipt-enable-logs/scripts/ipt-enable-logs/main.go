@@ -37,7 +37,7 @@ func main() {
 		}
 		actionName := getActionName(string(matches[3]))
 		ruleName := getRuleName(string(matches[1]), commentNr)
-		fmt.Printf(`%s --log-prefix "[%s-%s] "`, line, actionName, ruleName)
+		fmt.Printf(`%s --log-prefix "[FW-%s-%s] "`, line, actionName, ruleName)
 	}
 }
 
@@ -51,12 +51,12 @@ func getActionName(action string) string {
 }
 
 func getRuleName(rule string, commentNr int) string {
-	rule = strings.Replace(rule, "PREROUTING", "PRER", 1)
-	rule = strings.Replace(rule, "POSTROUTING", "POSTR", 1)
-	rule = strings.Replace(rule, "HOOK", "HK", 1)
-	rule = strings.Replace(rule, "USER", "U", 1)
+	ruleName := strings.Replace(rule, "PREROUTING", "PRER", 1)
+	ruleName = strings.Replace(ruleName, "POSTROUTING", "POSTR", 1)
+	ruleName = strings.Replace(ruleName, "HOOK", "HK", 1)
+	ruleName = strings.Replace(ruleName, "USER", "U", 1)
 	if commentNr != 0 {
-		rule = fmt.Sprintf("%s-%d", rule, commentNr)
+		ruleName = fmt.Sprintf("%s-%d", ruleName, commentNr & 0xFFFFFFFF)
 	}
-	return rule
+	return ruleName
 }
