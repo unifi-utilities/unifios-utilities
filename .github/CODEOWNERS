@@ -4,3 +4,4 @@ on_boot_scripts @boostchicken
 wireguard-go @boostchicken
 dns-common @boostchicken
 container-commmon @boostchicken
+on-boot-script/remote_install.sh @gtrabanco

@@ -28,7 +28,19 @@
 
 * Built on Ubuntu-20.04 on Windows 10/WSL2
 
-## Steps
+## Install
+
+You can execute in UDM/Pro/SE and UDR with:
+
+```bash
+curl -fsL "https://raw.githubusercontent.com/boostchicken/udm-utilities/HEAD/on-boot-script/remote_install.sh" | /bin/sh
+```
+
+This is a force to install script so will uninstall any previous version and install on_boot keeping your on boot files.
+
+This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/UDR remember that you must install podman manually because there is no podman.
+
+## Manually Install Steps
 
 1. Get into the unifios shell on your udm
 
