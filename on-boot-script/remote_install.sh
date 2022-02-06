@@ -128,7 +128,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-ExecStart=bash -c 'mkdir -p /mnt/data/on_boot.d && find -L /mnt/data/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "$0"; then echo "%n: running $0"; "$0"; else case "$0" in *.sh) echo "%n: sourcing $0"; . "$0";; *) echo "%n: ignoring $0";; esac; fi\''
+ExecStart=bash -c 'mkdir -p /mnt/data/on_boot.d && find -L /mnt/data/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
 
 [Install]
 WantedBy=multi-user.target
