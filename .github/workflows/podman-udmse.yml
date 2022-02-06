@@ -21,7 +21,7 @@ jobs:
       run: docker build --file podman-update/build/Dockerfile.Se --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
-      uses: shrink/actions-docker-extract@v1
+      uses: boostchicken-dev/actions-docker-extract@v2
       with:
         # Docker Image to extract files from
         image: boostchicken:udm-podman
