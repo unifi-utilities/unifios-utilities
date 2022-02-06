@@ -24,7 +24,7 @@ minecraft_1  | [init] Starting the Minecraft server...
 
 ## Customization
 
-* You can disable exposing the docker daemon by commenting out the podman service in  [01-podman-update.sh](01-podman-update.sh)
+* You can disable exposing the docker daemon by commenting out the podman service in  [01-podman-update.sh](bin.OLD.DONT USE/01-podman-update.sh)
   
 ## Podman Build Process
 * This is a custom-built binary by me.  It was cross compiled on Ubuntu-20.04 in WSL2. 
@@ -39,13 +39,10 @@ sudo apt-get install libc6-arm64-cross libc6-dev-arm64-cross binutils-aarch64-li
 ```sh
 make CC="aarch64-linux-gnu-gcc" local-cross
 ```
-## Steps
+## Step
 
-1. Copy [01-podman-update.sh](01-podman-update.sh) to /mnt/data/on_boot.d. Make sure anything needed to enable internet connectivity (wpa-supplicant, eap-proxy) runs before it
-    1.  Comment out the Podman service if you do not wish to expose the Docker/Podman Daemon
-1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
-   1. Recommended: Copy [05-container-common.sh](../container-common/on_boot.d/05-container-common.sh) to /mnt/data/on_boot.d
-1. Execute /mnt/data/on_boot.d/[01-podman-update.sh](01-podman-update.sh) and /mnt/data/on_boot.d/[05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh)
+1. Goto the Actions tab and get the latest Podman build and unzip it in your the root of your filesystem, something better is coming but for now that will have to do.
+   You can write a script to automate it, i suggest lots of testing though!
 1. Verify Podman version
 ```sh
 $ podman version
