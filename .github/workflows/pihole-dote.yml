@@ -10,7 +10,7 @@ on:
     paths:
      - run-pihole/DoTE.Dockerfile
   schedule:
-    - cron: "* 12 */14 * *"
+    - cron: "0 0 */15 * *"
     
 jobs:
   buildx:
