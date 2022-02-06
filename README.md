@@ -1,4 +1,6 @@
-# udm-utilities [![Slack](https://img.shields.io/badge/slack-boostchicken-blue.svg?logo=slack "Boostchicken Slack")](https://join.slack.com/t/boostchicken/shared_invite/zt-fcjszaw4-2ZuNFxIQnrpjxixnm17LXQ) [![UDMP Podman](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml) [![UDMPSE Podman](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=master)](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmse.yml)
+# udm-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
+
+[![UDMP Podman](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmp.yml) [![UDMPSE Podman](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=master)](https://github.com/boostchicken/udm-utilities/actions/workflows/podman-udmse.yml)
 
 A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro.
 
