@@ -1,4 +1,4 @@
-name: UDMP Podman
+name: UDM-Pro Podman
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile --tag boostchicken:udmp-podman podman-update/build/
+      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro --tag boostchicken:udmp-podman podman-update/build/
     - name: Docker Extract
       id: extract
       uses: boostchicken-dev/actions-docker-extract@v2
@@ -31,4 +31,4 @@ jobs:
       with:
         path: ${{ steps.extract.outputs.destination }}
         name: podman-install.zip
- 
+

@@ -1,4 +1,4 @@
-name: UDMPSE Podman
+name: UDM-SE Podman
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile.Se --tag boostchicken:udm-podman podman-update/build/
+      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
       uses: boostchicken-dev/actions-docker-extract@v2
