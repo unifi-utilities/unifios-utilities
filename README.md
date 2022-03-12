@@ -41,6 +41,12 @@ Apply this after on-boot-script. Updates container defaults to maintain **stable
 
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container.
 
+### UDMP Persistence SSH Keys Script
+
+<https://github.com/fire1ce/UDMP-Persistence-SSH-Keys>
+
+Script to presist ssh keys after reboot
+
 ## VPN Servers / Clients
 
 ### wireguard-go
@@ -139,6 +145,12 @@ Make your Jumbo frames work!
 <https://rclone.org/>
 
 Run rclone container with Web GUI for offsite backups.
+
+### Telegram-Notifications On WAN Failorver
+
+<https://github.com/fire1ce/UDMP-Failover-Telegram-Notifications>
+
+Use telegram bot to be notified of a wan failover with local account
 
 ## Unsupported / No longer maintained
 
