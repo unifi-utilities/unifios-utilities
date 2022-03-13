@@ -17,6 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
     - name: Build the Docker image
       run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
