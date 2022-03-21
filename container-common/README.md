@@ -6,7 +6,7 @@
 
 ## Requirements
 
-1. You have already setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. You have already setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
 
 ## Customization
 
@@ -17,7 +17,7 @@ While a 100Mb log limit per container should give plenty of log data for all fea
 1. Run as root on UDM Pro to download and set permissions of on_boot.d script:
 ```sh
 # Download 05-container-common.sh from GitHub
-curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/container-common/on_boot.d/05-container-common.sh -o /mnt/data/on_boot.d/05-container-common.sh;
+curl -L https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/master/container-common/on_boot.d/05-container-common.sh -o /mnt/data/on_boot.d/05-container-common.sh;
 # Set execute permission
 chmod a+x /mnt/data/on_boot.d/05-container-common.sh;
 ```

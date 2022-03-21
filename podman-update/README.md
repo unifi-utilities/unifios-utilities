@@ -19,7 +19,7 @@ minecraft_1  | [init] Starting the Minecraft server...
 ```
 ## Requirements
 
-1. You have successfully set up the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. You have successfully set up the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
 1. [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) installed
 
 ## Customization
