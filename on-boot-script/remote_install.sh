@@ -7,8 +7,8 @@ SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
 CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
 CNI_PLUGINS_ON_BOOT_FILENAME="$(basename "$CNI_PLUGINS_SCRIPT_RAW_URL")"
 
-CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/master/on-boot-script/examples/udm-networking/on_boot.d/05-cni-bridge.sh"
-CNI_BRIDGE_ON_BOOT_FILENAME="06-cni-bridge.sh"
+CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/master/on-boot-script/examples/udm-networking/on_boot.d/06-cni-bridge.sh"
+CNI_BRIDGE_ON_BOOT_FILENAME="$(basename "$CNI_BRIDGE_SCRIPT_RAW_URL")"
 
 GITHUB_API_URL="https://api.github.com/repos"
 GITHUB_REPOSITORY="boostchicken-dev/udm-utilities"
