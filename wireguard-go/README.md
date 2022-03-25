@@ -8,7 +8,7 @@
 
 ## Requirements
 
-1. You have successfully setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. You have successfully setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
 1. Not recommended for Wireguard newbies. Set it up on other devices first. This document does not include iptables / nat rules
 
 ## Customization

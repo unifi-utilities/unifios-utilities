@@ -7,7 +7,7 @@
 
 ## Requirements
 
-1. You have successfully setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. You have successfully setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
 2. You have to have services you want to load-balance, an example would be a multi-master k3s cluster.
 
 ## Steps

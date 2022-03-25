@@ -33,7 +33,7 @@ CONTAINER=pihole
 
 if ! test -f /opt/cni/bin/macvlan; then
     echo "Error: CNI plugins not found. You can install it with the following command:" >&2
-    echo "       curl -fsSLo /mnt/data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/boostchicken/udm-utilities/master/cni-plugins/05-install-cni-plugins.sh && /bin/sh /mnt/data/on_boot.d/05-install-cni-plugins.sh" >&2
+    echo "       curl -fsSLo /mnt/data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/master/cni-plugins/05-install-cni-plugins.sh && /bin/sh /mnt/data/on_boot.d/05-install-cni-plugins.sh" >&2
     exit 1
 fi
 

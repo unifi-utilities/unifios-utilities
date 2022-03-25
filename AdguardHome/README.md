@@ -7,7 +7,7 @@
 
 ## Requirements
 
-1. You have setup the on boot script described [here](https://github.com/boostchicken/udm-utilities/tree/master/on-boot-script)
+1. You have setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
 1. AdguardHome persists through firmware updates as it will store the configuration in a folder (you need to create this). It needs 2 folders, a Work and Configuration folder. Please create the 2 folders in "/mnt/data/". In my example I created "AdguardHome-Confdir" and "AdguardHome-Workdir"
 
 ## Customization
