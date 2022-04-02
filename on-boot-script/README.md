@@ -8,7 +8,7 @@
 ## Compatibility
 
 1. Should work on any UDM/UDMPro after 1.6.3
-2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7, 1.8.0+
+2. Tested and confirmed on 1.6.6, 1.7.0, 1.7.2rc4, 1.7.3rc1, 1.8.0rc7, 1.8.0+, 1.11.4
 
 ### Upgrade from earlier way
 
@@ -21,10 +21,10 @@
     ```
 
 * [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
-    * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
-    * by default it uses docker or podman to build the debian package
-    * use ```./build_deb.sh build``` to not use a container
-    * the resulting package will be in [packages/](packages/)
+  * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
+  * by default it uses docker or podman to build the debian package
+  * use ```./build_deb.sh build``` to not use a container
+  * the resulting package will be in [packages/](packages/)
 
 * Built on Ubuntu-20.04 on Windows 10/WSL2
 
@@ -48,11 +48,13 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.5_all.deb](packages/udm-boot_1.0.5_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
+2. Download [the latest package](packages) (see [Version History](#version-history)), install it and go back to the UDM. The latest package will always be found at <https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script/packages>
 
     ```bash
-    curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.5_all.deb
-    dpkg -i udm-boot_1.0.5_all.deb
+    dl_url=$(curl -fsL "https://api.github.com/repos/boostchicken-dev/udm-utilities/releases/latest" | awk '$0 ~ /"browser_download_url"/ {sub(/.*:\s*"/,"",$0); gsub("\"", "", $0); print $2}')
+    curl -Lo udm-boot_latest.deb $dl_url
+    dpkg -i udm-boot_latest.deb
+    rm udm-boot_latest.deb
     exit
     ```
 
