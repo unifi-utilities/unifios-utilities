@@ -1,0 +1,28 @@
+{
+  "cniVersion": "0.4.0",
+  "name": "unbound",
+  "plugins": [
+    {
+      "type": "macvlan",
+      "mode": "bridge",
+      "master": "br5",
+      "mac": "EE:CC:EC:A2:7C:D1",
+      "ipam": {
+        "type": "static",
+        "addresses": [
+          {
+            "address": "10.0.5.3/24",
+            "gateway": "10.0.5.1"
+          },
+          {
+            "address": "fdca:5c13:1fb8::3/64",
+            "gateway": "fdca:5c13:1fb8::1"
+          }
+        ],
+        "routes": [
+          {"dst": "0.0.0.0/0"},{"dst": "::/0"}
+        ]
+      }
+    }
+  ]
+}
