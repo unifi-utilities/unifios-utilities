@@ -1,6 +1,6 @@
 # Running `unbound` on the UDM/P
 
-This example is "ready to run" out of the box, if you've already installed Pi-hole on your UDM/P. Adjust the MAC and IP addresses if necessary.
+This example is "ready to run" out of the box, if you've already installed Pi-hole on your UDM/P. Adjust the MAC and IP addresses if necessary. As updating `podman`on UDM/P is prone to making mistakes, this is set up to run in a separate container.
 
 ## Prerequisites
 
@@ -12,18 +12,19 @@ Finish setup of [on_boot.d](../on-boot-script/) and [dns-common](../dns-common).
 
 In the current examples, the DNS resolver (e.g., pi-hole) is listening on `10.0.5.2`. The example will make `unbound` listen on `10.0.5.3`.
 
-Follow the steps in [run-pihole](../run-pihole) to create a separate IP address, by coying the files in this directory to UDM/P.
+Follow the steps in [run-pihole](../run-pihole) to create a separate IP address, by copying the files in the sub-directories to UDM/P.
 
-* [11-unbound.sh](./on_boot.d/11-unbound.sh) -> `ln -s /mnt/data/on_boot.d/11-unbound.sh /mnt/data/unbound/on_boot.d/11-unbound.sh`
-* IPv4 only: [21-unbound.conflist](./cni_plugins/21-unbound.conflist) -> `ln -s /mnt/data/podman/cni/21-unbound.conflist /mnt/data/unbound/cni_plugins/21-unbound.conflist` *or*
-* IPv4 and IPv6: [21-unboundipv6.conflist](./cni_plugins/21-unboundipv6.conflist) -> `ln -s /mnt/data/podman/cni/21-unbound.conflist /mnt/data/unbound/cni_plugins/21-unbound.conflist`
+Adjust the `11-unbound-macvlanip` and `.conflist` files, run [init_unbound.sh](./scripts/init_unbound.sh), *or* execute the commands below manually.
 
-Then, run
+* Link the boot script [11-unbound-macvlanip.sh](./on_boot.d/11-unbound-macvlanip.sh) -> `ln -s /mnt/data/unbound/on_boot.d/11-unbound-macvlanip.sh /mnt/data/on_boot.d/11-unbound-macvlanip.sh`
+* Link the IPv4 only configuration: [21-unbound.conflist](./cni_plugins/21-unbound.conflist) -> `ln -s /mnt/data/unbound/cni_plugins/21-unbound.conflist /etc/cni/net.d/21-unbound.conflist` *or*
+* Link the IPv4 and IPv6 configuration: [21-unboundipv6.conflist](./cni_plugins/21-unboundipv6.conflist) -> `ln -s /mnt/data/unbound/cni_plugins/21-unboundipv6.conflist /etc/cni/net.d/21-unbound.conflist`
+* Create the network
 
-```bash
-podman network create unbound
-sh ../on_boot.d/11-unbound.sh
-```
+  ```bash
+  podman network create unbound
+  sh ../on_boot.d/11-unbound-macvlanip.sh
+  ```
 
 The error - if it's the first time you run it - can be ignored.
 
@@ -50,7 +51,7 @@ Both Pi-hole as well as `unbound` are caching their requests. To make the change
 ```sh
 podman run -d --network dns --restart always \
     --name pihole \
-    -e TZ="Europe/Berlin" \
+    -e TZ="America/Los Angeles" \
     -v "/mnt/data/pihole/etc-pihole/:/etc/pihole/" \
     -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
     --dns=127.0.0.1 \

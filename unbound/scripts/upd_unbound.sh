@@ -9,6 +9,7 @@ podman stop $CONTAINER
 echo "Removing container..."
 podman rm  $CONTAINER
 echo "Updating root hints..."
+mkdir -p /mnt/data/unbound/unbound.conf.d/
 curl -m 30 -o /mnt/data/unbound/unbound.conf.d/root.hints https://www.internic.net/domain/named.root
 echo "Running $CONTAINER container"
 podman run -d --net unbound --restart always \

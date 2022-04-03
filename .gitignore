@@ -4,4 +4,3 @@
 debhelper-build-stamp
 .debhelper
 Wiki_Wireguard.md
-unbound/scripts/init_unbound.sh
