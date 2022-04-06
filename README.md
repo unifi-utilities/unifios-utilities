@@ -178,6 +178,12 @@ Run rclone container with Web GUI for offsite backups.
 
 Use telegram bot to be notified of a wan failover with local account
 
+### udm-proxy
+
+Run a reverse proxy (using caddy in vlan) on the udm-pro.
+
+<https://github.com/xpherism/udm-proxy>
+
 ## Unsupported / No longer maintained
 
 ### nextdns
