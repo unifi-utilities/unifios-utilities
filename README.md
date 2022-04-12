@@ -160,12 +160,6 @@ It stops the build in service that monitors the thermal values, fan speed and co
 After that it sets the thermal/fan chip (adt7475) to automatic mode.
 Once that is done it changes the thermal and fan values specified in the script.
 
-### Jumbo Frames
-
-<https://github.com/kalenarndt/udmp-jumbo-frames>
-
-Make your Jumbo frames work!
-
 ### rclone
 
 <https://rclone.org/>
@@ -187,3 +181,9 @@ Run NextDNS on your UDM with podman.
 ### suricata
 
 Updates suricata to a recent version.
+
+### Jumbo Frames
+
+<https://github.com/kalenarndt/udmp-jumbo-frames>
+
+_Note:_ native jumbo frame support for the UDM and UDM-Pro is added in the 1.12.13 EA firmware, support for the UDM-SE is not yet announced.
