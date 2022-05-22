@@ -126,6 +126,12 @@ Update your cloudflare domains from your UDM with podman.
 This is a docker container that implements <https://github.com/alsmith/multicast-relay> to provide mDNS and SSDP on a unifi dream machine.
 It will likely work on any multi homed host.
 
+### mqtt-mosquitto
+
+<https://hub.docker.com/_/eclipse-mosquitto>
+
+Eclipse Mosquitto is an open source message broker which implements MQTT version 5, 3.1.1 and 3.1.
+
 ### ntopng
 
 <https://github.com/tusc/ntopng-udm>
