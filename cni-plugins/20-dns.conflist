@@ -6,7 +6,7 @@
       "type": "macvlan",
       "mode": "bridge",
       "master": "br5",
-      "mac": "add 3 fake hex portions, replacing x's here 00:1c:b4:e7:87:0b",
+      "mac": "00:1c:b4:e7:87:0b",
       "ipam": {
         "type": "static",
         "addresses": [
