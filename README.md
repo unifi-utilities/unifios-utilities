@@ -3,7 +3,7 @@
 [![UDM-Pro Podman](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmp.yml)
 [![UDM-SE Podman](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=master)](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmse.yml)
 
-A collection of things to enhance the capabilities of your Unifi Dream Machine or Dream Machine Pro.
+A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or [UXG-Pro](https://gist.github.com/trilom/40fab563db416a69c63c127688ce7924).
 
 ## Contributing
 
