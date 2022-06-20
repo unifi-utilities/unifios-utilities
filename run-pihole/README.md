@@ -93,13 +93,16 @@ Note: IP and VLAN settings for you pihole network, 20-dns-conflist and 10-dns.sh
 
 Note:
   --name MUST match the name you set in 10-dns.sh
-  -e ServerIP MUST be in the range you set for your ihole network
+  -e FTLCONF_REPLY_ADDR4 MUST be in the range you set for your pihole network
   -e TZ MUST match the timezone for your controller
    
 The example uses these upstream DNS servers The following command sets the upstream DNS servers to `1.1.1.1` ([Cloudflare DNS](https://1.1.1.1/)) and `8.8.8.8` ([Google DNS](https://developers.google.com/speed/public-dns/)).
 If you want to use different upstream DNS servers, change the following lines:
     --dns=1.1.1.1 \
     --dns=8.8.8.8 \
+    
+If you want to run a DHCP server as well you need to add the following lines:
+    --cap-add=NET_ADMIN
 		   
 5.0 Run the following (or your modified version) by copy / pasting the entire set.	   
    
@@ -109,6 +112,7 @@ If you want to use different upstream DNS servers, change the following lines:
         --restart always \
         --name pihole \
         -e TZ="America/Los Angeles" \
+	--cap-add=NET_ADMIN \
         -v "/mnt/data/etc-pihole/:/etc/pihole/" \
         -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
         --dns=127.0.0.1 \
@@ -117,7 +121,7 @@ If you want to use different upstream DNS servers, change the following lines:
         --hostname pi.hole \
         -e VIRTUAL_HOST="pi.hole" \
         -e PROXY_LOCATION="pi.hole" \
-        -e ServerIP="10.0.5.3" \
+        -e FTLCONF_REPLY_ADDR4="10.0.5.3" \
         -e IPv6="False" \
         pihole/pihole:latest
     ```
