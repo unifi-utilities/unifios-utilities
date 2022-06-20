@@ -180,7 +180,7 @@ DNS-over-TLS provider.
 ### PiHole with DoTe
 
 Simply copy the `custom_pihole_dote.sh` script to `/mnt/data/scripts` and run it
-to forward all DNS traffic over TLS to Cloudflare 1.1.1.1.  You can modify the
+to forward all DNS traffic over TLS to Cloudflare 1.1.1.1 / 1.0.0.1.  You can modify the
 script to forward to different services with ease and full configuration
 options including certificate pinning is available in the DoTe README here:
 https://github.com/chrisstaite/DoTe/
