@@ -1,7 +1,7 @@
 # udm-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
 
-[![UDM-Pro Podman](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmp.yml)
-[![UDM-SE Podman](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=master)](https://github.com/boostchicken-dev/udm-utilities/actions/workflows/podman-udmse.yml)
+[![UDM-Pro Podman](https://github.com/unifi-utilities/udm-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/unifi-utilities/udm-utilities/actions/workflows/podman-udmp.yml)
+[![UDM-SE Podman](https://github.com/unifi-utilities/udm-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=master)](https://github.com/unifi-utilities/udm-utilities/actions/workflows/podman-udmse.yml)
 
 A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or [UXG-Pro](https://gist.github.com/trilom/40fab563db416a69c63c127688ce7924).
 
@@ -19,7 +19,7 @@ Please see the repo and please use at your own risk. This a much larger change t
 
 ## Custom Podman Builds for UDM-SE
 
-<https://github.com/boostchicken-dev/udm-utilities/actions>
+<https://github.com/unifi-utilities/udm-utilities/actions>
 
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
@@ -30,7 +30,7 @@ Look at the assets on the Podman workflow.
 
 Do this first. Enables `init.d` style scripts to run on every boot of your UDM.
 Includes examples to run `wpa-supplicant/eap-proxy` and/or `ntop-ng` on startup.
-Follow this [readme](https://github.com/boostchicken-dev/udm-utilities/blob/main/on-boot-script/README.md).
+Follow this [readme](https://github.com/unifi-utilities/udm-utilities/blob/main/on-boot-script/README.md).
 
 **It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
 
@@ -86,7 +86,7 @@ It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients runni
 ## DNS Providers
 
 Install a DNS server that functions as a network-wide ad and tracker blocker, and which can also securely proxy encrypted DNS requests to an upstream DNS provider.
-Begin by following the instructions to setup [on-boot-script](https://github.com/boostchicken-dev/udm-utilities/tree/main/on-boot-script) and [dns-common](https://github.com/boostchicken-dev/udm-utilities/tree/main/dns-common/on_boot.d).
+Begin by following the instructions to setup [on-boot-script](https://github.com/unifi-utilities/udm-utilities/tree/main/on-boot-script) and [dns-common](https://github.com/unifi-utilities/udm-utilities/tree/main/dns-common/on_boot.d).
 Then, follow the guides below to setup either Pi-Hole, NextDNS, or AdGuard Home.
 
 ### dns-common

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Download and install the service
-podman exec unifi-os curl -fsSLo /lib/systemd/system/udm-boot.service https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/main/on-boot-script/dpkg-build-files/udm-boot.service
+podman exec unifi-os curl -fsSLo /lib/systemd/system/udm-boot.service https://raw.githubusercontent.com/unifi-utilities/udm-utilities/main/on-boot-script/dpkg-build-files/udm-boot.service
 
 # If you want to manually install this offline,
 # Have that file downloaded first, scp it to udm (e.g. /tmp/udm-boot.service)

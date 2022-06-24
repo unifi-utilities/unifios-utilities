@@ -7,7 +7,7 @@
 
 ## Requirements
 
-1. You have successfully setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/main/on-boot-script)
+1. You have successfully setup the on boot script described [here](https://github.com/unifi-utilities/udm-utilities/tree/main/on-boot-script)
 
 ## Customization
 
