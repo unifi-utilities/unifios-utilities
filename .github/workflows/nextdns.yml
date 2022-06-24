@@ -41,4 +41,4 @@ jobs:
 
       -
         name: build pihole $VERSION
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} run-pihole -t boostchicken/nextdns:latest -t boostchicken/nextdns:${{ env.VERSION }} --push
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg VERSION=${{ env.VERSION }} nextdns/docker -t boostchicken/nextdns:latest -t boostchicken/nextdns:${{ env.VERSION }} --push
