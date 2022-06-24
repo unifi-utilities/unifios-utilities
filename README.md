@@ -1,4 +1,4 @@
-# unifi-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
+# unifios-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
 
 [![UDM-Pro Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml)
 [![UDM-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml)
