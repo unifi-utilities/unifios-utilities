@@ -4,7 +4,7 @@
 
 ## Prerequisities
 
-- Working **`on_boot.d`** setup (check [boostchicken/udm-utilities#on-boot-script](https://github.com/unifi-utilities/udm-utilities/tree/main/on-boot-script) for instructions)
+- Working **`on_boot.d`** setup (check [unifi-utilities/unifios-utilities#on-boot-script](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script) for instructions)
 - A VLAN network (you can use one you're already using)
 
 #### Optional:
@@ -74,6 +74,6 @@ If you want to know what Mosquitto is doing, run `$ podman logs -f mosquitto` to
 
 ## Credits
 
-Huge thanks to @boostchicken and his incredible work on [udm-utilities](https://github.com/boostchicken/udm-utilities)!  
+Huge thanks to @boostchicken and his incredible work on [unifios-utilities](https://github.com/unifi-utilities/unifios-utilities)!  
 
-Guide based upon the incredible contributors of [boostchicken/udm-utilities](https://github.com/boostchicken/udm-utilities)!
+Guide based upon the incredible contributors of [boostchicken/unifios-utilities](https://github.com/unifi-utilities/unifios-utilities)!

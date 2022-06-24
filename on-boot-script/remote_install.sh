@@ -4,14 +4,14 @@
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
 
-CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/udm-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
+CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
 CNI_PLUGINS_ON_BOOT_FILENAME="$(basename "$CNI_PLUGINS_SCRIPT_RAW_URL")"
 
-CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/udm-utilities/main/on-boot-script/examples/udm-networking/on_boot.d/06-cni-bridge.sh"
+CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/on-boot-script/examples/udm-networking/on_boot.d/06-cni-bridge.sh"
 CNI_BRIDGE_ON_BOOT_FILENAME="$(basename "$CNI_BRIDGE_SCRIPT_RAW_URL")"
 
 GITHUB_API_URL="https://api.github.com/repos"
-GITHUB_REPOSITORY="unifi-utilities/udm-utilities"
+GITHUB_REPOSITORY="unifi-utilities/unifios-utilities"
 
 
 # --- Functions ---
@@ -118,7 +118,7 @@ install_on_boot_udm_series() {
   unset download_url tmp_path
 }
 
-# Credits @peacey: https://github.com/unifi-utilities/udm-utilities/issues/214#issuecomment-886869295
+# Credits @peacey: https://github.com/unifi-utilities/unifios-utilities/issues/214#issuecomment-886869295
 udmse_on_boot_systemd() {
 cat << EOF
 [Unit]

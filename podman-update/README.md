@@ -19,7 +19,7 @@ minecraft_1  | [init] Starting the Minecraft server...
 ```
 ## Requirements
 
-1. You have successfully set up the on boot script described [here](https://github.com/unifi-utilities/udm-utilities/tree/main/on-boot-script)
+1. You have successfully set up the on boot script described [here](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script)
 1. [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) installed
 
 ## Customization
