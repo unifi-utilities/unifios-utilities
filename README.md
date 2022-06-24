@@ -30,7 +30,7 @@ Look at the assets on the Podman workflow.
 
 Do this first. Enables `init.d` style scripts to run on every boot of your UDM.
 Includes examples to run `wpa-supplicant/eap-proxy` and/or `ntop-ng` on startup.
-Follow this [readme](https://github.com/boostchicken-dev/udm-utilities/blob/master/on-boot-script/README.md).
+Follow this [readme](https://github.com/boostchicken-dev/udm-utilities/blob/main/on-boot-script/README.md).
 
 **It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
 
@@ -86,7 +86,7 @@ It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients runni
 ## DNS Providers
 
 Install a DNS server that functions as a network-wide ad and tracker blocker, and which can also securely proxy encrypted DNS requests to an upstream DNS provider.
-Begin by following the instructions to setup [on-boot-script](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script) and [dns-common](https://github.com/boostchicken-dev/udm-utilities/tree/master/dns-common/on_boot.d).
+Begin by following the instructions to setup [on-boot-script](https://github.com/boostchicken-dev/udm-utilities/tree/main/on-boot-script) and [dns-common](https://github.com/boostchicken-dev/udm-utilities/tree/main/dns-common/on_boot.d).
 Then, follow the guides below to setup either Pi-Hole, NextDNS, or AdGuard Home.
 
 ### dns-common

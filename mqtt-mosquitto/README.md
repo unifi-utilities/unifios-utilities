@@ -4,7 +4,7 @@
 
 ## Prerequisities
 
-- Working **`on_boot.d`** setup (check [boostchicken/udm-utilities#on-boot-script](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script) for instructions)
+- Working **`on_boot.d`** setup (check [boostchicken/udm-utilities#on-boot-script](https://github.com/boostchicken-dev/udm-utilities/tree/main/on-boot-script) for instructions)
 - A VLAN network (you can use one you're already using)
 
 #### Optional:
