@@ -21,18 +21,18 @@
 
 ## Docker
 
-The official repo is boostchicken/nextdns-udm.  Latest will always refer to the latest builds, there are also tags for each NextDNS release (e.g. 1.6.4).
+The official repo is boostchicken/nextdns.  Latest will always refer to the latest builds, there are also tags for each NextDNS release (e.g. 1.6.4).
 
 The Dockerfile is included, you can build it locally on your UDM if you don't want to pull from Docker Hub or make customizations
 
 ```sh
-podman build . -t nextdns-udm:latest
+podman build . -t nextdns:latest
 ```
 
 Building from another device is possible.  You must have [buildx](https://github.com/docker/buildx/) installed to do cross platform builds. This is useful if you want to mirror to a private repo
 
 ```sh
-docker buildx build --platform linux/arm64/v8 -t nextdns-udm:latest .
+docker buildx build --platform linux/arm64/v8 -t nextdns:latest .
 ```
 
 ## Steps
@@ -56,7 +56,7 @@ If you have already installed PiHole, skip right to step 5.
         --mount type=bind,source=/config/dnsmasq.lease,target=/tmp/dnsmasq.leases \
         --dns=45.90.28.163 --dns=45.90.30.163 \
         --hostname nextdns \
-        boostchicken/nextdns-udm:latest
+        boostchicken/nextdns:latest
     ```
 
 7. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
