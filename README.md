@@ -3,12 +3,7 @@
 [![UDM-Pro Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml)
 [![UDM-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml)
 
-A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or [UXG-Pro](https://gist.github.com/trilom/40fab563db416a69c63c127688ce7924).
-
-## Contributing
-
-Pull Requests welcome!
-If you use this functionality to do new cool stuff to your UDM/P please send a PR and share it with the community!
+A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or UXG-Pro.
 
 ## Custom Kernel
 
@@ -59,11 +54,11 @@ Script to presist ssh keys after reboot or firmware update
 
 ### wireguard-go
 
-Run a Wireguard client/server on your UDM/P.
+Run a Wireguard client/server
 Utilizes wireguard-go, not linux kernel modules.
 The performance will take a hit due to that.
 
-### WireGuard kernel module for UDM/P
+### WireGuard kernel module
 
 <https://github.com/tusc/wireguard-kmod>
 
@@ -94,6 +89,10 @@ Then, follow the guides below to setup either Pi-Hole, NextDNS, or AdGuard Home.
 Base configuration for DNS server containers, both IPv4 and IPv6.
 Utilizes MacVLAN CNI plugins to completely isolate the network stack.
 
+### nextdns
+
+Run NextDNS on your UDM with podman.
+
 ### run-pihole
 
 [![!Docker Pulls](https://img.shields.io/docker/pulls/boostchicken/pihole.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/u/boostchicken)
@@ -105,7 +104,7 @@ Also contains custom image for Pi-hole with `cloudflared`.
 ### PiHole with DoTe
 [![!Docker Pulls](https://img.shields.io/docker/pulls/boostchicken/pihole-dote.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/u/boostchicken)
 
-Desigened by: <https://github.com/chrisstaite/DoTe/>
+Designed by: <https://github.com/chrisstaite/DoTe/>
 
 Alternative to mine which uses DoTe
 
@@ -185,10 +184,6 @@ Run a reverse proxy (using caddy in vlan) on the udm-pro.
 <https://github.com/xpherism/udm-proxy>
 
 ## Unsupported / No longer maintained
-
-### nextdns
-
-Run NextDNS on your UDM with podman.
 
 ### suricata
 
