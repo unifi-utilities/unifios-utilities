@@ -49,11 +49,11 @@ Updates container defaults to maintain **stable disk usage footprint** of custom
 
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container.
 
-### UDMP Persistence SSH Keys Script
+### UDM Persistent SSH Keys Script
 
-<https://github.com/fire1ce/UDMP-Persistence-SSH-Keys>
+<https://github.com/fire1ce/UDM-Persistent-SSH-Keys>
 
-Script to presist ssh keys after reboot
+Script to presist ssh keys after reboot or firmware update
 
 ## VPN Servers / Clients
 
@@ -172,9 +172,9 @@ Once that is done it changes the thermal and fan values specified in the script.
 
 Run rclone container with Web GUI for offsite backups.
 
-### Telegram-Notifications On WAN Failorver
+### Telegram-Notifications On WAN Failover
 
-<https://github.com/fire1ce/UDMP-Failover-Telegram-Notifications>
+<https://github.com/fire1ce/UDM-Failover-Telegram-Notifications>
 
 Use telegram bot to be notified of a wan failover with local account
 
