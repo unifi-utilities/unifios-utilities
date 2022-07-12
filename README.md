@@ -51,32 +51,13 @@ If you need python3 on your UDM, generally not recommended, can always use it in
 Script to presist ssh keys after reboot or firmware update
 
 ## VPN Servers / Clients
+| Name 	| URL 	| Description 	|
+|------	|-----	|-------------	|
+|wireguard-go |    	|  Run a Wireguard client/server         	|
+| WireGuard kernel module 	| <https://github.com/tusc/wireguard-kmod>   	| Uses a prebuilt linux kernel module, without the need to move to a custom kernel.   	|
+|  OpenConnect VPN    	|  <https://github.com/shuguet/openconnect-udm>  	|  OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial).|
+| split-vpn | <https://github.com/peacey/split-vpn> |A split tunnel VPN script for the UDM with policy based routing. This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection. It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network. |
 
-### wireguard-go
-
-Run a Wireguard client/server
-Utilizes wireguard-go, not linux kernel modules.
-The performance will take a hit due to that.
-
-### WireGuard kernel module
-
-<https://github.com/tusc/wireguard-kmod>
-
-Uses a prebuilt linux kernel module, without the need to move to a custom kernel.
-
-### OpenConnect VPN
-
-<https://github.com/shuguet/openconnect-udm>
-
-OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial).
-
-### split-vpn
-
-<https://github.com/peacey/split-vpn>
-
-A split tunnel VPN script for the UDM with policy based routing.
-This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection.
-It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network.
 
 ## DNS Providers
 
@@ -118,70 +99,20 @@ Update your cloudflare domains from your UDM with podman.
 
 ## Cool projects you can use with this
 
-### multicast-relay
+| Name 	| URL 	| Description 	|
+|------	|-----	|-------------	|
+|multicast-relay |<https://hub.docker.com/r/scyto/multicast-relay>     	|  This is a docker container that implements <https://github.com/alsmith/multicast-relay> to provide mDNS and SSDP on a unifi dream machine. It will likely work on any multi homed host.           	|
+| mqtt-mosquitto     	| <https://hub.docker.com/_/eclipse-mosquitto>    	| Eclipse Mosquitto is an open source message broker which implements MQTT version 5, 3.1.1 and 3.1.            	|
+|  ntopng    	|  <https://github.com/tusc/ntopng-udm>   	|   Much better network stats for your UDM/P! Install this docker container and create an on_boot script to make sure it's always running.          	|
+| LetsEncrypt  | <https://github.com/kchristensen/udm-le>  |Provision and renew LetsEncrypt SSL certs from your UDM/P. |
+| ubios-cert   | <https://github.com/alxwolf/ubios-cert>              | Similar to `udm-le`, adding different providers for SSL/TLS certificates (LE, ZeroSSL, BuyPass) and DNS API (all-inkl.com) currently not supported by [LEGO](https://go-acme.github.io/lego/dns/). |
+| Unifi API Browser          |  <https://hub.docker.com/r/scyto/unifibrowser>             | This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.Great if you are using the REST API for your own purposes and want to explore.Works with multiple controller versions. |
+|ubnt-auto-fan-speed           |<https://github.com/renedis/ubnt-auto-fan-speed>               | A shell script with the goal to make the UDM-Pro silenced while still having good thermal values. |
+|rclone           |   <https://rclone.org/>            |Run rclone container with Web GUI for offsite backups. |
+|udm-proxy           |    <https://github.com/xpherism/udm-proxy>           |Run a reverse proxy (using caddy in vlan) on the udm-pro. |
+| Telegram-Notifications On WAN Failover          |   <https://github.com/fire1ce/UDM-Failover-Telegram-Notifications>            | Use telegram bot to be notified of a wan failover with local account|
 
-<https://hub.docker.com/r/scyto/multicast-relay>
 
-This is a docker container that implements <https://github.com/alsmith/multicast-relay> to provide mDNS and SSDP on a unifi dream machine.
-It will likely work on any multi homed host.
-
-### mqtt-mosquitto
-
-<https://hub.docker.com/_/eclipse-mosquitto>
-
-Eclipse Mosquitto is an open source message broker which implements MQTT version 5, 3.1.1 and 3.1.
-
-### ntopng
-
-<https://github.com/tusc/ntopng-udm>
-
-Much better network stats for your UDM/P!
-Install this docker container and create an on_boot script to make sure it's always running.
-
-### LetsEncrypt SSL Certs
-
-<https://github.com/kchristensen/udm-le>
-
-Provision and renew LetsEncrypt SSL certs from your UDM/P.
-
-<https://github.com/alxwolf/ubios-cert>
-
-Similar to `udm-le`, adding different providers for SSL/TLS certificates (LE, ZeroSSL, BuyPass) and DNS API (all-inkl.com) currently not supported by [LEGO](https://go-acme.github.io/lego/dns/).
-
-### Unifi API Browser
-
-<https://hub.docker.com/r/scyto/unifibrowser>
-
-This is a docker container that implements <https://github.com/Art-of-WiFi/UniFi-API-browser> to provide a graphical tool to inspect the data structures available via the unifi API.
-Great if you are using the REST API for your own purposes and want to explore.
-Works with multiple controller versions.
-
-### Unifi UDM-Pro auto fan speed
-
-<https://github.com/renedis/ubnt-auto-fan-speed>
-
-A shell script with the goal to make the UDM-Pro silenced while still having good thermal values.
-It stops the build in service that monitors the thermal values, fan speed and connection of a HDD/SSD.
-After that it sets the thermal/fan chip (adt7475) to automatic mode.
-Once that is done it changes the thermal and fan values specified in the script.
-
-### rclone
-
-<https://rclone.org/>
-
-Run rclone container with Web GUI for offsite backups.
-
-### Telegram-Notifications On WAN Failover
-
-<https://github.com/fire1ce/UDM-Failover-Telegram-Notifications>
-
-Use telegram bot to be notified of a wan failover with local account
-
-### udm-proxy
-
-Run a reverse proxy (using caddy in vlan) on the udm-pro.
-
-<https://github.com/xpherism/udm-proxy>
 
 ## Unsupported / No longer maintained
 
