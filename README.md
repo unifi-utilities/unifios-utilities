@@ -116,12 +116,10 @@ Update your cloudflare domains from your UDM with podman.
 
 ## Unsupported / No longer maintained
 
-### suricata
 
-Updates suricata to a recent version.
+| Name 	| URL 	| Description 	|
+|------	|-----	|-------------	|
+|suricata |   	| Updates suricata to a recent version.  Now in firmware    	|
+| Jumbo Frames   	| <https://github.com/kalenarndt/udmp-jumbo-frames> 	|   native jumbo frame support for the UDM and UDM-Pro is added in the 1.12.13 EA firmware, support for the UDM-SE is not yet announced.   	|
 
-### Jumbo Frames
 
-<https://github.com/kalenarndt/udmp-jumbo-frames>
-
-_Note:_ native jumbo frame support for the UDM and UDM-Pro is added in the 1.12.13 EA firmware, support for the UDM-SE is not yet announced.
