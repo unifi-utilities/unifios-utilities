@@ -53,6 +53,7 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
     ```bash
     curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.5_all.deb
     dpkg -i udm-boot_1.0.5_all.deb
+    systemctl enable udm-boot
     exit
     ```
 
