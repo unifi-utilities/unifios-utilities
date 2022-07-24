@@ -27,7 +27,7 @@ podman run -d --network dns --restart always \
     -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
     --dns=127.0.0.1 \
     --hostname pi.hole \
-    -e DOTE_OPTS="-s 127.0.0.1:5053 -m 10" \
+    -e DOTE_OPTS="-s 127.0.0.1:5053 -f 1.1.1.1 -f 1.0.0.1 -m 10" \
     -e VIRTUAL_HOST="pi.hole" \
     -e PROXY_LOCATION="pi.hole" \
     -e PIHOLE_DNS_="127.0.0.1#5053" \

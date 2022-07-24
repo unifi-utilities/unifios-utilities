@@ -11,7 +11,7 @@ Complete feature list and documentation can be found [here](https://github.com/t
 
 ## Requirements
 
-1. You have successfully setup the on boot script described [here](https://github.com/boostchicken-dev/udm-utilities/tree/master/on-boot-script)
+1. You have successfully setup the on boot script described [here](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script)
 2. You must have a cloudflare profile with at least one domain.
 3. You must have a valid cloudflare api token with correct permissions (see [complete documentation](https://github.com/timothymiller/cloudflare-ddns) for details)
 
