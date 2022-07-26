@@ -13,10 +13,13 @@
 ## Steps
 
 1. Pull your image with `podman pull docker.io/library/haproxy`.
-1. (Optional) Configure a network by copying [21-haproxy.conflist](./21-haproxy.conflist) to /mnt/data/podman/cni/``  and update its values to reflect your environment.
-1. (If you ran the optional step above) Execute the `/mnt/data/on_boot.d/05-install-cni-plugins.sh` script to create the network
+
 1. Copy [50-haproxy.sh](./50-haproxy.sh) to `/mnt/data/on_boot.d/50-haproxy.sh`.
-1. (If you ran the optional step above) Edit `50-haproxy.sh` and change `--net=host` to `--network haproxy`
+
+1. (Optional) Configure a network
+    1. Copy [21-haproxy.conflist](./21-haproxy.conflist) to /mnt/data/podman/cni/``  and update its values to reflect your environment.
+    1. Execute the `/mnt/data/on_boot.d/05-install-cni-plugins.sh` script to create the network.
+    1. Edit `/mnt/data/on_boot.d/50-haproxy.sh` and change `--net=host` to `--network haproxy`
 1. Create a persistant directory and config for haproxy to use:
 
     ```sh
