@@ -17,7 +17,7 @@
 1. Copy [50-haproxy.sh](./50-haproxy.sh) to `/mnt/data/on_boot.d/50-haproxy.sh`.
 
 1. (Optional) Configure a network
-    1. Copy [21-haproxy.conflist](./21-haproxy.conflist) to /mnt/data/podman/cni/``  and update its values to reflect your environment.
+    1. Copy [21-haproxy.conflist](./21-haproxy.conflist) to `/mnt/data/podman/cni/`  and update its values to reflect your environment.
     1. Execute the `/mnt/data/on_boot.d/05-install-cni-plugins.sh` script to create the network.
     1. Edit `/mnt/data/on_boot.d/50-haproxy.sh` and change `--net=host` to `--network haproxy`
 1. Create a persistant directory and config for haproxy to use:
@@ -32,6 +32,6 @@
 
 ## Upgrading Easily (if at all)
 
-1. Edit [update-haproxy.sh](./update-haproxy.sh) to use the same command you used at installation (if changed).
+1. Edit [update-haproxy.sh](./update-haproxy.sh) to use the same command you used at installation (if changed). If you added your own network config ensure you change the `--net=host` to `--network haproxy`
 2. Copy the [update-haproxy.sh](./update-haproxy.sh) to `/mnt/data/scripts`
 3. Anytime you want to update your installation, simply run `/mnt/data/scripts/update-haproxy.sh`
