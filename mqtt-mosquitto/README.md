@@ -9,6 +9,7 @@
 
 #### Optional:
 
+- [container-common](../container-common/README.md) to prevent growing disk usage from accumulating logs
 - Port forwarding, ie. WAN -> 10.0.20.4 (TCP/1883) if needed
 
 > **Note:** Throughout this guide I'm using `VLAN 20` with gateway `10.0.20.1/24`, Mosquitto's IP will be `10.0.20.4`.
