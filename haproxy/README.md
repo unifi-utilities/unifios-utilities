@@ -16,10 +16,14 @@
 
 1. Copy [50-haproxy.sh](./50-haproxy.sh) to `/mnt/data/on_boot.d/50-haproxy.sh`.
 
-1. (Optional) Configure a network
-    1. Copy [21-haproxy.conflist](./21-haproxy.conflist) to `/mnt/data/podman/cni/`  and update its values to reflect your environment.
-    1. Execute the `/mnt/data/on_boot.d/05-install-cni-plugins.sh` script to create the network.
-    1. Edit `/mnt/data/on_boot.d/50-haproxy.sh` and change `--net=host` to `--network haproxy`
+1. Choose network configuration - You can run either on the host network or on a seperate docker network. Running on the host network is easier but does mean you can't clash with the ports already in use on the UDM. 
+    1. If you want to run on the host network
+        1. You don't have to do anything extra to run on the host network all the instructions / scripts assume this setup.
+    1. If you want to run on a custom docker network do the following:
+        1. Setup the network - there are some instructions in the Customizations setting of the pihole instructions: https://github.com/unifi-utilities/unifios-utilities/tree/main/run-pihole#customizations
+        1. Copy [21-haproxy.conflist](./21-haproxy.conflist) to `/mnt/data/podman/cni/`  and update its values to reflect your environment.
+        1. Execute the `/mnt/data/on_boot.d/05-install-cni-plugins.sh` script to create the network.
+        1. Edit `/mnt/data/on_boot.d/50-haproxy.sh` and change `--net=host` to `--network haproxy`
 1. Create a persistant directory and config for haproxy to use:
 
     ```sh
