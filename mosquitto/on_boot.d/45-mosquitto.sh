@@ -40,24 +40,18 @@ ip route add ${IPV4_IP_CONTAINER}/32 dev br${VLAN_ID}.mac
 # create basic config if not exist
 if ! test -f /mnt/data/mosquitto/config/mosquitto.conf; then
   mkdir -p /mnt/data/mosquitto/data /mnt/data/mosquitto/config
-  cat > /mnt/data/mosquitto/mosquitto.conf<< EOF
+  cat > /mnt/data/mosquitto/config/mosquitto.conf<< EOF
 listener 1883
 allow_anonymous true
 
-allow_zero_length_clientid true
+connection_messages true
 
-persistence false
-persistence_file mosquitto.db
+persistence true
 persistence_location /mosquitto/data/
-persistent_client_expiration 7d
 
 log_dest stdout
 log_type debug
 log_timestamp true
-
-connection_messages true
-
-allow_anonymous true
 EOF
 fi
 
