@@ -33,7 +33,7 @@
 You can execute in UDM/Pro/SE and UDR with:
 
 ```bash
-curl -fsL "https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/HEAD/on-boot-script/remote_install.sh" | /bin/sh
+curl -fsL "https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/on-boot-script/remote_install.sh" | /bin/sh
 ```
 
 This is a force to install script so will uninstall any previous version and install on_boot keeping your on boot files.
@@ -53,6 +53,7 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
     ```bash
     curl -L https://udm-boot.boostchicken.dev -o udm-boot_1.0.5_all.deb
     dpkg -i udm-boot_1.0.5_all.deb
+    systemctl enable udm-boot
     exit
     ```
 

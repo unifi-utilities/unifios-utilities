@@ -4,25 +4,25 @@
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
 
-CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
+CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
 CNI_PLUGINS_ON_BOOT_FILENAME="$(basename "$CNI_PLUGINS_SCRIPT_RAW_URL")"
 
-CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/boostchicken-dev/udm-utilities/master/on-boot-script/examples/udm-networking/on_boot.d/06-cni-bridge.sh"
+CNI_BRIDGE_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/on-boot-script/examples/udm-networking/on_boot.d/06-cni-bridge.sh"
 CNI_BRIDGE_ON_BOOT_FILENAME="$(basename "$CNI_BRIDGE_SCRIPT_RAW_URL")"
 
 GITHUB_API_URL="https://api.github.com/repos"
-GITHUB_REPOSITORY="boostchicken-dev/udm-utilities"
+GITHUB_REPOSITORY="unifi-utilities/unifios-utilities"
 
 
 # --- Functions ---
 
 header() {
 cat << EOF
-  _   _ ___  __  __   ___           _   
- | | | |   \|  \/  | | _ ) ___  ___| |_ 
+  _   _ ___  __  __   ___           _
+ | | | |   \|  \/  | | _ ) ___  ___| |_
  | |_| | |) | |\/| | | _ \/ _ \/ _ \  _|
   \___/|___/|_|  |_| |___/\___/\___/\__|
-                                        
+
  Execute any script when your udm system
  starts.
 
@@ -69,7 +69,7 @@ get_persistent_path() {
     echo "ERROR: No persistent storage found." 1>&2
     exit 1
   fi
-  
+
   mkdir -p "$DATA_DIR"
 
   echo "$DATA_DIR"
@@ -99,7 +99,7 @@ download_on_path() {
 install_on_boot_udm_series() {
   download_url="$(get_latest_download_url)"
   tmp_path="/tmp/$(basename "${download_url}")"
-  
+
   podman exec unifi-os systemctl disable udmboot >/dev/null 2>&1 || true
   podman exec unifi-os systemctl disable udm-boot >/dev/null 2>&1 || true
   podman exec unifi-os systemctl daemon-reload >/dev/null 2>&1 || true
@@ -118,7 +118,7 @@ install_on_boot_udm_series() {
   unset download_url tmp_path
 }
 
-# Credits @peacey: https://github.com/boostchicken-dev/udm-utilities/issues/214#issuecomment-886869295
+# Credits @peacey: https://github.com/unifi-utilities/unifios-utilities/issues/214#issuecomment-886869295
 udmse_on_boot_systemd() {
 cat << EOF
 [Unit]

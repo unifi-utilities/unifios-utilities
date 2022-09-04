@@ -1,0 +1,32 @@
+{
+  "cniVersion": "0.4.0",
+  "name": "mosquitto",
+  "plugins": [
+      {
+         "type": "bridge",
+         "bridge": "br20",
+         "ipam": {
+            "type": "host-local",
+            "ranges": [
+                [
+                    {
+                        "subnet": "10.0.20.0/24",
+                        "rangeStart": "10.0.20.4",
+                        "rangeEnd": "10.0.20.4",
+                        "gateway": "10.0.20.1" 
+                    }
+                ]
+            ],
+            "routes": [
+                {"dst": "0.0.0.0/0"}
+            ]
+         }
+      },
+      {
+         "type": "tuning",
+         "capabilities": {
+            "mac": true
+         }
+      }
+  ]
+}
