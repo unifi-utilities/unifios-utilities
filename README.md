@@ -48,7 +48,7 @@ If you need python3 on your UDM, generally not recommended, can always use it in
 
 <https://github.com/fire1ce/UDM-Persistent-SSH-Keys>
 
-Script to presist ssh keys after reboot or firmware update
+Script to persist ssh keys after reboot or firmware update
 
 ## VPN Servers / Clients
 | Name 	| URL 	| Description 	|
