@@ -35,7 +35,7 @@ _Adjust according to your setup._
 
 3. Then take a loot at [`cni/45-mosquitto.conflist`](cni/45-mosquitto.conflist) and make sure it matches your previously defined configuration; then place it in `/mnt/data/podman/cni/`
 
-4. Run boot script (to create the misquitto network set it's ip routes)
+4. Run boot script (to create the mosquitto network set it's ip routes)
 
     `$ sh /mnt/data/on_boot.d/45-mosquitto.sh`
 
