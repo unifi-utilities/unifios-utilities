@@ -102,7 +102,7 @@ Update your cloudflare domains from your UDM with podman.
 | Name 	| URL 	| Description 	|
 |------	|-----	|-------------	|
 |multicast-relay |<https://hub.docker.com/r/scyto/multicast-relay>     	|  This is a docker container that implements <https://github.com/alsmith/multicast-relay> to provide mDNS and SSDP on a unifi dream machine. It will likely work on any multi homed host.           	|
-| mqtt-mosquitto     	| <https://hub.docker.com/_/eclipse-mosquitto>    	| Eclipse Mosquitto is an open source message broker which implements MQTT version 5, 3.1.1 and 3.1.            	|
+| [mosquitto](./mosquitto/) | <https://hub.docker.com/_/eclipse-mosquitto>    	| Eclipse Mosquitto is an open source **MQTT message broker** |
 |  ntopng    	|  <https://github.com/tusc/ntopng-udm>   	|   Much better network stats for your UDM/P! Install this docker container and create an on_boot script to make sure it's always running.          	|
 | LetsEncrypt  | <https://github.com/kchristensen/udm-le>  |Provision and renew LetsEncrypt SSL certs from your UDM/P. |
 | ubios-cert   | <https://github.com/alxwolf/ubios-cert>              | Similar to `udm-le`, adding different providers for SSL/TLS certificates (LE, ZeroSSL, BuyPass) and DNS API (all-inkl.com) currently not supported by [LEGO](https://go-acme.github.io/lego/dns/). |
