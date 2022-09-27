@@ -6,13 +6,13 @@
       "type": "macvlan",
       "mode": "bridge",
       "master": "br5",
-      "mac": "add 3 fake hex portions, replacing x's here 00:1c:b4:xx:xx:xx",
+      "mac": "00-1C-B4-94-1A-8C",
       "ipam": {
         "type": "static",
         "addresses": [
           {
-            "address": "10.0.5.3/24",
-            "gateway": "10.0.5.1"
+            "address": "192.168.5.2/29",
+            "gateway": "192.168.5.1"
           }
         ],
         "routes": [
