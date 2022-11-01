@@ -14,7 +14,8 @@ Please see the repo and please use at your own risk. This a much larger change t
 
 ## Custom Podman Builds for UDM-SE
 
-<https://github.com/unifi-utilities/unifios-utilities/actions>
+All artifacts can be found on IPFS
+<https://unifi.boostchicken.io>
 
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
