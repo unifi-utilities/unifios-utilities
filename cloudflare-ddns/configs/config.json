@@ -13,10 +13,10 @@
         "each",
         "subdomain"
       ],
-      "proxied": false,
-      "ttl": 120
+      "proxied": false
     }
   ],
+  "ttl": 120,
   "a": true,
   "aaaa": false,
   "purgeUnknownRecords": false
