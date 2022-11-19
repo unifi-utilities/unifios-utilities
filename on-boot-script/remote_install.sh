@@ -1,5 +1,23 @@
 #!/usr/bin/env sh
 
+# Get DataDir location
+DATA_DIR="/mnt/data"
+case "$(ubnt-device-info firmware || true)" in
+    1*)
+      DATA_DIR="/mnt/data"
+      ;;
+    2*)
+      DATA_DIR="/data"
+      ;;
+    3*)
+      DATA_DIR="/data"
+      ;;
+    *)
+      echo "ERROR: No persistent storage found." 1>&2
+      exit 1
+      ;;
+  esac
+
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
@@ -57,27 +75,6 @@ udm_model() {
   esac
 }
 
-get_persistent_path() {
-  IFS_COPY="$IFS"
-  IFS="/"
-
-  if [ -d "/mnt/data" ]; then
-    DATA_DIR="/mnt/data${*:+/$*}"
-  elif [ -d "/data" ]; then
-    DATA_DIR="/data${*:+/$*}"
-  else
-    echo "ERROR: No persistent storage found." 1>&2
-    exit 1
-  fi
-
-  mkdir -p "$DATA_DIR"
-
-  echo "$DATA_DIR"
-
-  IFS="$IFS_COPY"
-  unset IFS_COPY DATA_DIR
-}
-
 get_latest_download_url() {
   depends_on awk
 
@@ -128,7 +125,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-ExecStart=bash -c 'mkdir -p /mnt/data/on_boot.d && find -L /mnt/data/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
+ExecStart=bash -c 'mkdir -p $DATA_DIR/on_boot.d && find -L $DATA_DIR/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
 
 [Install]
 WantedBy=multi-user.target
@@ -160,7 +157,7 @@ header
 depends_on ubnt-device-info
 depends_on curl
 
-ON_BOOT_D_PATH="$(get_persistent_path "on_boot.d")"
+ON_BOOT_D_PATH="$DATA_DIR/on_boot.d"
 
 case "$(udm_model)" in
   udm|udmpro)

@@ -1,12 +1,30 @@
 #!/bin/sh
 
+# Get DataDir location
+DATA_DIR="/mnt/data"
+case "$(ubnt-device-info firmware || true)" in
+    1*)
+      DATA_DIR="/mnt/data"
+      ;;
+    2*)
+      DATA_DIR="/data"
+      ;;
+    3*)
+      DATA_DIR="/data"
+      ;;
+    *)
+      echo "ERROR: No persistent storage found." 1>&2
+      exit 1
+      ;;
+  esac
+
 ## Set the version of cni plugin to use. It will revert to latest if an invalid version is given, and the installer will use the last installed version if that fails.
 # Examples of valid version code would be "latest", "v0.9.1" and "v0.9.0". 
 CNI_PLUGIN_VER=latest
 # location of the CNI Plugin cached tar files
-CNI_CACHE="/mnt/data/.cache/cni-plugins"
+CNI_CACHE="$DATA_DIR/.cache/cni-plugins"
 # location of the conf files to go in the net.d folder of the cni-plugin directory
-CNI_NETD="/mnt/data/podman/cni"
+CNI_NETD="$DATA_DIR/podman/cni"
 # The checksum to use. For CNI Plugin sha1, sha256 and sha512 are available.
 CNI_CHECKSUM="sha256"
 # Maximum number of loops to attempt to download the plugin if required - setting a 0 or negative value will reinstalled the currently installed version (if in cache)
