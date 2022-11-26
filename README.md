@@ -14,7 +14,8 @@ Please see the repo and please use at your own risk. This a much larger change t
 
 ## Custom Podman Builds for UDM-SE
 
-<https://github.com/unifi-utilities/unifios-utilities/actions>
+All artifacts can be found on IPFS
+<https://unifi.boostchicken.io>
 
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
@@ -48,7 +49,7 @@ If you need python3 on your UDM, generally not recommended, can always use it in
 
 <https://github.com/fire1ce/UDM-Persistent-SSH-Keys>
 
-Script to presist ssh keys after reboot or firmware update
+Script to persist ssh keys after reboot or firmware update.
 
 ## VPN Servers / Clients
 | Name 	| URL 	| Description 	|
@@ -102,7 +103,7 @@ Update your cloudflare domains from your UDM with podman.
 | Name 	| URL 	| Description 	|
 |------	|-----	|-------------	|
 |multicast-relay |<https://hub.docker.com/r/scyto/multicast-relay>     	|  This is a docker container that implements <https://github.com/alsmith/multicast-relay> to provide mDNS and SSDP on a unifi dream machine. It will likely work on any multi homed host.           	|
-| mqtt-mosquitto     	| <https://hub.docker.com/_/eclipse-mosquitto>    	| Eclipse Mosquitto is an open source message broker which implements MQTT version 5, 3.1.1 and 3.1.            	|
+| [mosquitto](./mosquitto/) | <https://hub.docker.com/_/eclipse-mosquitto>    	| Eclipse Mosquitto is an open source **MQTT message broker** |
 |  ntopng    	|  <https://github.com/tusc/ntopng-udm>   	|   Much better network stats for your UDM/P! Install this docker container and create an on_boot script to make sure it's always running.          	|
 | LetsEncrypt  | <https://github.com/kchristensen/udm-le>  |Provision and renew LetsEncrypt SSL certs from your UDM/P. |
 | ubios-cert   | <https://github.com/alxwolf/ubios-cert>              | Provision and renew SSL/TLS certificates from LetsEncrypt, ZeroSSL, BuyPass, Google and any other RFC8555-compliant CA. Runs `acme.sh` on your UDM, UDM Pro, UDM SE or UDR. No podman required, supports both V1.x and V2.x firmwares. Secure your HTTPS connections to device, WiFiman and Guest Portal. |
