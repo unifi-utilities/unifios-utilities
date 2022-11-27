@@ -1,4 +1,4 @@
-FROM golang:1.19-stretch
+FROM golang:1.18.3-stretch
 
 # Currenrtly supported versions: UDM-Pro, UDM-SE
 ARG UDM_PLATFORM=UDM-Pro
