@@ -20,6 +20,12 @@ All artifacts can be found on IPFS
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
 
+## macvlan kernel module for UDR
+
+Ui have stopped building the `macvlan` kernel module into the kernel for the UDR, which means containers cannot
+have their own routable IPs out of the box. This module is being built and distributed separately, and can be found
+at [macvlan-unifi-udr](https://github.com/whi-tw/macvlan-unifi-udr).
+
 ## General Tools
 
 ### on-boot-script
