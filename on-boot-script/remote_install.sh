@@ -169,7 +169,8 @@ ON_BOOT_D_PATH="$DATA_DIR/on_boot.d"
 
 case "$(udm_model)" in
   udmlegacy|udmprolegacy)
-    echo "UDM/Pro detected, installing on-boot script..."
+    echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+    echo "Installing on-boot script..."
     depends_on podman
 
     if ! install_on_boot_udm_series; then
@@ -181,7 +182,8 @@ case "$(udm_model)" in
     echo "UDM Boot Script installed"
     ;;
   udr|udmse|udm|udmpro)
-    echo "UDR/UDMSE detected, installing on-boot script..."
+    echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+    echo "Installing on-boot script..."
     depends_on systemctl
 
     if ! install_on_boot_udr_se; then
