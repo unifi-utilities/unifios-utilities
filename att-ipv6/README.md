@@ -53,9 +53,55 @@ To check that everything is working as expected, and the ATT RG delegates multip
 
 On UDM:
 ```sh
-ip -6 r               # should see a default route on the WAN interface, and a 2600:1700:X:Y::/64 prefix on each configured VLAN bridge interface
-podman logs att-ipv6  # should see dhcpcd successfully acquiring prefixes
-ps auxw|grep dnsmasq  # should see dnsmasq running
+$ ip -6 r               # should see a default route on the WAN interface, and a 2600:1700:X:Y::/64 prefix on each configured VLAN bridge interface
+2600:1700:X:yyy0::/64 dev eth9 proto ra metric 203 mtu 1500 pref medium
+2600:1700:X:yyyb::/64 dev br104 proto dhcp metric 235 pref medium
+2600:1700:X:yyyc::/64 dev br103 proto dhcp metric 234 pref medium
+2600:1700:X:yyyd::/64 dev br102 proto dhcp metric 233 pref medium
+2600:1700:X:yyye::/64 dev br101 proto dhcp metric 232 pref medium
+2600:1700:X:yyyf::/64 dev br0 proto dhcp metric 212 pref medium
+[...]
+```
+
+```sh
+$ podman logs att-ipv6  # should see dhcpcd successfully acquiring prefixes
+[...]
+eth9: writing lease `/var/lib/dhcpcd/eth9.lease6'
+eth9: delegated prefix 2600:1700:X:yyyf::/64
+eth9: delegated prefix 2600:1700:X:yyye::/64
+eth9: delegated prefix 2600:1700:X:yyyd::/64
+eth9: delegated prefix 2600:1700:X:yyyc::/64
+eth9: delegated prefix 2600:1700:X:yyyb::/64
+br0: adding address 2600:1700:X:yyyf::1/64
+br0: pltime 3600 seconds, vltime 3600 seconds
+br0: executing `/lib/dhcpcd/dhcpcd-run-hooks' DELEGATED6
+br101: adding address 2600:1700:X:yyye::1/64
+br101: pltime 3600 seconds, vltime 3600 seconds
+br101: executing `/lib/dhcpcd/dhcpcd-run-hooks' DELEGATED6
+br102: adding address 2600:1700:X:yyyd::1/64
+br102: pltime 3600 seconds, vltime 3600 seconds
+br102: executing `/lib/dhcpcd/dhcpcd-run-hooks' DELEGATED6
+br103: adding address 2600:1700:X:yyyc::1/64
+br103: pltime 3600 seconds, vltime 3600 seconds
+br103: executing `/lib/dhcpcd/dhcpcd-run-hooks' DELEGATED6
+br104: adding address 2600:1700:X:yyyb::1/64
+br104: pltime 3600 seconds, vltime 3600 seconds
+br104: executing `/lib/dhcpcd/dhcpcd-run-hooks' DELEGATED6
+br0: adding route to 2600:1700:X:yyyf::/64
+br101: adding route to 2600:1700:X:yyye::/64
+br102: adding route to 2600:1700:X:yyyd::/64
+br103: adding route to 2600:1700:X:yyyc::/64
+br104: adding route to 2600:1700:X:yyyb::/64
+lo: deleting reject route to 2600:1700:X:yyyf::/64
+lo: deleting reject route to 2600:1700:X:yyye::/64
+lo: deleting reject route to 2600:1700:X:yyyd::/64
+lo: deleting reject route to 2600:1700:X:yyyc::/64
+lo: deleting reject route to 2600:1700:X:yyyb::/64
+[...]
+```
+
+```sh
+$ ps auxw|grep dnsmasq  # should see dnsmasq running
 ```
 
 On BGW320-500, check https://192.168.1.254/cgi-bin/lanstatistics.ha for multiple PDs in `IPv6 Delegated Prefix Subnet (including length)`.
