@@ -61,10 +61,18 @@ udm_model() {
       echo "udmse"
       ;;
     "UniFi Dream Machine Pro")
-      echo "udmpro"
+      if test $(ubnt-device-info firmware) \< "2.0.0"; then 
+        echo "udmprolegacy"
+      else 
+        echo "udmpro"
+      fi
       ;;
     "UniFi Dream Machine")
-      echo "udm"
+      if test $(ubnt-device-info firmware) \< "2.0.0"; then 
+        echo "udmlegacy"
+      else 
+        echo "udm"
+      fi
       ;;
     "UniFi Dream Router")
       echo "udr"
@@ -160,8 +168,9 @@ depends_on curl
 ON_BOOT_D_PATH="$DATA_DIR/on_boot.d"
 
 case "$(udm_model)" in
-  udm|udmpro)
-    echo "UDM/Pro detected, installing on-boot script..."
+  udmlegacy|udmprolegacy)
+    echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+    echo "Installing on-boot script..."
     depends_on podman
 
     if ! install_on_boot_udm_series; then
@@ -172,8 +181,9 @@ case "$(udm_model)" in
 
     echo "UDM Boot Script installed"
     ;;
-  udr|udmse)
-    echo "UDR/UDMSE detected, installing on-boot script..."
+  udr|udmse|udm|udmpro)
+    echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+    echo "Installing on-boot script..."
     depends_on systemctl
 
     if ! install_on_boot_udr_se; then
