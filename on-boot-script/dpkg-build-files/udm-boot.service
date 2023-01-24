@@ -2,6 +2,8 @@
 Description=Run On Startup UDM
 Wants=network-online.target
 After=network-online.target
+StartLimitIntervalSec=500
+StartLimitBurst=5
 
 [Service]
 Restart=on-failure
