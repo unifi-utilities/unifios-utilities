@@ -130,3 +130,13 @@ Update your cloudflare domains from your UDM with podman.
 | Jumbo Frames   	| <https://github.com/kalenarndt/udmp-jumbo-frames> 	|   native jumbo frame support for the UDM and UDM-Pro is added in the 1.12.13 EA firmware, support for the UDM-SE is not yet announced.   	|
 
 
+## Reimaging your UDM
+
+Working in the shell means that mistakes can happen. Deleted directories or packages may break the underlying software that makes your UDM-Pro SE function as designed. Thankfully, Unifi Support seems to have provided the following process to help bring your UDM back to the stock image.
+
+1. Remove the unit from your network and disconnect the cables from the unit.
+2. Press down the reset button for 40+ seconds without power and cables.
+3. Release the reset button and power the unit.
+4. Again press the reset button for 15+ seconds.
+
+Thanks to user [cfallwell](https://github.com/cfallwell) for describing this fix [here](https://github.com/unifi-utilities/unifios-utilities/issues/428#issuecomment-1386212026).
