@@ -51,7 +51,7 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
 2. Download [udm-boot_1.0.6_all.deb](packages/udm-boot_1.0.6_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
-    curl -L [[https://udm-boot.boostchicken.dev](https://unifi.boostchicken.io/udm-boot_1.0.6_all.deb)](https://unifi.boostchicken.io/udm-boot_1.0.6_all.deb) -o udm-boot_1.0.6_all.deb
+    curl -L https://unifi.boostchicken.io/udm-boot_1.0.6_all.deb -o udm-boot_1.0.6_all.deb
     dpkg -i udm-boot_1.0.6_all.deb
     systemctl enable udm-boot
     exit
