@@ -48,11 +48,11 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
     unifi-os shell
     ```
 
-2. Download [udm-boot_1.0.6_all.deb](packages/udm-boot_1.0.6_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
+2. Download [udm-boot_1.0.7_all.deb](packages/udm-boot_1.0.7_all.deb) and install it and go back to the UDM.  The latest package will always be found at https://udm-boot.boostchicken.dev
 
     ```bash
-    curl -L [[https://udm-boot.boostchicken.dev](https://unifi.boostchicken.io/udm-boot_1.0.6_all.deb)](https://unifi.boostchicken.io/udm-boot_1.0.6_all.deb) -o udm-boot_1.0.6_all.deb
-    dpkg -i udm-boot_1.0.6_all.deb
+    curl -L https://unifi.boostchicken.io/udm-boot_1.0.7_all.deb -o udm-boot_1.0.7_all.deb
+    dpkg -i udm-boot_1.0.7_all.deb
     systemctl enable udm-boot
     exit
     ```
@@ -65,6 +65,14 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
     * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-keys.sh](examples/udm-files/on_boot.d/15-add-root-ssh-keys.sh)
 
 ## Version History
+
+### 1.0.7
+
+* Support for Legacy and Current Firmware 
+
+### 1.0.6
+
+* Fix timeouts
 
 ### 1.0.5
 
