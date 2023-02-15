@@ -31,6 +31,10 @@ case "$(udm_model)" in
   udmse|udmpro)
     DESIRED_ZIPFILE="$(udm_model)-podman-install.zip"
     ;;
+  udm)
+    # base UDM works fine with udmpro podman version, but has issues with udmse variant
+    DESIRED_ZIPFILE="udmpro-podman-install.zip"
+    ;;
   *)
     # shrug
     # udmse-podman-install.zip seems to work fine on UDM 2.4.x
