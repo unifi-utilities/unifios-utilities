@@ -90,7 +90,7 @@ Run Pi-hole on your UDM with podman.
 Also contains custom image for Pi-hole with `cloudflared`.
 
 ### PiHole with DoTe
-[![!Docker Pulls](https://img.shields.io/docker/pulls/boostchicken/pihole-dote.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/u/boostchicken)
+[![!Docker Pulls](https://img.shields.io/docker/pulls/pombeirp/pihole-dote.svg?color=green&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/pombeirp/pihole-dote)
 
 Designed by: <https://github.com/chrisstaite/DoTe/>
 
