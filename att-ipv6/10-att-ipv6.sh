@@ -16,6 +16,8 @@ test -f "${confdir}/dhcpcd.conf" || {
   : > "${confdir}/dhcpcd.conf.tmp"
   cat >> "${confdir}/dhcpcd.conf.tmp" <<EOF
 allowinterfaces ${wan_iface}
+nodev
+noup
 ipv6only
 nooption domain_name_servers
 nooption domain_name
