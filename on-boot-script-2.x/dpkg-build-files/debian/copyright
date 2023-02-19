@@ -1,0 +1,9 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: udm-boot-2x
+Upstream-Contact: John Dorman / Boostchicken
+Source: https://github.com/unifi-utilities/unifi-utilities
+
+Files: *
+Copyright: 2023 john@boostchicken.dev
+License: GPL-3
+ https://github.com/unifi-utilities/unifi-utilities/blob/main/LICENSE

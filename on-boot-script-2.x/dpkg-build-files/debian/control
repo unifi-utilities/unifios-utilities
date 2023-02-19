@@ -1,0 +1,15 @@
+Source: udm-boot-2x
+Section: contrib/utils
+Priority: optional
+Maintainer: Boostchicken <john@boostchicken.dev>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.4.1
+Homepage: https://github.com/unifi-utilities/unifios-utilities
+#Vcs-Browser: https://salsa.debian.org/debian/udmboot
+#Vcs-Git: https://salsa.debian.org/debian/udmboot.git
+
+Package: udm-boot-2x
+Architecture: all
+Depends: ${misc:Depends}
+Description: Run things on boot on UDM 2.x
+ Run things on boot!

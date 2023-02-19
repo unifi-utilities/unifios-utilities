@@ -1,0 +1,5 @@
+udm-boot-2x (1.0.0) stable; urgency=medium
+
+  * Initial release, happy firmware persisting!
+
+ -- Boostchicken <john@boostchicken.dev>  Sat, 18 Feb 2023 18:46:14 -0700
