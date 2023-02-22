@@ -64,6 +64,7 @@ Script to persist ssh keys after reboot or firmware update.
 | WireGuard kernel module 	| <https://github.com/tusc/wireguard-kmod>   	| Uses a prebuilt linux kernel module, without the need to move to a custom kernel.   	|
 |  OpenConnect VPN    	|  <https://github.com/shuguet/openconnect-udm>  	|  OpenConnect VPN Client for the UniFi Dream Machine Pro (Unofficial).|
 | split-vpn | <https://github.com/peacey/split-vpn> |A split tunnel VPN script for the UDM with policy based routing. This helper script can be used on your UDM to route select VLANs, clients, or even domains through a VPN connection. It supports OpenVPN, WireGuard, and OpenConnect (Cisco AnyConnect) clients running directly on your UDM, and external VPN clients running on other servers on your network. |
+| Zerotier | <zerotier.com/> |ZeroTier provides network control and P2P functionality · Use ZeroTier to create products which run on their own decentralized networks |
 
 
 ## DNS Providers

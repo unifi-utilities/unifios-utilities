@@ -7,60 +7,57 @@ fi
 
 udm_model() {
   case "$(ubnt-device-info model || true)" in
-    "UniFi Dream Machine SE")
-      echo "udmse"
-      ;;
-    "UniFi Dream Machine Pro")
-      echo "udmpro"
-      ;;
-    "UniFi Dream Machine")
-      echo "udm"
-      ;;
-    "UniFi Dream Router")
-      echo "udr"
-      ;;
-    *)
-      echo "unknown"
-      ;;
+  "UniFi Dream Machine SE")
+    echo "udmse"
+    ;;
+  "UniFi Dream Machine Pro")
+    echo "udmpro"
+    ;;
+  "UniFi Dream Machine")
+    echo "udm"
+    ;;
+  "UniFi Dream Router")
+    echo "udr"
+    ;;
+  *)
+    echo "unknown"
+    ;;
   esac
 }
 
-
 DESIRED_ZIPFILE='udmse-podman-install.zip'
 case "$(udm_model)" in
-  udmse|udmpro)
-    DESIRED_ZIPFILE="$(udm_model)-podman-install.zip"
-    ;;
-  udm)
-    # base UDM works fine with udmpro podman version, but has issues with udmse variant
-    DESIRED_ZIPFILE="udmpro-podman-install.zip"
-    ;;
-  *)
-    # shrug
-    # udmse-podman-install.zip seems to work fine on UDM 2.4.x
-    true
-    ;;
+udmse | udmpro)
+  DESIRED_ZIPFILE="$(udm_model)-podman-install.zip"
+  ;;
+udm)
+  # base UDM works fine with udmpro podman version, but has issues with udmse variant
+  DESIRED_ZIPFILE="udmpro-podman-install.zip"
+  ;;
+*)
+  # shrug
+  # udmse-podman-install.zip seems to work fine on UDM 2.4.x
+  true
+  ;;
 esac
-
 
 # Get DataDir location
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
-  1*)
-    DATA_DIR="/data"
-    ;;
-  2*)
-    DATA_DIR="/data"
-    ;;
-  3*)
-    DATA_DIR="/data"
-    ;;
-  *)
-    echo "ERROR: No persistent storage found." 1>&2
-    exit 1
-    ;;
+1*)
+  DATA_DIR="/mnt/data"
+  ;;
+2*)
+  DATA_DIR="/data"
+  ;;
+3*)
+  DATA_DIR="/data"
+  ;;
+*)
+  echo "ERROR: No persistent storage found." 1>&2
+  exit 1
+  ;;
 esac
-
 
 CACHE_DIR="${DATA_DIR}/podman/cache"
 INSTALL_ROOT="${DATA_DIR}/podman/install"
@@ -71,9 +68,9 @@ mkdir -p "${CACHE_DIR}" "${INSTALL_ROOT}" "${CONF_DIR}"
 URL="https://unifi.boostchicken.io/${DESIRED_ZIPFILE}"
 
 if [ "$1" = '--download-only' ]; then
-  echo "downloading ${URL}" \
-    && curl -Lsfo "${CACHE_DIR}/${DESIRED_ZIPFILE}" "${URL}" \
-    && echo "downloaded ${URL}"
+  echo "downloading ${URL}" &&
+    curl -Lsfo "${CACHE_DIR}/${DESIRED_ZIPFILE}" "${URL}" &&
+    echo "downloaded ${URL}"
   exit $?
 fi
 
@@ -88,8 +85,8 @@ fi
 
 if [ -f "${CACHE_DIR}/${DESIRED_ZIPFILE}" ]; then
   echo "(using cache at ${CACHE_DIR}/${DESIRED_ZIPFILE})"
-elif echo "downloading ${URL}" \
-  && curl -Lsfo "${CACHE_DIR}/${DESIRED_ZIPFILE}" "${URL}"; then
+elif echo "downloading ${URL}" &&
+  curl -Lsfo "${CACHE_DIR}/${DESIRED_ZIPFILE}" "${URL}"; then
   echo "downloaded ${URL}"
 else
   echo 'download failed'
@@ -119,4 +116,3 @@ fi
 
 echo 'Something went wrong'
 exit 1
-
