@@ -1,5 +1,31 @@
 #!/bin/sh
 CONTAINER=cloudflare-ddns
+# Get DataDir location
+DATA_DIR="/data"
+case "$(ubnt-device-info firmware || true)" in
+1*)
+  DATA_DIR="/mnt/data"
+  ;;
+2*)
+  DATA_DIR="/data"
+  ;;
+3*)
+  DATA_DIR="/data"
+  ;;
+*)
+  echo "ERROR: No persistent storage found." 1>&2
+  exit 1
+  ;;
+esac
+# Check if the directory exists
+if [ ! -d "$DATA_DIR/cloudflare-ddns" ]; then
+  # If it does not exist, create the directory
+  mkdir -p "$DATA_DIR/cloudflare-ddns"
+  echo "Directory '$DATA_DIR/cloudflare-ddns' created."
+else
+  # If it already exists, print a message
+  echo "Directory '$DATA_DIR/cloudflare-ddns' already exists. Moving on."
+fi
 
 # Starts a cloudflare ddns container that is deleted after it is stopped.
 # All configs stored in /data/cloudflare-ddns
@@ -10,6 +36,6 @@ else
     --net=host \
     --name "$CONTAINER" \
     --security-opt=no-new-privileges \
-    -v /data/cloudflare-ddns/config.json:/config.json \
+    -v $DATA_DIR/cloudflare-ddns/config.json:/config.json \
     timothyjmiller/cloudflare-ddns:latest
 fi
