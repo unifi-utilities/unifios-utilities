@@ -26,16 +26,16 @@ Update [config.json](configs/config.json) with the following options:
 
 ## Steps
 
-2. Make a directory for your configuration
+1. Make a directory for your configuration, check if you have `/mnt/data/` or `/data/` and adjust accordingly.
 
    ```sh
    mkdir -p /data/cloudflare-ddns
    ```
 
-3. Create a [cloudflare-ddns configuration](configs/config.json) in `/data/cloudflare-ddns` and update the configuration to meet your needs.
-4. Copy [30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh) to `/data/on_boot.d`.
-5. Execute /data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
-6. Execute `podman logs cloudflare-ddns` to verify the continer is running without error (ipv6 warnings are normal).
+2. Create a [cloudflare-ddns configuration](configs/config.json) in `/data/cloudflare-ddns` and update the configuration to meet your needs.
+3. Copy [30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh) to `/data/on_boot.d`.
+. Execute /data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
+5. Execute `podman logs cloudflare-ddns` to verify the continer is running without error (ipv6 warnings are normal).
 
 ### Useful commands
 
