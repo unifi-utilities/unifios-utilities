@@ -3,6 +3,11 @@
 [![UDM-Pro Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml)
 [![UDM-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml)
 
+## Branches
+1. 1.12.x - Support for 1.x.x firmware line
+1. main - Support for 2.5.x and above
+
+-----
 A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or UXG-Pro.
 
 ## Custom Kernel
