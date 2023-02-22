@@ -19,13 +19,13 @@ case "$(ubnt-device-info firmware || true)" in
   ;;
 esac
 # Check if the directory exists
-if [ ! -d "$DATA_DIR" ]; then
+if [ ! -d "$DATA_DIR/att-ipv6" ]; then
   # If it does not exist, create the directory
-  mkdir -p "$DATA_DIR"
-  echo "Directory '$DATA_DIR' created."
+  mkdir -p "$DATA_DIR/att-ipv6"
+  echo "Directory '$DATA_DIR/att-ipv6' created."
 else
   # If it already exists, print a message
-  echo "Directory '$DATA_DIR' already exists. Moving on."
+  echo "Directory '$DATA_DIR/att-ipv6' already exists. Moving on."
 fi
 
 wan_iface="eth8"                                     # "eth9" for UDM Pro WAN2
