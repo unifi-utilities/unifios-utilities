@@ -20,13 +20,14 @@
 
 Please note if you have firmware v2 or above you have to copy all files into /data instead of /data. You can see what version you are running by running: ubnt-device-info firmware
 
-1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /data/on_boot.d
-1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5. You should confirm the bridge is created for this VLAN by running `netstat -r` otherwise the script will fail. If it is not there, initiate a provisioning of the UDM (Controller > UDM > Config > Manage Device > Force provision).
-1. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to `/data/on_boot.d` and update its values to reflect your environment
-1. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to `/data/podman/cni` after generating a MAC address. This will create your podman macvlan network.
-1. Execute /data/on_boot.d/05-install-cni-plugins.sh
-1. Execute `/data/on_boot.d/10-dns.sh`
-1. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration. They are mounted as volumes in the command below.
+1. Check if you have either `/mnt/data/` or `/data/` and use the correct one below.
+2. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /data/on_boot.d
+3. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5. You should confirm the bridge is created for this VLAN by running `netstat -r` otherwise the script will fail. If it is not there, initiate a provisioning of the UDM (Controller > UDM > Config > Manage Device > Force provision).
+4. Copy [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) to `/data/on_boot.d` and update its values to reflect your environment
+5. Copy [20-dns.conflist](../cni-plugins/20-dns.conflist) to `/data/podman/cni` after generating a MAC address. This will create your podman macvlan network.
+6. Execute /data/on_boot.d/05-install-cni-plugins.sh
+7. Execute `/data/on_boot.d/10-dns.sh`
+8. Run the AdguardHome docker container, be sure to make the directories for your persistent AdguardHome configuration. They are mounted as volumes in the command below.
 
    ```shell script
    mkdir /data/AdguardHome-Confdir
@@ -41,9 +42,9 @@ Please note if you have firmware v2 or above you have to copy all files into /da
        adguard/adguardhome:latest
    ```
 
-1. Browse to 10.0.5.3:3000 and follow the setup wizard
-1. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
-1. Access the AdguardHome like you would normally.
+9. Browse to 10.0.5.3:3000 and follow the setup wizard
+10. Update your DNS Servers to 10.0.5.3 (or your custom ip) in all your DHCP configs.
+11. Access the AdguardHome like you would normally.
 
 ## Troubleshooting
 
