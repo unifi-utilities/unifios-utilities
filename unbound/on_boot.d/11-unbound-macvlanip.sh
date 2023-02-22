@@ -1,4 +1,32 @@
 #!/bin/sh
+# Get DataDir location
+DATA_DIR="/data"
+case "$(ubnt-device-info firmware || true)" in
+1*)
+  DATA_DIR="/mnt/data"
+  ;;
+2*)
+  DATA_DIR="/data"
+  ;;
+3*)
+  DATA_DIR="/data"
+  ;;
+*)
+  echo "ERROR: No persistent storage found." 1>&2
+  exit 1
+  ;;
+esac
+
+# Check if the directory exists
+if [ ! -d "${DATA_DIR}/unbound" ]; then
+  # If it does not exist, create the directory
+  mkdir -p "${DATA_DIR}/unbound"
+  mkdir -p "${DATA_DIR}/unbound.conf.d"
+  echo "Directory '${DATA_DIR}/unbound' created."
+else
+  # If it already exists, print a message
+  echo "Directory '${DATA_DIR}/unbound' already exists. Moving on."
+fi
 
 ## configuration variables:
 VLAN=5
@@ -31,9 +59,9 @@ IPV6_GW="fdca:5c13:1fb8::1/64"
 CONTAINER=unbound
 
 if ! test -f /opt/cni/bin/macvlan; then
-    echo "Error: CNI plugins not found. You can install it with the following command:" >&2
-    echo "       curl -fsSLo /mnt/data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/cni-plugins/05-install-cni-plugins.sh && /bin/sh /mnt/data/on_boot.d/05-install-cni-plugins.sh" >&2
-    exit 1
+  echo "Error: CNI plugins not found. You can install it with the following command:" >&2
+  echo "       curl -fsSLo ${DATA_DIR}/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/cni-plugins/05-install-cni-plugins.sh && /bin/sh ${DATA_DIR}/on_boot.d/05-install-cni-plugins.sh" >&2
+  exit 1
 fi
 
 # we assume that the VLAN bridge already exists, created by the filtering DNS (pi-hole) script

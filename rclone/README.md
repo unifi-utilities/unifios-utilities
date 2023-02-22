@@ -12,22 +12,22 @@
 
 1. Make a directory for your configuration
 
-    ```sh
-    mkdir -p /mnt/data/rclone
-    ```
+   ```sh
+   mkdir -p /data/rclone
+   ```
 
-2. Create [rclone.conf](https://rclone.org/commands/rclone_config/) in `/mnt/data/rclone` and update it to meet yours needs.
-3. Copy [sync.sh](sync.sh) in `/mnt/data/rclone` and update it to meet your needs.
-4. Copy [10-rclone.sh](10-rclone.sh) to `/mnt/data/on_boot.d` and update it to meet your needs.
-5. Execute `/mnt/data/on_boot.d/10-rclone.sh`
+2. Create [rclone.conf](https://rclone.org/commands/rclone_config/) in `/data/rclone` and update it to meet yours needs.
+3. Copy [sync.sh](sync.sh) in `/data/rclone` and update it to meet your needs.
+4. Copy [10-rclone.sh](10-rclone.sh) to `/data/on_boot.d` and update it to meet your needs.
+5. Execute `/data/on_boot.d/10-rclone.sh`
 6. Execute `podman logs rclone`, this will provide a link to the Web GUI.
 7. Copy [rclone](rclone) in `/etc/cron.hourly/`.
 8. Set permissions to executable `chmod +x /etc/cron.hourly/rclone`.
 
 ## Customization
 
-1. Login to run rclone commands locally to create and test configs 
+1. Login to run rclone commands locally to create and test configs
 
-    ```sh
-    podman exec -ti rclone /bin/sh
-    ```
+   ```sh
+   podman exec -ti rclone /bin/sh
+   ```

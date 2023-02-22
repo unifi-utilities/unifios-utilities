@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Get DataDir location
-DATA_DIR="/mnt/data"
+DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
     1*)
       DATA_DIR="/mnt/data"
@@ -22,9 +22,9 @@ case "$(ubnt-device-info firmware || true)" in
 # Examples of valid version code would be "latest", "v0.9.1" and "v0.9.0". 
 CNI_PLUGIN_VER=latest
 # location of the CNI Plugin cached tar files
-CNI_CACHE="$DATA_DIR/.cache/cni-plugins"
+CNI_CACHE="${DATA_DIR}/.cache/cni-plugins"
 # location of the conf files to go in the net.d folder of the cni-plugin directory
-CNI_NETD="$DATA_DIR/podman/cni"
+CNI_NETD="${DATA_DIR}/podman/cni"
 # The checksum to use. For CNI Plugin sha1, sha256 and sha512 are available.
 CNI_CHECKSUM="sha256"
 # Maximum number of loops to attempt to download the plugin if required - setting a 0 or negative value will reinstalled the currently installed version (if in cache)

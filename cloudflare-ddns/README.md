@@ -1,4 +1,4 @@
-# Cloudflare Dynamic DNS 
+# Cloudflare Dynamic DNS
 
 ## Features
 
@@ -7,7 +7,6 @@
 - Set a ttl
 
 Complete feature list and documentation can be found [here](https://github.com/timothymiller/cloudflare-ddns)
-
 
 ## Requirements
 
@@ -18,6 +17,7 @@ Complete feature list and documentation can be found [here](https://github.com/t
 ## Customization
 
 Update [config.json](configs/config.json) with the following options:
+
 - your cloudflare api token
 - your zone id
 - each subdomain you'd like to point at your udm-pro
@@ -28,14 +28,14 @@ Update [config.json](configs/config.json) with the following options:
 
 2. Make a directory for your configuration
 
-    ```sh
-    mkdir -p /mnt/data/cloudflare-ddns
-    ```
+   ```sh
+   mkdir -p /data/cloudflare-ddns
+   ```
 
-3. Create a [cloudflare-ddns configuration](configs/config.json) in `/mnt/data/cloudflare-ddns` and update the configuration to meet your needs.
-4. Copy [30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh) to `/mnt/data/on_boot.d`.
-5. Execute /mnt/data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
-7. Execute `podman logs cloudflare-ddns` to verify the continer is running without error (ipv6 warnings are normal).
+3. Create a [cloudflare-ddns configuration](configs/config.json) in `/data/cloudflare-ddns` and update the configuration to meet your needs.
+4. Copy [30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh) to `/data/on_boot.d`.
+5. Execute /data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
+6. Execute `podman logs cloudflare-ddns` to verify the continer is running without error (ipv6 warnings are normal).
 
 ### Useful commands
 
@@ -43,4 +43,3 @@ Update [config.json](configs/config.json) with the following options:
 # view cloudflare-ddns logs to verify the continer is running without error (ipv6 warnings are normal).
 podman logs cloudflare-ddns
 ```
-

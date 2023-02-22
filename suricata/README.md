@@ -1,5 +1,7 @@
 # Run Suricata 5.0.3 with custom rules
+
 ## UBNT updated Suricata in 1.9.x firmwares make this unneeded
+
 ## Features
 
 1. Run a newer suricata with custom rules
@@ -11,9 +13,9 @@
 
 ## Customization
 
-* Put customs rules files in /mnt/data/suricata-rules
+- Put customs rules files in /data/suricata-rules
 
 ## Steps
 
-1. Copy [25-suricata.sh](on_boot.d/25-suricata.sh) to /mnt/data/on_boot.d and update its values to reflect your environment
-2. Execute /mnt/data/on_boot.d/25-suricata.sh
+1. Copy [25-suricata.sh](on_boot.d/25-suricata.sh) to /data/on_boot.d and update its values to reflect your environment
+2. Execute /data/on_boot.d/25-suricata.sh

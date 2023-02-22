@@ -25,16 +25,16 @@ Here's an example snippet of an iptable modified by this program:
 
 ## Steps
 
-1. Copy [on_boot.d/30-ipt-enable-logs-launch.sh](./on_boot.d/30-ipt-enable-logs-launch.sh) to /mnt/data/on_boot.d
-1. Copy the [scripts/ipt-enable-logs](./scripts/ipt-enable-logs) folder to /mnt/data/scripts
-1. Copy [scripts/ipt-enable-logs.sh](./scripts/ipt-enable-logs.sh) to /mnt/data/scripts
-1. Execute /mnt/data/on_boot.d/30-ipt-enable-logs-launch.sh
-1. Copy [scripts/refresh-iptables.sh](./scripts/refresh-iptables.sh) to /mnt/data/scripts
+1. Copy [on_boot.d/30-ipt-enable-logs-launch.sh](./on_boot.d/30-ipt-enable-logs-launch.sh) to /data/on_boot.d
+1. Copy the [scripts/ipt-enable-logs](./scripts/ipt-enable-logs) folder to /data/scripts
+1. Copy [scripts/ipt-enable-logs.sh](./scripts/ipt-enable-logs.sh) to /data/scripts
+1. Execute /data/on_boot.d/30-ipt-enable-logs-launch.sh
+1. Copy [scripts/refresh-iptables.sh](./scripts/refresh-iptables.sh) to /data/scripts
 
 ## Refreshing iptables
 
 Whenever you update the firewall rules on the Network application, the iptables will be reprovisioned and will need to be reprocessed
-by calling /mnt/data/scripts/refresh-iptables.sh.
+by calling /data/scripts/refresh-iptables.sh.
 
 ## Looking at logs
 
