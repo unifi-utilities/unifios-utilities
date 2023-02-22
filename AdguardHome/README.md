@@ -17,6 +17,7 @@
 * If you want IPv6 support use [20-dnsipv6.conflist](../cni-plugins/20-dnsipv6.conflist) and update [10-dns.sh](../dns-common/on_boot.d/10-dns.sh) with the IPv6 addresses. Also, please provide IPv6 servers to podman using --dns arguments.
 
 ## Steps
+Please note if you have firmware v2 or above you have to copy all files into /data instead of /mnt/data.  You can see what version you are running by running: ubnt-device-info firmware
 
 1. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /mnt/data/on_boot.d
 1. On your controller, make a Corporate network with no DHCP server and give it a VLAN. For this example we are using VLAN 5.  You should confirm the bridge is created for this VLAN by running `netstat -r` otherwise the script will fail.  If it is not there, initiate a provisioning of the UDM (Controller > UDM > Config > Manage Device > Force provision).
