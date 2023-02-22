@@ -6,10 +6,10 @@
 ## Use DHCP reservations to encourage the selected clients to always obtain the same IP address.
 ##
 ## To install:
-##   * Copy this script into /mnt/data/on_boot.d/, using something like WinSCP or SSH + vi.
-##   * Grant Execute permission: chmod +x /mnt/data/on_boot.d/iptables_timerestrict.sh
+##   * Copy this script into /data/on_boot.d/, using something like WinSCP or SSH + vi.
+##   * Grant Execute permission: chmod +x /data/on_boot.d/iptables_timerestrict.sh
 ##   * Run it once, to activate it (crontab entries will keep it active forever after):
-##       Via SSH into UDM shell:  /mnt/data/on_boot.d/iptables_timerestrict.sh
+##       Via SSH into UDM shell:  /data/on_boot.d/iptables_timerestrict.sh
 ##
 ## Notes:
 ##   * Changes to firewall rules in the Unifi Network Application will remove your restriction;

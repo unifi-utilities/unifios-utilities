@@ -5,12 +5,12 @@ USE_GITHUB_KEYS=true
 # Enter your username on github to get the public keys for
 GITHUB_USER="<YOUR_USERNAME>"
 # File location for the output of the git download
-GITHUB_KEY_PATH="/mnt/data/podman/ssh"
+GITHUB_KEY_PATH="/data/podman/ssh"
 GITHUB_KEY_FILE="${GITHUB_KEY_PATH}/github.keys"
 # Set to true to use a file containing a key per line in the format ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAA...\n
 USE_KEY_FILE=true
 # IF using an input file, list it here
-INPUT_KEY_PATH="/mnt/data/podman/ssh"
+INPUT_KEY_PATH="/data/podman/ssh"
 INPUT_KEY_FILE="${INPUT_KEY_PATH}/ssh.keys"
 # The target key file for the script
 OUTPUT_KEY_PATH="/root/.ssh"

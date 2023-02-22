@@ -4,7 +4,7 @@ APP_PID="/run/suricata.pid"
 
 cat <<"EOF" > /tmp/suricata.sh
 #!/bin/sh
-CUSTOM_RULES="/mnt/data/suricata-rules"
+CUSTOM_RULES="/data/suricata-rules"
 
 for file in $(find ${CUSTOM_RULES} -name '*.rules' -print)
 do

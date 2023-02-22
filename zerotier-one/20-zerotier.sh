@@ -1,7 +1,7 @@
 #!/bin/sh
 CONTAINER=zerotier-one
 # Starts a ZeroTier container that is deleted after it is stopped.
-# All configs stored in /mnt/data/zerotier-one
+# All configs stored in /data/zerotier-one
 if podman container exists ${CONTAINER}; then
   podman start ${CONTAINER}
 else

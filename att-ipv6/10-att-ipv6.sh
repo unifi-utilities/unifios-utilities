@@ -7,7 +7,7 @@ domain="example.invalid"    # DNS domain
 dns6="[2001:4860:4860::8888],[2001:4860:4860::8844]" # Google
 
 CONTAINER=att-ipv6
-confdir=/mnt/data/att-ipv6
+confdir=/data/att-ipv6
 
 # main
 mkdir -p "${confdir}/dhcpcd"

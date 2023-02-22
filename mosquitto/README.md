@@ -23,44 +23,44 @@ _Adjust according to your setup._
 
 1. First, lets create the folder structure we'll be working with.
 
-    `$ mkdir -p /mnt/data/mosquitto/config /mnt/data/mosquitto/data`
+   `$ mkdir -p /data/mosquitto/config /data/mosquitto/data`
 
-    This is where Mosquitto's configuration file and data ("persistence database"; if enabled) will live.  
-    If you're unsure on how to configure mosquitto, use the provided barebone config [`config/mosquitto.conf`](config/mosquitto.conf) to get it initially running.
+   This is where Mosquitto's configuration file and data ("persistence database"; if enabled) will live.  
+   If you're unsure on how to configure mosquitto, use the provided barebone config [`config/mosquitto.conf`](config/mosquitto.conf) to get it initially running.
 
-2. **Optional:** Customize [`on_boot.d/45-mosquitto.sh`](on_boot.d/45-mosquitto.sh) to your setup and copy to `/mnt/data/on_boot.d/`.
-    Most likely you'll need to mark the script as executable, this will do the trick:
+2. **Optional:** Customize [`on_boot.d/45-mosquitto.sh`](on_boot.d/45-mosquitto.sh) to your setup and copy to `/data/on_boot.d/`.
+   Most likely you'll need to mark the script as executable, this will do the trick:
 
-    `$ chmod a+x /mnt/data/on_boot.d/45-mosquitto.sh`
+   `$ chmod a+x /data/on_boot.d/45-mosquitto.sh`
 
-3. Then take a loot at [`cni/45-mosquitto.conflist`](cni/45-mosquitto.conflist) and make sure it matches your previously defined configuration; then place it in `/mnt/data/podman/cni/`
+3. Then take a loot at [`cni/45-mosquitto.conflist`](cni/45-mosquitto.conflist) and make sure it matches your previously defined configuration; then place it in `/data/podman/cni/`
 
 4. Run boot script (to create the mosquitto network set it's ip routes)
 
-    `$ sh /mnt/data/on_boot.d/45-mosquitto.sh`
+   `$ sh /data/on_boot.d/45-mosquitto.sh`
 
-    It fail when trying to run the container, but thats okay, its just for setting op needed configuration before initial image run.  
-    The script will also create a [minimal configuration](config/mosquitto.conf) for Mosquitto in `/mnt/data/mosquitto/config/`, _**only if it doesn't already exist**_.
+   It fail when trying to run the container, but thats okay, its just for setting op needed configuration before initial image run.  
+   The script will also create a [minimal configuration](config/mosquitto.conf) for Mosquitto in `/data/mosquitto/config/`, _**only if it doesn't already exist**_.
 
-    > **Note:** You can use this config to get everything started, but I highly recommend securing your instance with authentication (links to the offical documentation & other resources are at the bottom)
+   > **Note:** You can use this config to get everything started, but I highly recommend securing your instance with authentication (links to the offical documentation & other resources are at the bottom)
 
 5. Register the container with podman:
 
-    ```shell
-    $ podman run -d --network mosquitto \
-        --restart always \
-        --security-opt=no-new-privileges \
-        --name mosquitto \
-        --hostname mosquitto.local \
-        -e "TZ=Europe/Berlin" \
-        -v /mnt/data/mosquitto/config/:/mosquitto/config \
-        -v /mnt/data/mosquitto/data/:/mosquitto/data \
-        eclipse-mosquitto:latest
-    ```
+   ```shell
+   $ podman run -d --network mosquitto \
+       --restart always \
+       --security-opt=no-new-privileges \
+       --name mosquitto \
+       --hostname mosquitto.local \
+       -e "TZ=Europe/Berlin" \
+       -v /data/mosquitto/config/:/mosquitto/config \
+       -v /data/mosquitto/data/:/mosquitto/data \
+       eclipse-mosquitto:latest
+   ```
 
 6. Run boot script again and we are done!
 
-    `$ sh /mnt/data/on_boot.d/45-mosquitto.sh`
+   `$ sh /data/on_boot.d/45-mosquitto.sh`
 
 > You should now be able to connect with any MQTT client to Mosquitto, in my case `mqtt://10.0.20.4:1883`
 

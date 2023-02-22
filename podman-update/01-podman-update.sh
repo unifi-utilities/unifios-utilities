@@ -1,13 +1,13 @@
 #!/bin/sh
 
-mkdir -p /mnt/data/.cache
+mkdir -p /data/.cache
 
 PODMAN_VERSION=3.3.0
 RUNC_VERSION=1.0.2
 CONMON_VERSION=2.0.29
-PODMAN_DL=/mnt/data/.cache/podman-$PODMAN_VERSION
-RUNC_DL=/mnt/data/.cache/runc-$RUNC_VERSION
-CONMON_DL=/mnt/data/.cache/conmon-$CONMON_VERSION
+PODMAN_DL=/data/.cache/podman-$PODMAN_VERSION
+RUNC_DL=/data/.cache/runc-$RUNC_VERSION
+CONMON_DL=/data/.cache/conmon-$CONMON_VERSION
 SECCOMP=/usr/share/containers/seccomp.json
 
 while [ ! -f $CONMON_DL ]; do

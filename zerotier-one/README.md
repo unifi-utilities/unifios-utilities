@@ -1,12 +1,14 @@
 # Run ZeroTier VPN on your UDM
 
 ## Install
-1. Copy 20-zerotier.sh to /mnt/data/on_boot.d
+
+1. Copy 20-zerotier.sh to /data/on_boot.d
 2. Create directories for persistent Zerotier configuration
 
    ```
    mkdir -p /data/zerotier-one
    ```
+
 3. Start the zeriotier container
    ```
    podman run -d \

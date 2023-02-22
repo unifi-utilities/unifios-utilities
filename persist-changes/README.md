@@ -11,16 +11,16 @@ For example, [configuring two IP addresses on your WAN interface, so that you ca
 ## Installation
 
 1. [Enable on-boot-script](https://github.com/unifi-utilities/unifios-utilities/blob/main/on-boot-script/README.md)
-1. Copy `42-watch-for-changes.sh` to `/mnt/data/on_boot.d/`
-    * Check the `FILE` variable, it should point to a file that exists, it might be in `/data` or in `/mnt/data`
-1. Copy `on-state-change.sh` to `/mnt/data/scripts/`
-1. Edit `/mnt/data/scripts/on-state-change.sh` to your heart's content
+1. Copy `42-watch-for-changes.sh` to `/data/on_boot.d/`
+   - Check the `FILE` variable, it should point to a file that exists, it might be in `/data` or in `/data`
+1. Copy `on-state-change.sh` to `/data/scripts/`
+1. Edit `/data/scripts/on-state-change.sh` to your heart's content
 
 > Make sure that your script doesn't error in the likely case that it tries to execute an update which has already been made
 
 ## Example: configuring two IP addresses on your WAN interface
 
-`/mnt/data/scripts/on-state-change.sh`
+`/data/scripts/on-state-change.sh`
 
 ```
 #!/bin/sh

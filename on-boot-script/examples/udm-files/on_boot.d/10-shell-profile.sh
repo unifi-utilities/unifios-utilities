@@ -24,6 +24,6 @@ PROMPT_MAIN="\u@${UDM_NAME}:\w"
 export PS1="[UDM] ${PROMPT_MAIN}${PS1}"
 EOF
 
-# Copy all global profile scripts (for all users) from `/mnt/data/on_boot.d/settings/profile/global.profile.d/` directory
-mkdir -p /mnt/data/on_boot.d/settings/profile/global.profile.d
-cp -rf /mnt/data/on_boot.d/settings/profile/global.profile.d/* /etc/profile.d/
+# Copy all global profile scripts (for all users) from `/data/on_boot.d/settings/profile/global.profile.d/` directory
+mkdir -p /data/on_boot.d/settings/profile/global.profile.d
+cp -rf /data/on_boot.d/settings/profile/global.profile.d/* /etc/profile.d/

@@ -2,7 +2,7 @@
 
 ## Places public keys in ~/.ssh/authorized_keys
 
-KEYS_SOURCE_FILE="/mnt/data/on_boot.d/settings/ssh/authorized_keys"
+KEYS_SOURCE_FILE="/data/on_boot.d/settings/ssh/authorized_keys"
 KEYS_TARGET_FILE="/root/.ssh/authorized_keys"
 
 count_added=0
@@ -24,6 +24,6 @@ fi
 
 # Convert ssh key to dropbear for shell interaction
 echo "Converting SSH private key to dropbear format"
-dropbearconvert openssh dropbear /mnt/data/ssh/id_rsa /root/.ssh/id_dropbear
+dropbearconvert openssh dropbear /data/ssh/id_rsa /root/.ssh/id_dropbear
 
 exit 0

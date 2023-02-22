@@ -2,7 +2,7 @@
 CONTAINER=homebridge
 
 ## network configuration and startup:
-CNI_PATH=/mnt/data/podman/cni
+CNI_PATH=/data/podman/cni
 if [ ! -f "$CNI_PATH"/tuning ]; then
     mkdir -p $CNI_PATH
     curl -L https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-arm64-v0.9.1.tgz | tar -xz -C $CNI_PATH
@@ -21,7 +21,7 @@ done
 
 
 # Starts the homebridge container on boot.
-# All configs stored in /mnt/data/homebridge
+# All configs stored in /data/homebridge
 
 if podman container exists ${CONTAINER}; then
   podman start ${CONTAINER}

@@ -2,7 +2,7 @@
 CONTAINER=cloudflare-ddns
 
 # Starts a cloudflare ddns container that is deleted after it is stopped.
-# All configs stored in /mnt/data/cloudflare-ddns
+# All configs stored in /data/cloudflare-ddns
 if podman container exists "$CONTAINER"; then
   podman start "$CONTAINER"
 else
@@ -10,6 +10,6 @@ else
     --net=host \
     --name "$CONTAINER" \
     --security-opt=no-new-privileges \
-    -v /mnt/data/cloudflare-ddns/config.json:/config.json \
+    -v /data/cloudflare-ddns/config.json:/config.json \
     timothyjmiller/cloudflare-ddns:latest
 fi

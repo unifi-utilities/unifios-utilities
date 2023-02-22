@@ -9,8 +9,8 @@ podman rm pihole
 podman run -d --network dns --restart always \
     --name pihole \
     -e TZ="America/Chicago" \
-    -v "/mnt/data/etc-pihole/:/etc/pihole/" \
-    -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
+    -v "/data/etc-pihole/:/etc/pihole/" \
+    -v "/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
     --dns=127.0.0.1 \
     --dns=1.1.1.1 \
     --dns=1.0.0.1 \

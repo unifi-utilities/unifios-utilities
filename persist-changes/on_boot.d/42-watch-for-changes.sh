@@ -1,6 +1,6 @@
 #!/bin/sh
 
-EXECUTE01='/mnt/data/scripts/on-state-change.sh'
+EXECUTE01='/data/scripts/on-state-change.sh'
 FILE="/data/udapi-config/ubios-udapi-server/ubios-udapi-server.state"
 # /usr/bin/logger -t "${PROCESSNAME}" "$*"
 

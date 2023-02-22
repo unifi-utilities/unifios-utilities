@@ -5,12 +5,12 @@ VLAN_ID=20
 IPV4_IP_CONTAINER="10.0.20.4"
 IPV4_IP_GATEWAY="10.0.20.1"
 CONTAINER_NAME="mosquitto"
-CONTAINER_CNI_PATH="/mnt/data/podman/cni/45-mosquitto.conflist"
+CONTAINER_CNI_PATH="/data/podman/cni/45-mosquitto.conflist"
 
 # make sure cni plugs are installed
 if ! test -f /opt/cni/bin/macvlan; then
     echo "Error: CNI plugins not found. You can install it with the following command:" >&2
-    echo "       curl -fsSLo /mnt/data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/cni-plugins/05-install-cni-plugins.sh && /bin/sh /mnt/data/on_boot.d/05-install-cni-plugins.sh" >&2
+    echo "       curl -fsSLo /data/on_boot.d/05-install-cni-plugins.sh https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/cni-plugins/05-install-cni-plugins.sh && /bin/sh /data/on_boot.d/05-install-cni-plugins.sh" >&2
     exit 1
 fi
 
@@ -38,9 +38,9 @@ ip link set br${VLAN_ID}.mac up
 ip route add ${IPV4_IP_CONTAINER}/32 dev br${VLAN_ID}.mac
 
 # create basic config if not exist
-if ! test -f /mnt/data/mosquitto/config/mosquitto.conf; then
-  mkdir -p /mnt/data/mosquitto/data /mnt/data/mosquitto/config
-  cat > /mnt/data/mosquitto/config/mosquitto.conf<< EOF
+if ! test -f /data/mosquitto/config/mosquitto.conf; then
+  mkdir -p /data/mosquitto/data /data/mosquitto/config
+  cat > /data/mosquitto/config/mosquitto.conf<< EOF
 listener 1883
 allow_anonymous true
 

@@ -8,14 +8,14 @@
 
 1. Should work on any UDM/UDMPro after 2.4.x
 
+- [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
 
-* [build_deb.sh](build_deb.sh) can be used to build the package by yourself.
-    * [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
-    * by default it uses docker or podman to build the debian package
-    * use ```./build_deb.sh build``` to not use a container
-    * the resulting package will be in [packages/](packages/)
+  - [dpkg-build-files](dpkg-build-files) contains the sources that debuild uses to build the package if you want to build it yourself / change it
+  - by default it uses docker or podman to build the debian package
+  - use `./build_deb.sh build` to not use a container
+  - the resulting package will be in [packages/](packages/)
 
-* Built on Ubuntu-20.04 on Windows 10/WSL2
+- Built on Ubuntu-20.04 on Windows 10/WSL2
 
 ## Install
 
@@ -33,28 +33,29 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
 
 1. Get into the unifios shell on your udm
 
-    ```bash
-    unifi-os shell
-    ```
+   ```bash
+   unifi-os shell
+   ```
 
 2. Download [udm-boot-2x_1.0.1_all.deb](packages/udm-boot_1.0.0-2x_all.deb) and install it and go back to the UDM.
 
-    ```bash
-    curl -L [[https://udm-boot.boostchicken.dev](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb)](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb) -o udm-boot-2x_1.0.0_all.deb
-    dpkg -i udm-boot-2x_1.0.0_all.deb
-    systemctl enable udm-boot
-    exit
-    ```
+   ```bash
+   curl -L [[https://udm-boot.boostchicken.dev](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb)](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb) -o udm-boot-2x_1.0.0_all.deb
+   dpkg -i udm-boot-2x_1.0.0_all.deb
+   systemctl enable udm-boot
+   exit
+   ```
 
-3. Copy any shell scripts you want to run to /mnt/data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh). Additionally, scripts need to have a `.sh` extention in their filename.
+3. Copy any shell scripts you want to run to /data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh). Additionally, scripts need to have a `.sh` extention in their filename.
 
-    Examples:
-    * Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
-    * Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
-    * Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-keys.sh](examples/udm-files/on_boot.d/15-add-root-ssh-keys.sh)
+   Examples:
+
+   - Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
+   - Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-wpa_supplicant.sh)
+   - Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-keys.sh](examples/udm-files/on_boot.d/15-add-root-ssh-keys.sh)
 
 ## Version History
 
 ### 1.0.0
 
-* First release that persists through firmware
+- First release that persists through firmware
