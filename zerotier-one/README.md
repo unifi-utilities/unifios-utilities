@@ -5,7 +5,7 @@
 2. Create directories for persistent Zerotier configuration
 
    ```
-   mkdir -p /mnt/data/zerotier-one
+   mkdir -p /data/zerotier-one
    ```
 3. Start the zeriotier container
    ```
@@ -16,7 +16,7 @@
    --cap-add=NET_ADMIN \
    --cap-add=SYS_ADMIN \
    --cap-add=CAP_SYS_RAWIO \
-   -v /mnt/data/zerotier-one:/var/lib/zerotier-one \
+   -v /data/zerotier-one:/var/lib/zerotier-one \
    bltavares/zerotier
    ```
 4. Join your zerotier network
