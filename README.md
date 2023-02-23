@@ -7,6 +7,7 @@
 1. 1.12.x - Support for 1.x.x firmware line
 1. main - Support for 2.5.x and above
 
+### Current Branch is main, supporting 2.5.x
 -----
 A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or UXG-Pro.
 
