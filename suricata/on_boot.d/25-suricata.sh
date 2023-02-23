@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Get DataDir location
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
@@ -29,7 +29,7 @@ fi
 APP_PID="/run/suricata.pid"
 
 cat <<"EOF" >/tmp/suricata.sh
-#!/bin/sh
+#!/bin/bash
 CUSTOM_RULES="${DATA_DIR}/suricata-rules"
 
 for file in $(find ${CUSTOM_RULES} -name '*.rules' -print)

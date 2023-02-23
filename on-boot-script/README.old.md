@@ -5,7 +5,7 @@
 - NB! THESE WILL NOT PERSIST THROUGH FIRMWARE. They still work however
 
 1. Copy [install.sh](manual-install/install.sh) to your UDM and execute it
-1. Copy any shell scripts you want to run to /data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/sh)
+1. Copy any shell scripts you want to run to /data/on_boot.d and make sure they are executable and have the correct shebang (#!/bin/bash)
    Examples:
    - Start a DNS Container [10-dns.sh](../dns-common/on_boot.d/10-dns.sh)
    - Start wpa_supplicant [on_boot.d/10-wpa_supplicant.sh](examples/udm-files/on_boot.d/10-start-containers.sh)
@@ -31,7 +31,7 @@
 3. make a script that sshs to the udm and runs on our boot script. 127.0.1.1 always points to the UDM
 
    ```sh
-   echo "#!/bin/sh
+   echo "#!/bin/bash
    ssh -o StrictHostKeyChecking=no root@127.0.1.1 '/data/on_boot.sh'" > /etc/init.d/udm.sh
    chmod u+x /etc/init.d/udm.sh
    ```

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if which unifi-os >/dev/null 2>&1; then
   echo 'Cowardly refusing to install on UDM 1.x'

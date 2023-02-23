@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CONTAINER=homebridge
 
 # Get DataDir location
