@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Get DataDir location
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CONTAINER=tailscale
 
 # Starts a container for the tailscale agent.

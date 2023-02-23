@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Download and install the service
 podman exec unifi-os curl -fsSLo /lib/systemd/system/udm-boot.service https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/on-boot-script/dpkg-build-files/udm-boot.service

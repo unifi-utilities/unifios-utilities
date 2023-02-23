@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## create files like this with different numbers for execution order
 ## ala /etc/profile.d

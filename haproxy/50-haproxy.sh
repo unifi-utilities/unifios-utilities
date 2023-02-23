@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CONTAINER=haproxy
 # Get DataDir location
 DATA_DIR="/data"

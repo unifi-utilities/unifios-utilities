@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Get DataDir location
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
@@ -36,7 +36,7 @@ cat >"${tmpdir}/Dockerfile" <<EOF
 FROM pihole/pihole:latest
 ENV DOTE_OPTS="-s 127.0.0.1:5053"
 COPY dote /opt/dote
-RUN chmod +x /opt/dote && mkdir -p /etc/cont-init.d/ && echo -e  "#!/bin/sh\n/opt/dote \\\$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh && chmod 775 /etc/cont-init.d/10-dote.sh
+RUN chmod +x /opt/dote && mkdir -p /etc/cont-init.d/ && echo -e  "#!/bin/bash\n/opt/dote \\\$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh && chmod 775 /etc/cont-init.d/10-dote.sh
 EOF
 
 podman pull pihole/pihole:latest

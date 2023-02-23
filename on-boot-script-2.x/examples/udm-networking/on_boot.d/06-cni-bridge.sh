@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## Create network bridge for CNI
 

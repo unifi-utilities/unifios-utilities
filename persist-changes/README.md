@@ -23,7 +23,7 @@ For example, [configuring two IP addresses on your WAN interface, so that you ca
 `/data/scripts/on-state-change.sh`
 
 ```
-#!/bin/sh
+#!/bin/bash
 
 # give port9 this IP, allows access to router web interface
 ip addr add 192.168.0.2/24 dev eth8 || true

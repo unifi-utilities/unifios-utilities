@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CONTAINER=cloudflare-ddns
 # Get DataDir location
 DATA_DIR="/data"

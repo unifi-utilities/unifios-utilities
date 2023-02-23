@@ -58,7 +58,7 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
    exit
    ```
 
-3. Copy any shell scripts you want to run to /data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/sh). Additionally, scripts need to have a `.sh` extention in their filename.
+3. Copy any shell scripts you want to run to /data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/bash). Additionally, scripts need to have a `.sh` extention in their filename.
 
    Examples:
 

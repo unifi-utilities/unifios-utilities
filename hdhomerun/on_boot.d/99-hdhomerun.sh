@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Place cross compiled version of `socat` in /data/hdhomerun
 HDHOMERUN_IP=10.10.30.146
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This script runs before any custom containers start to adjust container common defaults
 
 # Set a limit for container logs. 104857600 Bytes = 100 Megabytes
