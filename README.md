@@ -4,8 +4,8 @@
 [![UDM-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml)
 
 ## Branches
-1. 1.12.x - Support for 1.x.x firmware line
-1. main - Support for 2.5.x and above
+1. [1.12.x](https://github.com/unifi-utilities/unifios-utilities/tree/v1.12.x) - Support for 1.x.x firmware line
+1. [main](https://github.com/unifi-utilities/unifios-utilities) - Support for 2.5.x and above
 
 ### Current Branch is main, supporting 2.5.x
 -----
