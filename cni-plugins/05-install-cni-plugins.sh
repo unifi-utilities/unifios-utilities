@@ -30,7 +30,7 @@ CNI_CHECKSUM="sha256"
 # Maximum number of loops to attempt to download the plugin if required - setting a 0 or negative value will reinstalled the currently installed version (if in cache)
 MAX_TRIES=3
 
-mkdir -p "${CNI_CACHE}" "${CNI_NETD}"
+mkdir -p "${CNI_CACHE}" "${CNI_NETD}" "/etc/cni/net.d"
 # The script will attempt to use the nominated version first, and falls back to latest version if that fails
 if [ "$#" -eq 0 ]; then
   set ${CNI_PLUGIN_VER}
