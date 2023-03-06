@@ -11,7 +11,7 @@ index 15d6d9fb6..8b44da6ae 100644
  CONTAINER_RUNTIME := $(shell command -v podman 2> /dev/null || echo docker)
  OCI_RUNTIME ?= ""
 
-@@ -133,16 +133,7 @@ export PATH := $(PATH):$(GOBIN)
+@@ -144,16 +144,7 @@ export PATH := $(PATH):$(GOBIN)
  GOMD2MAN ?= $(shell command -v go-md2man || echo '$(GOBIN)/go-md2man')
 
  CROSS_BUILD_TARGETS := \
