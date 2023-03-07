@@ -1,6 +1,6 @@
 FROM golang:1.18.3-stretch
 
-# Currenrtly supported versions: UDM-Pro, UDM-SE
+# Currenrtly supported versions: UDM-Base UDM-Pro-SE
 ARG UDM_PLATFORM=UDM-Base
 
 ARG PODMAN_VERSION=v4.4.2
