@@ -1,4 +1,4 @@
-name: UDM-SE Podman
+name: UDM-SE/PRO Podman
 
 on:
   workflow_dispatch:
@@ -28,9 +28,14 @@ jobs:
         # Docker Image to extract files from
         image: boostchicken:udm-podman
         # Path (from root) to a file or directory within Image
-        path: tmp/release/podman-install.zip
+        path: /tmp/release/
+        
+    - name: Generate new tag version
+      id: version
+      uses: flynshue/version-action@0.0.1
+      
     - name: Upload Podman Install
       uses: actions/upload-artifact@v2
       with:
         path: ${{ steps.extract.outputs.destination }}
-        name: udmse-podman-install.zip
+        name: podman-udmse-udmpro-${{ steps.version.outputs.version }}.zip
