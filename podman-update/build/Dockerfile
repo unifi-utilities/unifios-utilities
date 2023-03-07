@@ -63,7 +63,7 @@ RUN git checkout ${CONMON_VERSION} \
     && cp bin/conmon /tmp/release/conmon-${CONMON_VERSION} \
     && chmod +x /tmp/release/conmon-$CONMON_VERSION
 
-RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/uusr/bin \
+RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/ \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/ \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
