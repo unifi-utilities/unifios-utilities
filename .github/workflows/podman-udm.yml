@@ -1,4 +1,4 @@
-name: UDM-Pro Podman
+name: UDM Podman
 
 on:
   workflow_dispatch:
