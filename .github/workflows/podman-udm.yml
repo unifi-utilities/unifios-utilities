@@ -8,6 +8,7 @@ on:
   pull_request:
     paths:
       - 'podman-update/build/Dockerfile'
+
 jobs:
 
   build:
@@ -19,18 +20,22 @@ jobs:
     - name: Docker Setup QEMU
       uses: docker/setup-qemu-action@v2
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro --tag boostchicken:udmp-podman podman-update/build/
+      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro--tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
       uses: boostchicken-dev/actions-docker-extract@v2
       with:
         # Docker Image to extract files from
-        image: boostchicken:udmp-podman
+        image: boostchicken:udm-podman
         # Path (from root) to a file or directory within Image
-        path: tmp/release/podman-install.zip
+        path: /tmp/release/
+        
+    - name: Generate new tag version
+      id: version
+      uses: flynshue/version-action@0.0.1
+      
     - name: Upload Podman Install
       uses: actions/upload-artifact@v2
       with:
         path: ${{ steps.extract.outputs.destination }}
-        name: podman-install.zip
-
+        name: podman-udm-${{ steps.version.outputs.version }}.zip
