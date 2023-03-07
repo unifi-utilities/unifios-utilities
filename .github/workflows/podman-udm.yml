@@ -32,7 +32,7 @@ jobs:
         
     - name: Generate new tag version
       id: version
-      uses: flynshue/version-action@0.0.1
+      uses: flynshue/version-action@v0.0.1
       
     - name: Upload Podman Install
       uses: actions/upload-artifact@v2
