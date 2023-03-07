@@ -7,7 +7,7 @@ diff --git a/Makefile b/Makefile
  SOURCES = $(shell find . -path './.*' -prune -o \( \( -name '*.go' -o -name '*.c' \) -a ! -name '*_test.go' \) -print)
  
 -BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs exclude_graphdriver_devicemapper exclude_graphdriver_overlay
-+BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs btrfs_noversion exclude_graphdriver_devicemapper seccomp apparmor libdm_no_deferred_remove
++BUILDTAGS_CROSS ?= containers_image_openpgp exclude_graphdriver_btrfs btrfs_noversion exclude_graphdriver_devicemapper seccomp libdm_no_deferred_remove
  CONTAINER_RUNTIME := $(shell command -v podman 2> /dev/null || echo docker)
  OCI_RUNTIME ?= ""
  
@@ -39,7 +39,7 @@ diff --git a/Makefile b/Makefile
  	GOOS="$${TARGET%%.*}"; \
  	GOARCH="$${TARGET##*.}"; \
 -	CGO_ENABLED=0 \
-+	CGO_ENABLED1 \
++	CGO_ENABLED=1 \
  		$(GO) build \
  		$(BUILDFLAGS) \
  		$(GO_LDFLAGS) '$(LDFLAGS_PODMAN)' \
