@@ -1,7 +1,7 @@
 # unifios-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
 
-[![UDM Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml)
-[![UDM-Pro-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml)
+[![UDM Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml)
+[![UDM-Pro-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.ymlpodman-udmp-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml)
 
 ## Branches
 1. [1.12.x](https://github.com/unifi-utilities/unifios-utilities/tree/v1.12.x) - Support for 1.x.x firmware line
@@ -25,6 +25,13 @@ All artifacts can be found on IPFS
 
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
+
+### UDM Base
+Standard Image for base UDM, systemd removed
+
+### UDM Pro / SE
+Base build with apparmor, systemd, devicemapper removal, and overlay kept
+Works on PRO on 2.x, for 1.x use the UDM Base still.
 
 ## macvlan kernel module for UDR
 
