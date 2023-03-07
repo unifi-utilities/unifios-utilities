@@ -63,17 +63,22 @@ RUN git checkout ${CONMON_VERSION} \
     && cp bin/conmon /tmp/release/conmon-${CONMON_VERSION} \
     && chmod +x /tmp/release/conmon-$CONMON_VERSION
 
-RUN mkdir -p /tmp/install/usr/bin \
-    && mkdir -p /tmp/install/usr/libexec/podman/ \
-    && mkdir -p /tmp/install/usr/share/containers/ \
-    && mkdir -p /tmp/install/etc/containers/
-COPY seccomp.json /tmp/install/usr/share/containers/
-COPY containers.conf /tmp/install/etc/containers/
+RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/uusr/bin \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/ \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/ \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
+    
+    
+COPY seccomp.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
+COPY container.conf  /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
+COPY storage.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
+COPY registries.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
+COPY policy.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 
-RUN cp /tmp/release/podman-${PODMAN_VERSION} /tmp/install/usr/bin/podman \
-    && cp /tmp/release/runc.arm64 /tmp/install/usr/bin/runc \
-    && cp /tmp/release/conmon-${CONMON_VERSION} /tmp/install/usr/libexec/podman/conmon
+RUN cp /tmp/release/podman-${PODMAN_VERSION} /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/podman \
+    && cp /tmp/release/runc.arm64 /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/runc \$
+    && cp /tmp/release/conmon-${CONMON_VERSION} /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/conmon
 WORKDIR /tmp/install
 
 # Zip up the files
-RUN zip -r /tmp/release/podman-install.zip *
+#RUN zip -r /tmp/release/podman-install.zip *
