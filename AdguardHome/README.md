@@ -18,7 +18,7 @@
 
 ## Steps
 
-Please note if you have firmware v2 or above you have to copy all files into /data instead of /data. You can see what version you are running by running: ubnt-device-info firmware
+Please note if you have firmware v2 or above you have to copy all files into /data instead of /mnt/data. You can see what version you are running by running: ubnt-device-info firmware
 
 1. Check if you have either `/mnt/data/` or `/data/` and use the correct one below.
 2. Copy [05-install-cni-plugins.sh](../cni-plugins/05-install-cni-plugins.sh) to /data/on_boot.d
