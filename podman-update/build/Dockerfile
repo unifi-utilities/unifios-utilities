@@ -1,10 +1,11 @@
-#RUN zip -r /tmp/release/podman-install.zip *
+
 FROM arm64v8/rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
 RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
-RUN make
+
+RUN rustup target add aarch64-unknown-linux-gnu && make
 
 FROM golang:1.18.3-stretch
 
