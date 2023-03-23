@@ -72,7 +72,7 @@ RUN wget https://github.com/containers/crun/releases/download/1.8.2/crun-1.8.2-l
 
 COPY seccomp.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
 COPY containers.conf  /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
-COPY storage.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
+COPY storage.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY registries.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY policy.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 
