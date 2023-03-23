@@ -22,12 +22,7 @@ ENV CARGO_TARGET_DIR=targets
 COPY ./net.Makefile.patch /tmp
 RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch \
 
-RUN make
-
-
-RUN ls /tmp/work/netavark/
-RUN ls /tmp/work/netavark/targets
-RUN ls /tmp/work/netavark/targets/
+RUN make build
 
 RUN cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark /tmp/work/netavark/bin/ && cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark-dhcp-client-proxy /tmp/work/netavark/bin/
 FROM golang:1.18.3-stretch
