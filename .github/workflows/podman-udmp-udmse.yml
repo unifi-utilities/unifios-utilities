@@ -18,19 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Cache
-      uses: actions/cache@v2.1.8
-      with:
-        # A list of files, directories, and wildcard patterns to cache and restore
-        path: ~/.cargo/
-        # An explicit key for restoring and saving the cache
-        key: rust
+
 
     - uses: actions/checkout@v3
     - name: Docker Setup QEMU
       uses: docker/setup-qemu-action@v2
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman -v ~/.cargo/:~/.cargo podman-update/build/
+      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
       uses: boostchicken-dev/actions-docker-extract@v3
