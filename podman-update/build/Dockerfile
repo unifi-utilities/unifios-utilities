@@ -68,7 +68,8 @@ RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/ \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
     
-    
+RUN wget https://github.com/containers/crun/releases/download/1.8.2/crun-1.8.2-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
+
 COPY seccomp.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
 COPY containers.conf  /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY storage.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
