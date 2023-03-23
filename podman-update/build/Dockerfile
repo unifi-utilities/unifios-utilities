@@ -19,14 +19,15 @@ RUN git clone https://github.com/containers/netavark/ && mkdir -p  /tmp/work/net
 WORKDIR /tmp/work/netavark
 COPY config.toml ./.cargo/config.toml
 ENV CARGO_TARGET_DIR=targets
-RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu
+COPY ./net.Makefile.patch /tmp
+RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch \
 
-RUN --mount=type=cache,target=/usr/local/cargo/registry \
-    --mount=type=cache,target=/tmp/work/netavark/targets \
-    cargo build --target aarch64-unknown-linux-gnu --release
+RUN make
 
 
-RUN ls /tmp/work/netavark/ && ls /tmp/work/netavark/targets && ls /tmp/work/netavark/targets/aarch64-unknown-linux-gnu  
+RUN ls /tmp/work/netavark/
+RUN ls /tmp/work/netavark/targets
+RUN ls /tmp/work/netavark/targets/
 
 RUN cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark /tmp/work/netavark/bin/ && cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark-dhcp-client-proxy /tmp/work/netavark/bin/
 FROM golang:1.18.3-stretch
