@@ -1,4 +1,4 @@
-
+# syntax=docker/dockerfile:experimental
 FROM rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
