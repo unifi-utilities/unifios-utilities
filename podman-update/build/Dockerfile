@@ -1,9 +1,11 @@
 
 FROM rust as rust
-RUN apt-get update && apt-get install -y \
-    protoc-compiler \
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
+
+RUN apt-get update && apt-get install -y \
+    protoc-compiler
+    
 RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
 ENV CARGO_TARGETS_DIR = targets
