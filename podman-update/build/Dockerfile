@@ -24,7 +24,7 @@ RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-
 
 RUN --mount=type=cache,target=/usr/local/cargo/registry \
     --mount=type=cache,target=/tmp/work/netavark/target \
-    cargo build --target aarch64-unknown-linux-gnu --release && cargo build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client --release && cp targets/$(profile)/* /tmp/work/netavark/bin/
+    cargo build --target aarch64-unknown-linux-gnu --release && cp targets/release/* /tmp/work/netavark/bin/
 
 FROM golang:1.18.3-stretch
 
