@@ -2,7 +2,7 @@
 FROM rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
-ARG NETAVARK_VERSION=v1.5.0
+ARG NETAVARK_VERSION=main
 RUN apt-get update && apt-get install -y \
     bc \
     binutils-aarch64-linux-gnu \
