@@ -28,7 +28,7 @@ jobs:
         # Docker Image to extract files from
         image: boostchicken:udm-podman
         # Path (from root) to a file or directory within Image
-        path: /tmp/release/
+        path: /tmp/install/
         
     - name: Generate new tag version
       id: version
@@ -38,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         path: ${{ steps.extract.outputs.destination }}
-        name: podman-udm-${{ steps.version.outputs.version }}.zip
+        name: podman-udm-${{ steps.version.outputs.version }}
