@@ -22,9 +22,13 @@ jobs:
 
     - uses: actions/checkout@v3
     - name: Docker Setup QEMU
-      uses: docker/setup-qemu-action@v2
+      uses: docker/setup-qemu-action@v2.1.0
+      with:
+        platforms: arm64
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@2.5.0
     - name: Build the Docker image
-      run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman podman-update/build/
+      run: DOCKER_BUILDKIT=1 docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
       uses: boostchicken-dev/actions-docker-extract@v3
