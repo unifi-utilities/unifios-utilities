@@ -2,16 +2,16 @@
 FROM rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
-
+ARG NETAVARK_VERSION=v1.5.0
 RUN apt-get update && apt-get install -y \
     protobuf-compiler
     
 RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
 ENV CARGO_TARGETS_DIR = targets
-RUN rustup target add aarch64-unknown-linux-gnu
+RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu
 RUN --mount=type=cache,target=/usr/local/cargo/registry \
-    --mount=type=cache,target=/home/root/app/target \
+    --mount=type=cache,target=/tmp/work/netavark/target \
     cargo build --target aarch64-unknown-linux-gnu --release && cargo build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client --release && cp targets/$(profile)/* /tmp/work/netavark/bin/
 
 FROM golang:1.18.3-stretch
