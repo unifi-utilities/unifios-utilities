@@ -1,5 +1,5 @@
 
-FROM arm64v8/rust as rust
+FROM rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
 RUN git clone https://github.com/containers/netavark/
