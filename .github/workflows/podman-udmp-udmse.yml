@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - 'podman-update/build/Dockerfile'
+      - 'podman-update/build/podman.Makefile.UDM-Pro-SE.patch'
   pull_request:
     paths:
       - 'podman-update/build/Dockerfile'
+      - 'podman-update/build/podman.Makefile.UDM-Pro-SE.patch'
 
 jobs:
 
@@ -35,7 +37,8 @@ jobs:
       uses: flynshue/version-action@v0.0.1
       
     - name: Upload Podman Install
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.1.2
       with:
         path: ${{ steps.extract.outputs.destination }}
         name: podman-udmse-udmpro-${{ steps.version.outputs.version }}
+        retention-days: 90
