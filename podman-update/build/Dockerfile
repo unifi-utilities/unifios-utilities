@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y \
 RUN git clone https://github.com/containers/netavark/ && mkdir -p  /tmp/work/netavark/.cargo &&  mkdir -p /tmp/work/netavark/targets &&  mkdir -p /tmp/work/netavark/bin
 WORKDIR /tmp/work/netavark
 COPY config.toml ./.cargo/config.toml
-ENV CARGO_TARGET_DIR=targets
 COPY ./net.Makefile.patch /tmp
 RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch
 RUN make build
