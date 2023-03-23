@@ -10,4 +10,4 @@ curl -fsSLo "/opt/cloudflared" https://github.com/cloudflare/cloudflared/release
 chmod +x /opt/cloudflared
 
 /opt/cloudflared update
-/opt/cloudflared proxy-dns "$CLOUDFLARED_OPTS" &
+/opt/cloudflared proxy-dns $CLOUDFLARED_OPTS &
