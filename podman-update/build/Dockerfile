@@ -20,11 +20,9 @@ WORKDIR /tmp/work/netavark
 COPY config.toml ./.cargo/config.toml
 ENV CARGO_TARGET_DIR=targets
 COPY ./net.Makefile.patch /tmp
-RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch \
-
+RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch
 RUN make build
 
-RUN cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark /tmp/work/netavark/bin/ && cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark-dhcp-client-proxy /tmp/work/netavark/bin/
 FROM golang:1.18.3-stretch
 
 # Currenrtly supported versions: UDM-Base UDM-Pro-SE
