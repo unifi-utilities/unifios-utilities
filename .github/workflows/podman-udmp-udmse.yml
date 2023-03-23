@@ -23,12 +23,12 @@ jobs:
       run: docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
       id: extract
-      uses: boostchicken-dev/actions-docker-extract@v2
+      uses: boostchicken-dev/actions-docker-extract@v3
       with:
         # Docker Image to extract files from
         image: boostchicken:udm-podman
         # Path (from root) to a file or directory within Image
-        path: /tmp/install/
+        path: /tmp/install/.
         
     - name: Generate new tag version
       id: version
