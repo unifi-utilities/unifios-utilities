@@ -17,16 +17,20 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
-RUN mkdir .cargo
+RUN mkdir .cargo &&
 COPY config.toml ./.cargo/config.toml
 RUN mkdir targets && mkdir bin
-ENV CARGO_TARGETS_DIR = targets
+ENV CARGO_TARGETS_DIR=targets
 RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu
 
 RUN --mount=type=cache,target=/usr/local/cargo/registry \
-    --mount=type=cache,target=/tmp/work/netavark/target \
-    cargo build --target aarch64-unknown-linux-gnu --release && cp targets/aarch64-unknown-linux-gnu/release/netavark /tmp/work/netavark/bin/
+    --mount=type=cache,target=/tmp/work/netavark/targets \
+    cargo build --target aarch64-unknown-linux-gnu --release
 
+
+RUN ls /tmp/work/netavark/ && ls /tmp/work/netavark/targets && ls /tmp/work/netavark/targets/aarch64-unknown-linux-gnu  
+
+RUN cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark /tmp/work/netavark/bin/ && cp /tmp/work/netavark/targets/aarch64-unknown-linux-gnu/release/netavark-dhcp-client-proxy /tmp/work/netavark/bin/
 FROM golang:1.18.3-stretch
 
 # Currenrtly supported versions: UDM-Base UDM-Pro-SE
