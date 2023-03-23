@@ -1,0 +1,22 @@
+diff --git a/Makefile b/Makefile
+index a84312b1..5ec27081 100644
+--- a/Makefile
++++ b/Makefile
+@@ -54,7 +54,7 @@ build: build_netavark build_proxy_client
+ 
+ .PHONY: build_netavark
+ build_netavark: bin $(CARGO_TARGET_DIR)
+-	$(CARGO) build $(release)
++	$(CARGO) build --target aarch64-unknown-linux-gnu $(release)
+ 	cp $(CARGO_TARGET_DIR)/$(profile)/netavark bin/netavark$(if $(debug),.debug,)
+ 
+ .PHONY: crate-publish
+@@ -75,7 +75,7 @@ clean:
+ 
+ .PHONY: client
+ client: bin $(CARGO_TARGET_DIR)
+-	$(CARGO) build --bin netavark-dhcp-proxy-client $(release)
++	$(CARGO) build --target aarch64-unknown-linux-gnu  --bin netavark-dhcp-proxy-client $(release)
+ 
+ 
+ .PHONY: docs
