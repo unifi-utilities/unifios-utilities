@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - 'podman-update/build/Dockerfile'
+      - 'podman-update/build/podman.Makefile.UDM-Base.patch'
   pull_request:
     paths:
       - 'podman-update/build/Dockerfile'
+      - 'podman-update/build/podman.Makefile.UDM-Base.patch'
 
 jobs:
 
