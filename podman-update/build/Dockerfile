@@ -10,7 +10,9 @@ RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
 ENV CARGO_TARGETS_DIR = targets
 RUN rustup target add aarch64-unknown-linux-gnu
-RUN cargo build --target aarch64-unknown-linux-gnu --release && cargo build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client --release && cp targets/$(profile)/* /tmp/work/netavark/bin/
+RUN --mount=type=cache,target=/usr/local/cargo/registry \
+    --mount=type=cache,target=/home/root/app/target \
+    cargo build --target aarch64-unknown-linux-gnu --release && cargo build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client --release && cp targets/$(profile)/* /tmp/work/netavark/bin/
 
 FROM golang:1.18.3-stretch
 
