@@ -1,3 +1,11 @@
+#RUN zip -r /tmp/release/podman-install.zip *
+FROM arm64v8/rust as rust
+RUN mkdir -p /tmp/work
+WORKDIR /tmp/work
+RUN git clone https://github.com/containers/netavark/
+WORKDIR /tmp/work/netavark
+RUN make
+
 FROM golang:1.18.3-stretch
 
 # Currenrtly supported versions: UDM-Base UDM-Pro-SE
@@ -6,7 +14,7 @@ ARG UDM_PLATFORM=UDM-Base
 ARG PODMAN_VERSION=v4.4.2
 ARG RUNC_VERSION=v1.1.4
 ARG CONMON_VERSION=v2.1.7
-
+ARG CRUN_VERSION=1.8.2
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
@@ -36,6 +44,14 @@ RUN apt-get update && apt-get install -y \
 
 ENV GOOS=linux
 
+RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/ \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/ \
+    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
+        
+RUN wget https://github.com/containers/crun/releases/download/${CRUN_VERSION}/crun-${CRUN_VERSION}-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
+COPY --from=rust /tmp/work/netavark/bin/* /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman
+
 COPY ./podman.Makefile.${UDM_PLATFORM}.patch /tmp
 RUN mkdir -p /build \
     && mkdir -p /tmp/release
@@ -63,23 +79,14 @@ RUN git checkout ${CONMON_VERSION} \
     && cp bin/conmon /tmp/release/conmon-${CONMON_VERSION} \
     && chmod +x /tmp/release/conmon-$CONMON_VERSION
 
-RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
-    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/ \
-    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/ \
-    && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
-    
-RUN wget https://github.com/containers/crun/releases/download/1.8.2/crun-1.8.2-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
 
 COPY seccomp.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/share/containers/
 COPY containers.conf  /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY storage.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY registries.conf /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
 COPY policy.json /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
-
 RUN cp /tmp/release/podman-${PODMAN_VERSION} /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/podman \
     && cp /tmp/release/runc.arm64 /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/runc \
     && cp /tmp/release/conmon-${CONMON_VERSION} /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman/conmon
+    
 WORKDIR /tmp/install
-
-# Zip up the files
-#RUN zip -r /tmp/release/podman-install.zip *
