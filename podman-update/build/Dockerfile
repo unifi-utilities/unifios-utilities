@@ -4,6 +4,19 @@ RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
 ARG NETAVARK_VERSION=v1.5.0
 RUN apt-get update && apt-get install -y \
+    bc \
+    binutils-aarch64-linux-gnu \
+    bison \
+    build-essential \
+    flex \
+    gcc-aarch64-linux-gnu \
+    git \
+    libc6-arm64-cross \
+    libc6-dev-arm64-cross \
+    libncurses5-dev \
+    libssl-dev \
+    pkg-config \
+    systemd \
     protobuf-compiler
     
 RUN git clone https://github.com/containers/netavark/
