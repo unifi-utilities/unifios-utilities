@@ -15,12 +15,10 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     protobuf-compiler
 
-RUN git clone https://github.com/containers/netavark/
+RUN git clone https://github.com/containers/netavark/ && mkdir -p  /tmp/work/netavark/.cargo &&  mkdir -p /tmp/work/netavark/targets &&  mkdir -p /tmp/work/netavark/bin
 WORKDIR /tmp/work/netavark
-RUN mkdir .cargo &&
 COPY config.toml ./.cargo/config.toml
-RUN mkdir targets && mkdir bin
-ENV CARGO_TARGETS_DIR=targets
+ENV CARGO_TARGET_DIR=targets
 RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu
 
 RUN --mount=type=cache,target=/usr/local/cargo/registry \
