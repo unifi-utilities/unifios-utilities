@@ -4,8 +4,9 @@ RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
 RUN git clone https://github.com/containers/netavark/
 WORKDIR /tmp/work/netavark
-
-RUN rustup target add aarch64-unknown-linux-gnu && make
+ENV CARGO_TARGETS_DIR = targets
+RUN rustup target add aarch64-unknown-linux-gnu
+RUN cargo build --target aarch64-unknown-linux-gnu --release && cargo build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client --release && cp targets/$(profile)/netavark bin/netavark
 
 FROM golang:1.18.3-stretch
 
@@ -51,7 +52,7 @@ RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
     && mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/etc/containers/
         
 RUN wget https://github.com/containers/crun/releases/download/${CRUN_VERSION}/crun-${CRUN_VERSION}-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
-COPY --from=rust /tmp/work/netavark/bin/* /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman
+COPY --from=rust /tmp/work/targets/release/netavark/bin/* /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman
 
 COPY ./podman.Makefile.${UDM_PLATFORM}.patch /tmp
 RUN mkdir -p /build \
