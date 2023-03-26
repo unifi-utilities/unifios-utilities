@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #####################################################
 # ADD KNOWN HOSTS AS BELOW - CHANGE BEFORE RUNNING  #

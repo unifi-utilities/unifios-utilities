@@ -14,12 +14,12 @@ In the current examples, the DNS resolver (e.g., pi-hole) is listening on `10.0.
 
 Follow the steps in [run-pihole](../run-pihole) to create a separate IP address, by copying the files in the sub-directories to UDM/P.
 
-Adjust the `11-unbound-macvlanip` and `.conflist` files, run [init_unbound.sh](./scripts/init_unbound.sh), *or* execute the commands below manually.
+Adjust the `11-unbound-macvlanip` and `.conflist` files, run [init_unbound.sh](./scripts/init_unbound.sh), _or_ execute the commands below manually.
 
-* Link the boot script [11-unbound-macvlanip.sh](./on_boot.d/11-unbound-macvlanip.sh) -> `ln -s /mnt/data/unbound/on_boot.d/11-unbound-macvlanip.sh /mnt/data/on_boot.d/11-unbound-macvlanip.sh`
-* Link the IPv4 only configuration: [21-unbound.conflist](./cni_plugins/21-unbound.conflist) -> `ln -s /mnt/data/unbound/cni_plugins/21-unbound.conflist /etc/cni/net.d/21-unbound.conflist` *or*
-* Link the IPv4 and IPv6 configuration: [21-unboundipv6.conflist](./cni_plugins/21-unboundipv6.conflist) -> `ln -s /mnt/data/unbound/cni_plugins/21-unboundipv6.conflist /etc/cni/net.d/21-unbound.conflist`
-* Create the network
+- Link the boot script [11-unbound-macvlanip.sh](./on_boot.d/11-unbound-macvlanip.sh) -> `ln -s /data/unbound/on_boot.d/11-unbound-macvlanip.sh /data/on_boot.d/11-unbound-macvlanip.sh`
+- Link the IPv4 only configuration: [21-unbound.conflist](./cni_plugins/21-unbound.conflist) -> `ln -s /data/unbound/cni_plugins/21-unbound.conflist /etc/cni/net.d/21-unbound.conflist` _or_
+- Link the IPv4 and IPv6 configuration: [21-unboundipv6.conflist](./cni_plugins/21-unboundipv6.conflist) -> `ln -s /data/unbound/cni_plugins/21-unboundipv6.conflist /etc/cni/net.d/21-unbound.conflist`
+- Create the network
 
   ```bash
   podman network create unbound
@@ -42,9 +42,9 @@ Two things are left to do: set the upstream server and de-activate caching in Pi
 
 To use `unbound` as the upstream server for Pi-hole, change the following settings in Pi-hole's admin interface:
 
-* Settings -> DNS -> Upstream DNS Servers
-  * Custom 1 (IPv4): 10.0.5.3 (or the IPv4 address you chose)
-  * Custom 2 (IPv6): fdca:5c13:1fb8::3 (or the IPv6 address you chose)
+- Settings -> DNS -> Upstream DNS Servers
+  - Custom 1 (IPv4): 10.0.5.3 (or the IPv4 address you chose)
+  - Custom 2 (IPv6): fdca:5c13:1fb8::3 (or the IPv6 address you chose)
 
 Both Pi-hole as well as `unbound` are caching their requests. To make the changes of your upstream DNS and to de-activate caching in Pi-hole permanent, modify your `podman run` command **for pi-hole** in this way:
 
@@ -52,8 +52,8 @@ Both Pi-hole as well as `unbound` are caching their requests. To make the change
 podman run -d --network dns --restart always \
     --name pihole \
     -e TZ="America/Los Angeles" \
-    -v "/mnt/data/pihole/etc-pihole/:/etc/pihole/" \
-    -v "/mnt/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
+    -v "/data/pihole/etc-pihole/:/etc/pihole/" \
+    -v "/data/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
     --dns=127.0.0.1 \
     --dns=10.0.5.3 \
     --hostname pi.hole \

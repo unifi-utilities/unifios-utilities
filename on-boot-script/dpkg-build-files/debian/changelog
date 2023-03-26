@@ -1,3 +1,15 @@
+udm-boot (1.0.7) stable; urgency=medium
+
+  * Support for Legacy and Current Firmware 
+
+ -- boostchicken <john@boostchicken.dev>  Tue, 31 Jan 2023 22:19:59 -0800
+
+udm-boot (1.0.6) stable; urgency=medium
+
+  * Fix timeouts
+
+ -- boostchicken <john@boostchicken.dev>  Mon, 30 Jan 2023 15:39:27 -0800
+
 udm-boot (1.0.5) stable; urgency=medium
 
   * follow symlinks for on_boot

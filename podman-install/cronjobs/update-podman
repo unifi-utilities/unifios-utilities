@@ -1,0 +1,2 @@
+# update and reinstall podman each day
+#00 00   * * *   root sh -c '/data/on_boot.d/00-podman.sh --download-only && /data/on_boot.d/00-podman.sh --force'

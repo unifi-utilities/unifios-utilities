@@ -21,7 +21,9 @@ set -e
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-	    /sbin/ssh-proxy rm -f /mnt/data/on_boot.sh
+        if [ -x /sbin/ssh-proxy ]; then
+	        /sbin/ssh-proxy rm -f /data/on_boot.sh
+        fi
 	    true
     ;;
 

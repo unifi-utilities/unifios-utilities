@@ -1,0 +1,41 @@
+diff --git a/Makefile b/Makefile
+index a84312b1..6252bbe3 100644
+--- a/Makefile
++++ b/Makefile
+@@ -17,7 +17,7 @@ GIT_TAG ?= $(shell git describe --tags)
+ 
+ # Set this to any non-empty string to enable unoptimized
+ # build w/ debugging features.
+-debug ?=
++debug ?=
+ 
+ # Set path to cargo executable
+ CARGO ?= cargo
+@@ -54,8 +54,8 @@ build: build_netavark build_proxy_client
+ 
+ .PHONY: build_netavark
+ build_netavark: bin $(CARGO_TARGET_DIR)
+-	$(CARGO) build $(release)
+-	cp $(CARGO_TARGET_DIR)/$(profile)/netavark bin/netavark$(if $(debug),.debug,)
++	$(CARGO) build --target aarch64-unknown-linux-gnu $(release)
++	cp $(CARGO_TARGET_DIR)/aarch64-unknown-linux-gnu/$(profile)/netavark bin/netavark$(if $(debug),.debug,)
+ 
+ .PHONY: crate-publish
+ crate-publish:
+@@ -75,7 +75,7 @@ clean:
+ 
+ .PHONY: client
+ client: bin $(CARGO_TARGET_DIR)
+-	$(CARGO) build --bin netavark-dhcp-proxy-client $(release)
++	$(CARGO) build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client $(release)
+ 
+ 
+ .PHONY: docs
+@@ -143,5 +143,5 @@ help:
+ 
+ .PHONY: build_proxy_client
+ build_proxy_client: bin $(CARGO_TARGET_DIR)
+-	$(CARGO) build --bin netavark-dhcp-proxy-client $(release)
+-	cp $(CARGO_TARGET_DIR)/$(profile)/netavark-dhcp-proxy-client bin/netavark-dhcp-proxy-client$(if $(debug),.debug,)
++	$(CARGO) build --target aarch64-unknown-linux-gnu --bin netavark-dhcp-proxy-client $(release)
++	cp $(CARGO_TARGET_DIR)/aarch64-unknown-linux-gnu/$(profile)/netavark-dhcp-proxy-client bin/netavark-dhcp-proxy-client$(if $(debug),.debug,)

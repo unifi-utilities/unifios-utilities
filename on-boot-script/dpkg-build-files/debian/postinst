@@ -21,6 +21,9 @@ alias deb-systemd-invoke='systemctl --no-block --'
 
 case "$1" in
     configure)
+        if ! [ -x /sbin/ssh-proxy ]; then
+        sed -i 's/\/sbin\/ssh-proxy//' /lib/systemd/system/udm-boot.service
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

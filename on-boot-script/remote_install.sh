@@ -1,5 +1,23 @@
 #!/usr/bin/env sh
 
+# Get DataDir location
+DATA_DIR="/data"
+case "$(ubnt-device-info firmware || true)" in
+1*)
+  DATA_DIR="/mnt/data"
+  ;;
+2*)
+  DATA_DIR="/data"
+  ;;
+3*)
+  DATA_DIR="/data"
+  ;;
+*)
+  echo "ERROR: No persistent storage found." 1>&2
+  exit 1
+  ;;
+esac
+
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
@@ -13,11 +31,10 @@ CNI_BRIDGE_ON_BOOT_FILENAME="$(basename "$CNI_BRIDGE_SCRIPT_RAW_URL")"
 GITHUB_API_URL="https://api.github.com/repos"
 GITHUB_REPOSITORY="unifi-utilities/unifios-utilities"
 
-
 # --- Functions ---
 
 header() {
-cat << EOF
+  cat <<EOF
   _   _ ___  __  __   ___           _
  | | | |   \|  \/  | | _ ) ___  ___| |_
  | |_| | |) | |\/| | | _ \/ _ \/ _ \  _|
@@ -39,43 +56,30 @@ depends_on() {
 
 udm_model() {
   case "$(ubnt-device-info model || true)" in
-    "UniFi Dream Machine SE")
-      echo "udmse"
-      ;;
-    "UniFi Dream Machine Pro")
+  "UniFi Dream Machine SE")
+    echo "udmse"
+    ;;
+  "UniFi Dream Machine Pro")
+    if test $(ubnt-device-info firmware) \< "2.0.0"; then
+      echo "udmprolegacy"
+    else
       echo "udmpro"
-      ;;
-    "UniFi Dream Machine")
+    fi
+    ;;
+  "UniFi Dream Machine")
+    if test $(ubnt-device-info firmware) \< "2.0.0"; then
+      echo "udmlegacy"
+    else
       echo "udm"
-      ;;
-    "UniFi Dream Router")
-      echo "udr"
-      ;;
-    *)
-      echo "unknown"
-      ;;
+    fi
+    ;;
+  "UniFi Dream Router")
+    echo "udr"
+    ;;
+  *)
+    echo "unknown"
+    ;;
   esac
-}
-
-get_persistent_path() {
-  IFS_COPY="$IFS"
-  IFS="/"
-
-  if [ -d "/mnt/data" ]; then
-    DATA_DIR="/mnt/data${*:+/$*}"
-  elif [ -d "/data" ]; then
-    DATA_DIR="/data${*:+/$*}"
-  else
-    echo "ERROR: No persistent storage found." 1>&2
-    exit 1
-  fi
-
-  mkdir -p "$DATA_DIR"
-
-  echo "$DATA_DIR"
-
-  IFS="$IFS_COPY"
-  unset IFS_COPY DATA_DIR
 }
 
 get_latest_download_url() {
@@ -120,7 +124,7 @@ install_on_boot_udm_series() {
 
 # Credits @peacey: https://github.com/unifi-utilities/unifios-utilities/issues/214#issuecomment-886869295
 udmse_on_boot_systemd() {
-cat << EOF
+  cat <<EOF
 [Unit]
 Description=Run On Startup UDM
 Wants=network-online.target
@@ -128,7 +132,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-ExecStart=bash -c 'mkdir -p /mnt/data/on_boot.d && find -L /mnt/data/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
+ExecStart=bash -c 'mkdir -p ${DATA_DIR}/on_boot.d && find -L ${DATA_DIR}/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
 
 [Install]
 WantedBy=multi-user.target
@@ -142,7 +146,7 @@ install_on_boot_udr_se() {
   rm -f "$SYMLINK_SYSTEMCTL"
 
   echo "Creating systemctl service file"
-  udmse_on_boot_systemd > "$SYSTEMCTL_PATH" || return 1
+  udmse_on_boot_systemd >"$SYSTEMCTL_PATH" || return 1
   sleep 1s
 
   echo "Enabling UDM boot..."
@@ -160,40 +164,41 @@ header
 depends_on ubnt-device-info
 depends_on curl
 
-ON_BOOT_D_PATH="$(get_persistent_path "on_boot.d")"
+ON_BOOT_D_PATH="${DATA_DIR}/on_boot.d"
 
 case "$(udm_model)" in
-  udm|udmpro)
-    echo "UDM/Pro detected, installing on-boot script..."
-    depends_on podman
+udmlegacy | udmprolegacy)
+  echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+  echo "Installing on-boot script..."
+  depends_on podman
 
-    if ! install_on_boot_udm_series; then
-      echo
-      echo "Failed to install on-boot script service" 1>&2
-      exit 1
-    fi
-
-    echo "UDM Boot Script installed"
-    ;;
-  udr|udmse)
-    echo "UDR/UDMSE detected, installing on-boot script..."
-    depends_on systemctl
-
-    if ! install_on_boot_udr_se; then
-      echo
-      echo "Failed to install on-boot script service" 1>&2
-      exit 1
-    fi
-
-    echo "UDM Boot Script installed"
-    ;;
-  *)
-    echo "Unsupported model: $(ubnt-device-info model)" 1>&2
+  if ! install_on_boot_udm_series; then
+    echo
+    echo "Failed to install on-boot script service" 1>&2
     exit 1
-    ;;
+  fi
+
+  echo "UDM Boot Script installed"
+  ;;
+udr | udmse | udm | udmpro)
+  echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
+  echo "Installing on-boot script..."
+  depends_on systemctl
+
+  if ! install_on_boot_udr_se; then
+    echo
+    echo "Failed to install on-boot script service" 1>&2
+    exit 1
+  fi
+
+  echo "UDM Boot Script installed"
+  ;;
+*)
+  echo "Unsupported model: $(ubnt-device-info model)" 1>&2
+  exit 1
+  ;;
 esac
 echo
-
 
 if [ ! -f "${ON_BOOT_D_PATH}/${CNI_PLUGINS_ON_BOOT_FILENAME}" ]; then
   echo "Downloading CNI plugins script..."
@@ -212,7 +217,6 @@ echo "CNI plugins script installed"
 echo "Executing CNI plugins script..."
 "${ON_BOOT_D_PATH}/${CNI_PLUGINS_ON_BOOT_FILENAME}" || true
 echo
-
 
 if [ ! -f "${ON_BOOT_D_PATH}/${CNI_BRIDGE_ON_BOOT_FILENAME}" ]; then
   echo "Downloading CNI bridge script..."

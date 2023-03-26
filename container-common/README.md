@@ -10,26 +10,31 @@
 
 ## Customization
 
-While a 100Mb log limit per container should give plenty of log data for all featured in this repo projects, you can increase or decrease max_log_size value in /mnt/data/on_boot.d/05-container-common.sh file after installation.
+While a 100Mb log limit per container should give plenty of log data for all featured in this repo projects, you can increase or decrease max_log_size value in /data/on_boot.d/05-container-common.sh file after installation.
 
 ## Steps
 
 1. Run as root on UDM Pro to download and set permissions of on_boot.d script:
+
 ```sh
 # Download 05-container-common.sh from GitHub
-curl -L https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/container-common/on_boot.d/05-container-common.sh -o /mnt/data/on_boot.d/05-container-common.sh;
+curl -L https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/main/container-common/on_boot.d/05-container-common.sh -o /data/on_boot.d/05-container-common.sh;
 # Set execute permission
-chmod a+x /mnt/data/on_boot.d/05-container-common.sh;
+chmod a+x /data/on_boot.d/05-container-common.sh;
 ```
-2. Review the script /mnt/data/on_boot.d/05-container-common.sh and when happy execute it.
+
+2. Review the script /data/on_boot.d/05-container-common.sh and when happy execute it.
+
 ```sh
 # Review script
-cat /mnt/data/on_boot.d/05-container-common.sh;
+cat /data/on_boot.d/05-container-common.sh;
 # Apply container-common settings
-/mnt/data/on_boot.d/05-container-common.sh;
+/data/on_boot.d/05-container-common.sh;
 ```
+
 3. Already running containers will pick up new defaults after either container restart ("podman restart \<container-name\>") or after UDM Pro restart. New containers will pick up a change from first run.
 4. To list containers that are running with log size limits:
+
 ```sh
 # List container monitor processes with "--log-size-max" custom argument set
 ps -ef | grep conmon | grep log-size-max

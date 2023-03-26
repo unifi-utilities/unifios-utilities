@@ -1,10 +1,36 @@
-#!/bin/sh
+#!/bin/bash
+# Get DataDir location
+DATA_DIR="/data"
+case "$(ubnt-device-info firmware || true)" in
+1*)
+  DATA_DIR="/mnt/data"
+  ;;
+2*)
+  DATA_DIR="/data"
+  ;;
+3*)
+  DATA_DIR="/data"
+  ;;
+*)
+  echo "ERROR: No persistent storage found." 1>&2
+  exit 1
+  ;;
+esac
 
+# Check if the directory exists
+if [ ! -d "${DATA_DIR}/suricata-rules" ]; then
+  # If it does not exist, create the directory
+  mkdir -p "${DATA_DIR}/suricata-rules"
+  echo "Directory '${DATA_DIR}/suricata-rules' created."
+else
+  # If it already exists, print a message
+  echo "Directory '${DATA_DIR}/suricata-rules' already exists. Moving on."
+fi
 APP_PID="/run/suricata.pid"
 
-cat <<"EOF" > /tmp/suricata.sh
-#!/bin/sh
-CUSTOM_RULES="/mnt/data/suricata-rules"
+cat <<"EOF" >/tmp/suricata.sh
+#!/bin/bash
+CUSTOM_RULES="${DATA_DIR}/suricata-rules"
 
 for file in $(find ${CUSTOM_RULES} -name '*.rules' -print)
 do

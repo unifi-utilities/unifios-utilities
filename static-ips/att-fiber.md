@@ -1,4 +1,4 @@
-#ATT Fiber Static Ips w/ UDM/P
+# ATT Fiber Static Ips w/ UDM/P
 
 ### With this trick you will be able to
 
@@ -44,8 +44,8 @@ Save and it should work.
 However if it does not, or later you randomly lose your internet there is a reason from this.
 Your route out the internet is your DHCPv4 lease.  You may need to renew it.  To do this switch back to dhcpv4 and save, then switch back to static ip OR do this from the command line
 
-```
-# udhcpc -i eth8
+```sh
+# busybox-legacy udhcpc -i eth8
 udhcpc: started, v1.34.1
 udhcpc: broadcasting discover
 sh: /usr/share/udhcpc/decline.script: not found

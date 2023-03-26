@@ -16,7 +16,9 @@ set -e
 
 case "$1" in
     install|upgrade)
-	    /sbin/ssh-proxy rm -f /mnt/data/on_boot.sh
+	    if [ -x /sbin/ssh-proxy ]; then
+	        /sbin/ssh-proxy rm -f /data/on_boot.sh
+        fi
 	    true
     ;;
 
