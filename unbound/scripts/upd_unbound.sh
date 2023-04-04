@@ -21,7 +21,7 @@ esac
 if [ ! -d "${DATA_DIR}/unbound" ]; then
     # If it does not exist, create the directory
     mkdir -p "${DATA_DIR}/unbound"
-    mkdir -p "${DATA_DIR}/unbound.conf.d"
+    mkdir -p "${DATA_DIR}/unbound/unbound.conf.d"
     echo "Directory '${DATA_DIR}/unbound' created."
 else
     # If it already exists, print a message
