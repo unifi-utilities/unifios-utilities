@@ -19,7 +19,7 @@
    --cap-add=SYS_ADMIN \
    --cap-add=CAP_SYS_RAWIO \
    -v /data/zerotier-one:/var/lib/zerotier-one \
-   bltavares/zerotier
+   zerotier/zerotier
    ```
 4. Join your zerotier network
    ```
