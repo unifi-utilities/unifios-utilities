@@ -1,0 +1,13 @@
+[Unit]
+Description=Setup custom container service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/data/on_boot.d/0-setup-system.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
