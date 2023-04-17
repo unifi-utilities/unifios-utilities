@@ -3,6 +3,8 @@ name: UDM-SE/PRO Podman
 on:
   workflow_dispatch:
   push:
+    branches:
+      - 'main'
     paths:
     
       - 'podman-update/build/Dockerfile'
