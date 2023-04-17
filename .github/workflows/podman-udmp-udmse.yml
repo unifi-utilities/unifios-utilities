@@ -11,9 +11,9 @@ on:
   pull_request:
     paths:
       - 'podman-update/build/Dockerfile'
-      - 'podman-update/build/podman.Makefile.UDM-Base.patch'
+      - 'podman-update/build/podman.Makefile.UDM-Pro-SE.patch'
       - 'podman-update/build/*.conf'
-      - 'podman-update/build/*.json'   
+      - 'podman-update/build/*.json'
 jobs:
 
   build:
