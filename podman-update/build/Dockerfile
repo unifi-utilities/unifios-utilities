@@ -27,10 +27,10 @@ FROM golang:1.18.3-stretch
 # Currenrtly supported versions: UDM-Base UDM-Pro-SE
 ARG UDM_PLATFORM=UDM-Base
 
-ARG PODMAN_VERSION=v4.4.2
+ARG PODMAN_VERSION=v4.5.0
 ARG RUNC_VERSION=v1.1.4
 ARG CONMON_VERSION=v2.1.7
-ARG CRUN_VERSION=1.8.2
+ARG CRUN_VERSION=1.8.4
 ARG DEBIAN_FRONTEND=noninteractive
 
 
@@ -67,10 +67,7 @@ RUN apt-get update && apt-get install -y \
 
 ENV GOOS=linux
 
-        
-RUN wget https://github.com/containers/crun/releases/download/${CRUN_VERSION}/crun-${CRUN_VERSION}-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
-
-
+RUN curl -L https://github.com/containers/crun/releases/download/${CRUN_VERSION}/crun-${CRUN_VERSION}-linux-arm64 -o /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin/crun
 COPY ./podman.Makefile.${UDM_PLATFORM}.patch /tmp
 RUN mkdir -p /build \
     && mkdir -p /tmp/release
