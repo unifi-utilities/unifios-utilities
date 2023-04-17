@@ -4,11 +4,14 @@ on:
   workflow_dispatch:
   push:
     paths:
+    
       - 'podman-update/build/Dockerfile'
       - 'podman-update/build/podman.Makefile.UDM-Pro-SE.patch'
       - 'podman-update/build/*.conf'
       - 'podman-update/build/*.json'
-  pull_request:
+  pull_request_target:
+    types:
+      - opened
     paths:
       - 'podman-update/build/Dockerfile'
       - 'podman-update/build/podman.Makefile.UDM-Pro-SE.patch'
