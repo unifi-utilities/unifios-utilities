@@ -50,3 +50,9 @@ ip route add "${IPV4_IP}/32" dev "br${VLAN}.mac"
 if [ -n "${IPV6_IP}" ]; then
   ip -6 route add "${IPV6_IP}/128" dev "br${VLAN}.mac"
 fi
+
+# Make DNSMasq listen to the container network for split horizon or conditional forwarding
+if ! grep -qxF "interface=br${VLAN}.mac" /run/dnsmasq.conf.d/custom.conf; then
+  echo "interface=br${VLAN}.mac" >>/run/dnsmasq.conf.d/custom.conf
+  kill -9 "$(cat /run/dnsmasq.pid)"
+fi
