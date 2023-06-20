@@ -1,4 +1,4 @@
-# unifios-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
+# unifios-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg) [![!Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)](https:///www.cloudflare.com)
 
 [![UDM Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml)
 [![UDM-Pro-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml)
@@ -21,7 +21,8 @@ Please see the repo and please use at your own risk. This a much larger change t
 ## Custom Podman Builds for UDM-SE
 
 All artifacts can be found on IPFS
-<https://unifi.boostchicken.io>
+
+[IPFS Gateway](https://unifi.boostchicken.io) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
 
 Extract the zip to the root of your device!
 Look at the assets on the Podman workflow.
@@ -119,9 +120,9 @@ Alternative to mine which uses DoTe
 Run AdguardHome on your UDM with podman.
 
 ### Cloudflare DDNS
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
 
 Update your cloudflare domains from your UDM with podman.
-![ProtectedByCloudflareBadge_Orange](https://github.com/unifi-utilities/unifios-utilities/assets/427295/1b8be048-6797-4796-9dd4-2ff6e307811b)
 
 ## Cool projects you can use with this
 
@@ -138,6 +139,7 @@ Update your cloudflare domains from your UDM with podman.
 |udm-proxy           |    <https://github.com/xpherism/udm-proxy>           |Run a reverse proxy (using caddy in vlan) on the udm-pro. |
 | Telegram-Notifications On WAN Failover          |   <https://github.com/fire1ce/UDM-Failover-Telegram-Notifications>            | Use telegram bot to be notified of a wan failover with local account|
 
+[![!Protected by Cloudflare](https://github.com/unifi-utilities/unifios-utilities/assets/427295/5cda2367-fbda-438e-b942-2ebf4a105b82)](https://cloudflare.com)
 
 
 ## Unsupported / No longer maintained
