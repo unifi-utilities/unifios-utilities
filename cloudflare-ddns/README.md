@@ -24,7 +24,7 @@ Update [config.json](configs/config.json) with the following options:
 - Set the proxied flag if you'd like cloudflare to proxy the records
 - Set the ttl value you'd like for your records
 
-## Steps
+## Steps (UnifiOS $\leq$ 2.x)
 
 1. Make a directory for your configuration, check if you have `/mnt/data/` or `/data/` and adjust accordingly.
 
@@ -34,8 +34,16 @@ Update [config.json](configs/config.json) with the following options:
 
 2. Create a [cloudflare-ddns configuration](configs/config.json) in `/data/cloudflare-ddns` and update the configuration to meet your needs.
 3. Copy [30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh) to `/data/on_boot.d`.
-. Execute /data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
+4. Execute /data/on_boot.d/[30-cloudflare-ddns.sh](on_boot.d/30-cloudflare-ddns.sh)
 5. Execute `podman logs cloudflare-ddns` to verify the continer is running without error (ipv6 warnings are normal).
+
+## Steps (UnifiOS $\geq$ 3.x)
+
+1. Update [cloudflare-ddns.timer](systemd-service/cloudflare-ddns.timer) to meet your needs.
+   - OnBootSec: How long to wait after boot before starting the service
+   - OnUnitActiveSec: How long to wait after the service has stopped before restarting it
+2. Follow Steps 1 - 4 above
+3. Execute `journalctl -eu cloudflare-ddns.service` to verify the service is running without error.
 
 ### Useful commands
 

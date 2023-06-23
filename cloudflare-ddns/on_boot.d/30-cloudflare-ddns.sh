@@ -29,13 +29,46 @@ fi
 
 # Starts a cloudflare ddns container that is deleted after it is stopped.
 # All configs stored in /data/cloudflare-ddns
-if podman container exists "$CONTAINER"; then
-  podman start "$CONTAINER"
+# Fix for UnifiOS 3.x since podman doesn't work without kernel rebuild (https://github.com/unifi-utilities/unifios-utilities/issues/523) 
+if hash podman 2>/dev/null; then
+  if podman container exists "$CONTAINER"; then
+    podman start "$CONTAINER"
+  else
+    podman run -i -d --rm \
+      --net=host \
+      --name "$CONTAINER" \
+      --security-opt=no-new-privileges \
+      -v $DATA_DIR/cloudflare-ddns/config.json:/config.json \
+      timothyjmiller/cloudflare-ddns:latest
+  fi
 else
-  podman run -i -d --rm \
-    --net=host \
-    --name "$CONTAINER" \
-    --security-opt=no-new-privileges \
-    -v $DATA_DIR/cloudflare-ddns/config.json:/config.json \
-    timothyjmiller/cloudflare-ddns:latest
+  echo "Podman could not be found. Using systemd-service instead..."
+
+  # Check if systemd-service files already exist in /etc/systemd/system
+  if [ -f /etc/systemd/system/cloudflare-ddns.timer ]; then
+    echo "cloudflare-ddns already exists. Killing service and deleting files..."
+    systemctl stop cloudflare-ddns.timer
+    systemctl disable cloudflare-ddns.timer
+    rm -f /etc/systemd/system/cloudflare-ddns.timer
+    rm -f /etc/systemd/system/cloudflare-ddns.service
+  fi
+
+  # Copy cloudflare-ddns.timer and cloudflare-ddns.service to /etc/systemd/system
+  echo "Installing cloudflare-ddns.timer and cloudflare-ddns.service..."
+  cp ../../nspawn-container/cloudflare-ddns.service /etc/systemd/system/cloudflare-ddns.service
+  cp ../../nspawn-container/cloudflare-ddns.timer /etc/systemd/system/cloudflare-ddns.timer
+
+  # Get latest files from cloudflare-ddns GitHub Repo (https://github.com/timothymiller/cloudflare-ddns)
+  cd $DATA_DIR/cloudflare-ddns
+  curl -LJO https://raw.githubusercontent.com/timothymiller/cloudflare-ddns/master/cloudflare-ddns.py
+  curl -LJO https://raw.githubusercontent.com/timothymiller/cloudflare-ddns/master/requirements.txt
+  curl -LJO https://raw.githubusercontent.com/timothymiller/cloudflare-ddns/master/start-sync.sh
+
+  # Install python3-pip and python3-venv
+  apt-get install -y python3-pip python3-venv
+
+  # Make start-sync.sh executable
+  chmod +x start-sync.sh
+  systemctl start cloudflare-ddns.timer
+  systemctl enable cloudflare-ddns.timer
 fi
