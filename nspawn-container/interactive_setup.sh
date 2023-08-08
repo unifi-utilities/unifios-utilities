@@ -8,12 +8,11 @@
 #                   The process involves installing systemd-container and debootstrap and using them to create 
 #                   a base debian system in /data/custom/machines directory.                                                                                                                                                                        
 #Author       	  : Apo-mak
-#Last Date Edited : 09-04-2023                                                                                      
+#Last Date Edited : 09-06-2023                                                                                      
 ###################################################################
 
 set -e
 
-dnsfile="10-dns.sh"
 container_name="debian-custom"
 container_root_pasword="12345678"
 
@@ -67,27 +66,27 @@ function echo_variables(){
 
 }
 
-function create_custom_ontainer_simple(){
+function create_custom_container_simple(){
     echo "You have selected to setup a container that has access to all the host network 
     interfaces and full capabilities to do anything to the system"
     read -p "Press enter to continue OR  ctrl + c  to cancel."
-    create_custom_ontainer ;
+    create_custom_container ;
     setup_networking_simple ;
     setup_persistence ;
     setup_backup_dpkg_files
 }
 
-function create_custom_ontainer_macvlan(){
-    echo "You have selected to setup a container  to use an Isolated MacVLAN Network AKA Vlan."
+function create_custom_container_macvlan(){
+    echo "You have selected to setup a container to use an Isolated MacVLAN Network AKA Vlan."
     read -p "Press enter to continue OR  ctrl + c  to cancel."
-    create_custom_ontainer ;
+    create_custom_container ;
     setup_networking_MACVLAN ;
     setup_persistence ;
     setup_backup_dpkg_files
 }
 
 
-function create_custom_ontainer() {
+function create_custom_container() {
     echo ""
 	echo " Creating a Custom Container on UnifiOS 3.x"
     echo ""
@@ -96,7 +95,7 @@ function create_custom_ontainer() {
 
 if [ -d "/data/custom/machines/$container_name" ] 
 then
-    echo "Directory /data/custom/machines/$container_name  already exists... aborting the setup ... 
+    echo "Directory /data/custom/machines/$container_name already exists... aborting the setup ... 
     try manual setup or setup with new container name." 
     exit 1
 fi
@@ -191,7 +190,7 @@ EOF
 #####Configure your container to set the IP and gateway you defined in 10-setup-network.sh
 cd /data/custom/machines/"$container_name"/etc/systemd/network
 
-cat <<EOF > mv-br5.network
+cat <<EOF > mv-br${vlan_id}.network
 [Match]
 Name=mv-br$vlan_id
 
@@ -266,8 +265,8 @@ $(ColorGreen '0)') Exit
 $(ColorBlue 'Choose an option:') "
         read a
         case $a in
-	        1) create_custom_ontainer_simple ; menu ;;
-	        2) create_custom_ontainer_macvlan ; menu ;;
+	        1) create_custom_container_simple ; menu ;;
+	        2) create_custom_container_macvlan ; menu ;;
 	        3) setup_adguard ; menu ;;
             4) echo_variables ; menu ;;
             5) set_variables ; menu ;;
