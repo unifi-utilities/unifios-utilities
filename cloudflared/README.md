@@ -209,6 +209,7 @@ What this means is that:
 
 1. The UnifOS itself resolves via 127.0.0.1:53, which is dnsmasq
 2. dnsmasq resolves via 127.0.0.53, which is cloudflared, any time the DNS request has to go out to the Internet, *regardless* of which WAN connection will be used, it will route through cloudflared.
+3. Systems in your networks resolve via UDM-SE IP, which means the dnsmasq process, and then dnsmasq resolves their requests via 127.0.0.1:53, which is cloudflared
 
 Because of #1 all of your internal DNS aliases/hostnames for your connected devices will continue to work.
 
