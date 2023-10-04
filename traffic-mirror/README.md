@@ -16,7 +16,9 @@ Just will likely need to ensure Ethernet Jumbo Frames are enabled in order to en
 
 NOTE: I've not really validated that is 100% necessary, but it's a common problem in NIDS scenarios, so I've simply enabled it.
 
-![Jumbo Frame Support](./jumbo_frames.png)
+![Global Switch Settings](./global_switch_settings.png)
+
+![Jumbo Frame Support](./device_switch_settings.png)
 
 ### Determine which VLAN's you want to mirror
 
@@ -66,6 +68,8 @@ e.g. use VLAN#999 and name it "IDS"
 1. Apply the Ethernet Port Profile as previously configured, e.g. select "IDS" from the drop down menu
 
 ![Destination Port Configuration](./destination_port_using_profile.png)
+
+Alternatively manually configure the port similar to the below,
 
 ![Destination Port Manual Configuration](./destination_port_using_configuration.png)
 
