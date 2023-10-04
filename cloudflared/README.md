@@ -15,7 +15,7 @@
 
 Configuration is required here, otherwise nothing will work.
 
-You need to modify `SERVICE_TOKEN` in `51-cloudflared-tunnel.sh` with the secret token you go when configuring the tunnel in Cloudflare Zero Trust
+You need to modify `SERVICE_TOKEN` in `51-cloudflared-tunnel.sh` with the secret token you got when configuring the tunnel in Cloudflare Zero Trust
 
 Run the script and ensure it doesn't error,
 
@@ -76,7 +76,7 @@ root@UDM-SE:~#
 Modify the variables in `50-cloudflared-proxy-dns.sh`, the defaults are:
 
 ```bash
-BIND=127.0.0.1
+BIND=127.0.0.53
 PORT=53
 UPSTREAM="https://1.1.1.1/dns-query https://1.0.0.1/dns-query"
 BOOTSTRAP="https://162.159.36.1/dns-query https://162.159.46.1/dns-query https://[2606:4700:4700::1111]/dns-query https://[2606:4700:4700::1001]/dns-query"
@@ -85,7 +85,7 @@ ARGS="--metrics ${BIND}: --address ${BIND} --port ${PORT}"
 
 No configuration is strictly necessary as the above will work and punch DNS requests out thru the default Cloudflare 1.1.1.1/1.0.0.1 resolvers, only over HTTPS.
 
-You may want to change UPSTREAM if you want to use a different DNS-over-HTTPS resolver.
+You may want to change `UPSTREAM=` if you want to use a different DNS-over-HTTPS resolver.
 
 For example if you are using Cloudflare Zero Trust Gateway services, there will be a location specific hostname for DNS-over-HTTPS, so you would:
 
@@ -182,7 +182,7 @@ e.g. in the Unifi UI reconfigure things similar to the below,
 
 NOTE: If you have multiple WAN connections, update ALL of them to use 127.0.0.53 as the DNS server for the connection.
 
-Ths will result in the following being configured in files on your UDM-SE,
+This will result in the following being configured in files on your UDM-SE,
 
 ```bash
 root@UDM-SE:~# cat /etc/resolv.conf 
@@ -211,3 +211,10 @@ What this means is that:
 2. dnsmasq resolves via 127.0.0.53, which is cloudflared, any time the DNS request has to go out to the Internet, *regardless* of which WAN connection will be used, it will route through cloudflared.
 
 Because of #1 all of your internal DNS aliases/hostnames for your connected devices will continue to work.
+
+cloudflared will use your active Internet connection to reach the configured resolvers. Note however, that the bootstrap resolvers, which are identified by IP, *MUST* be reachable first.
+
+`BOOTSTRAP="https://162.159.36.1/dns-query https://162.159.46.1/dns-query https://[2606:4700:4700::1111]/dns-query https://[2606:4700:4700::1001]/dns-query"`
+
+If all of the above bootstrap resolver IP's are NOT accessible, for example because you have created firewall rules or done anything else to stop connectivity to them working, DNS resolution will probably stop working too.
+
