@@ -80,13 +80,13 @@ Optionally, you can specify additional `multicast-relay` options in `OPTS`
 [Exec]
 Boot=on
 Capability=CAP_NET_RAW
+ResolvConf=off
 Environment=INTERFACES="br0 br50"
 Environment=OPTS=
 
 [Network]
 Private=off
 VirtualEthernet=off
-ResolvConf=off
 ```
 
 Once that file is in place, you're ready to enable the container on boot and run it.
