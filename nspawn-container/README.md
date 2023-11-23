@@ -77,11 +77,11 @@ Now that the container is created, let's configure it. Make sure you are back on
         [Exec]
         Boot=on
         Capability=all
+        ResolvConf=off
 
         [Network]
         Private=off
         VirtualEthernet=off
-        ResolvConf=off
         ```
     
     * For a more isolated container configured with a macvlan bridge, follow [Step 2A](#step-2a-configure-the-container-to-use-an-isolated-macvlan-network) below instead before running the container. 
@@ -126,10 +126,10 @@ This configuration is only needed if you want to isolate the container's network
     ```ini
     [Exec]
     Boot=on
+    ResolvConf=off
 
     [Network]
     MACVLAN=br5
-    ResolvConf=off
     ```
 
     * Change br5 to brX where X = VLAN number you used in `10-setup-network.sh`. 
