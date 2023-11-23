@@ -164,7 +164,7 @@ This configuration is only needed if you want to isolate the container's network
     ```sh
     chmod +x /data/on_boot.d/10-setup-network.sh
     /data/on_boot.d/10-setup-network.sh
-    machinectl start debian-custom
+    machinectl reboot debian-custom
     machinectl shell debian-custom
     ip addr show
     ping -c4 1.1.1.1
