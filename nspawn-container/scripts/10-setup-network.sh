@@ -25,6 +25,12 @@ IPV4_GW="10.0.5.1/24"
 IPV6_IP="fd62:89a2:fda9:e23::3"
 IPV6_GW="fd62:89a2:fda9:e23::1/64"
 
+# Set this to the interface(s) on which you want DNS TCP/UDP port 53 traffic
+# re-routed through this container. Separate interfaces with spaces.
+# This is useful when runinng a DNS service, like Adguard Home
+# e.g. "br0" or "br0 br1" etc.
+FORCED_INTFC=""
+
 ## END OF CONFIGURATION
 
 # set VLAN bridge promiscuous
@@ -56,3 +62,23 @@ if ! grep -qxF "interface=br${VLAN}.mac" /run/dnsmasq.conf.d/custom.conf; then
   echo "interface=br${VLAN}.mac" >>/run/dnsmasq.conf.d/custom.conf
   kill -9 "$(cat /run/dnsmasq.pid)"
 fi
+
+# (optional) IPv4 force DNS (TCP/UDP 53) through DNS container
+for intfc in ${FORCED_INTFC}; do
+  if [ -d "/sys/class/net/${intfc}" ]; then
+    for proto in udp tcp; do
+      prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j LOG --log-prefix [DNAT-${intfc}-${proto}]"
+      iptables -t nat -C ${prerouting_rule} 2>/dev/null || iptables -t nat -A ${prerouting_rule}
+      prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV4_IP} ! -d ${IPV4_IP} --dport 53 -j DNAT --to ${IPV4_IP}"
+      iptables -t nat -C ${prerouting_rule} 2>/dev/null || iptables -t nat -A ${prerouting_rule}
+
+      # (optional) IPv6 force DNS (TCP/UDP 53) through DNS container
+      if [ -n "${IPV6_IP}" ]; then
+        prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j LOG --log-prefix [DNAT-${intfc}-${proto}]"
+        ip6tables -t nat -C ${prerouting_rule} 2>/dev/null || ip6tables -t nat -A ${prerouting_rule}
+        prerouting_rule="PREROUTING -i ${intfc} -p ${proto} ! -s ${IPV6_IP} ! -d ${IPV6_IP} --dport 53 -j DNAT --to ${IPV6_IP}"
+        ip6tables -t nat -C ${prerouting_rule} 2>/dev/null || ip6tables -t nat -A ${prerouting_rule}
+      fi
+    done
+  fi
+done
