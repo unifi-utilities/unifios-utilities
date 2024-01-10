@@ -1,6 +1,8 @@
 #!/bin/bash
-# This script installs systemd-container if it's not installed. 
+# This script installs systemd-container if it's not installed.
 # Also links any containers from /data/custom/machines to /var/lib/machines.
+
+set -e
 
 if ! dpkg -l systemd-container | grep ii >/dev/null; then
     if ! apt -y install systemd-container debootstrap; then

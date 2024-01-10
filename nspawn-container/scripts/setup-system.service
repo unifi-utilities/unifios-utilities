@@ -2,11 +2,13 @@
 Description=Setup custom container service
 Wants=network-online.target
 After=network-online.target
+StartLimitBurst=5
 
 [Service]
 Type=oneshot
 ExecStart=/data/on_boot.d/0-setup-system.sh
 RemainAfterExit=yes
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
