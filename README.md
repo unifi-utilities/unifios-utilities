@@ -7,10 +7,15 @@
 1. [1.12.x](https://github.com/unifi-utilities/unifios-utilities/tree/v1.12.x) - Support for 1.x.x firmware line
 1. [main](https://github.com/unifi-utilities/unifios-utilities) - Support for 2.4.x and above
 
-### Current Branch is main, supporting 2.5.x
------
+### Current Branch is main, supporting UniFi OS 2.5.x
+
 A collection of things to enhance the capabilities of your Unifi Dream Machine, Dream Machine Pro or UXG-Pro.
 
+### ⚠️ Breaking Changes for UniFi OS 3.x
+
+UniFi OS 3.x no longer supports podman. The utilities in this respository **may not work as documented**. For alternatives, review the documentation in [nspawn-container](https://github.com/unifi-utilities/unifios-utilities/tree/main/nspawn-container) or consider direct installations like [wpa_supplicant-UniFi-OS-3.x for AT&T Fiber](https://github.com/jphamdev/wpa_supplicant-UniFi-OS-3.x).
+
+-----
 ## Custom Kernel
 
 If you want to do a custom kernel with wireguard support, multicast, multipath routing that is now a possiblity.
