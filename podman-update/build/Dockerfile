@@ -2,7 +2,7 @@
 FROM rust as rust
 RUN mkdir -p /tmp/work
 WORKDIR /tmp/work
-ARG NETAVARK_VERSION=v1.6.0
+ARG NETAVARK_VERSION=v1.9.0
 RUN apt-get update && apt-get install -y \
     bc \
     binutils-aarch64-linux-gnu \
@@ -19,8 +19,7 @@ RUN git clone https://github.com/containers/netavark/ && mkdir -p  /tmp/work/net
 WORKDIR /tmp/work/netavark
 COPY config.toml ./.cargo/config.toml
 COPY ./net.Makefile.patch /tmp
-RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch
-RUN make build
+RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch && make build
 
 FROM golang:1.21.6-bookworm
 
