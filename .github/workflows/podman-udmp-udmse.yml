@@ -27,13 +27,13 @@ jobs:
     steps:
 
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Docker Setup QEMU
-      uses: docker/setup-qemu-action@v2.1.0
+      uses: docker/setup-qemu-action@v3.0.0
       with:
         platforms: arm64
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2.5.0
+      uses: docker/setup-buildx-action@v3.0.0
     - name: Build the Docker image
       run: DOCKER_BUILDKIT=1 docker build --file podman-update/build/Dockerfile --build-arg UDM_PLATFORM=UDM-Pro-SE --tag boostchicken:udm-podman podman-update/build/
     - name: Docker Extract
@@ -50,7 +50,7 @@ jobs:
       uses: flynshue/version-action@v0.0.1
       
     - name: Upload Podman Install
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4
       with:
         path: ${{ steps.extract.outputs.destination }}
         name: podman-udmse-udmpro-${{ steps.version.outputs.version }}
