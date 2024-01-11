@@ -22,7 +22,7 @@ COPY ./net.Makefile.patch /tmp
 RUN git checkout ${NETAVARK_VERSION} && rustup target add aarch64-unknown-linux-gnu && patch Makefile /tmp/net.Makefile.patch
 RUN make build
 
-FROM golang:1.18.3-stretch
+FROM golang:1.21.6-bookworm
 
 # Currenrtly supported versions: UDM-Base UDM-Pro-SE
 ARG UDM_PLATFORM=UDM-Base
@@ -41,7 +41,11 @@ RUN mkdir -p /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/bin \
     
 COPY --from=rust /tmp/work/netavark/bin/* /tmp/install/podman-${PODMAN_VERSION}-${UDM_PLATFORM}/usr/libexec/podman
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN dpkg --add-architecture arm64 && apt-get update && apt-get install -y \
+    gperf:arm64 \
+    libglib2.0-dev:arm64 \
+    libseccomp-dev:arm64 \
+    libsystemd-dev:arm64 \
     bc \
     binutils-aarch64-linux-gnu \
     bison \
@@ -57,13 +61,7 @@ RUN apt-get update && apt-get install -y \
     systemd \
     zip \
   && rm -rf /var/lib/apt/lists/*
-RUN dpkg --add-architecture arm64
-RUN apt-get update && apt-get install -y \
-    gperf:arm64 \
-    libglib2.0-dev:arm64 \
-    libseccomp-dev:arm64 \
-    libsystemd-dev:arm64 \
-  && rm -rf /var/lib/apt/lists/*
+  
 
 ENV GOOS=linux
 
