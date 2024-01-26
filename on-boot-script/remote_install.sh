@@ -73,7 +73,7 @@ udm_model() {
       echo "udm"
     fi
     ;;
-  "UniFi Dream Router")
+  "UniFi Dream Router" | "UniFi Express")
     echo "udr"
     ;;
   *)
