@@ -76,6 +76,9 @@ udm_model() {
   "UniFi Dream Router")
     echo "udr"
     ;;
+  "UniFi Dream Machine Pro Max")
+    echo "udmpromax"
+    ;;
   *)
     echo "unknown"
     ;;
@@ -180,7 +183,7 @@ udmlegacy | udmprolegacy)
 
   echo "UDM Boot Script installed"
   ;;
-udr | udmse | udm | udmpro)
+udr | udmse | udm | udmpro | udmpromax)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
