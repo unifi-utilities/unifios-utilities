@@ -112,7 +112,7 @@ This configuration is only needed if you want to isolate the container's network
 
     ```sh
     mkdir -p /data/on_boot.d && cd /data/on_boot.d
-    curl -LO https://raw.githubusercontent.com/peacey/unifios-utilities/nspawn/nspawn-container/scripts/10-setup-network.sh
+    curl -LO https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/nspawn/nspawn-container/scripts/10-setup-network.sh
     vim 10-setup-network.sh
     ```
 
@@ -186,7 +186,7 @@ When the firmware is updated, `/data` (which contains our container storage) and
 
     ```sh
     mkdir -p /data/on_boot.d && cd /data/on_boot.d
-    curl -LO https://raw.githubusercontent.com/peacey/unifios-utilities/nspawn/nspawn-container/scripts/0-setup-system.sh
+    curl -LO https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/nspawn/nspawn-container/scripts/0-setup-system.sh
     chmod +x /data/on_boot.d/0-setup-system.sh
     ```
     
