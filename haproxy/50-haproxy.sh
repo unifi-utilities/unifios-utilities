@@ -4,20 +4,16 @@ CONTAINER=haproxy
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
 1*)
-  DATA_DIR="/mnt/data"
-  ;;
-2*)
-  DATA_DIR="/data"
-  ;;
-3*)
-  DATA_DIR="/data"
-  ;;
+    DATA_DIR="/mnt/data"
+    ;;
+2* | 3* | 4*)
+    DATA_DIR="/data"
+    ;;
 *)
-  echo "ERROR: No persistent storage found." 1>&2
-  exit 1
-  ;;
+    echo "ERROR: No persistent storage found." 1>&2
+    exit 1
+    ;;
 esac
-
 # Check if the directory exists
 if [ ! -d "${DATA_DIR}/haproxy" ]; then
   # If it does not exist, create the directory

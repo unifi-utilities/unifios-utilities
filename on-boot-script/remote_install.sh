@@ -1,26 +1,19 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Get DataDir location
 DATA_DIR="/data"
 case "$(ubnt-device-info firmware || true)" in
 1*)
-  DATA_DIR="/mnt/data"
-  ;;
-2*)
-  DATA_DIR="/data"
-  ;;
-3*)
-  DATA_DIR="/data"
-  ;;
-4*)
-  DATA_DIR="/data"
-  ;;
+    DATA_DIR="/mnt/data"
+    ;;
+2* | 3* | 4*)
+    DATA_DIR="/data"
+    ;;
 *)
-  echo "ERROR: No persistent storage found." 1>&2
-  exit 1
-  ;;
-esac
-
+    echo "ERROR: No persistent storage found." 1>&2
+    exit 1
+    ;;
+esac 
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"

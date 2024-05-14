@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # postinst script for udm-boot
 #
 # see: dh_installdeb(1)

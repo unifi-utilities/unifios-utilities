@@ -1,7 +1,7 @@
-FROM debian:stretch-slim
+FROM debian:bookworm-slim
 
 RUN set -ex \
-    && echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list \
+    && echo 'deb http://deb.debian.org/debian bookworm-backports main' > /etc/apt/sources.list.d/backports.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
 	build-essential \

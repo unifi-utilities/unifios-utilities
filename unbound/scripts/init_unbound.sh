@@ -5,10 +5,7 @@ case "$(ubnt-device-info firmware || true)" in
 1*)
     DATA_DIR="/mnt/data"
     ;;
-2*)
-    DATA_DIR="/data"
-    ;;
-3*)
+2* | 3* | 4*)
     DATA_DIR="/data"
     ;;
 *)
@@ -16,7 +13,6 @@ case "$(ubnt-device-info firmware || true)" in
     exit 1
     ;;
 esac
-
 # init unbound container - quick and dirty for now
 # no checks, no balances
 

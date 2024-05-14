@@ -6,5 +6,5 @@ RUN curl -fsSLo /opt/dote https://github.com/chrisstaite/DoTe/releases/latest/do
   chmod +x /opt/dote && \
   usermod -aG pihole www-data; \
   mkdir -p /etc/cont-init.d && \
-  echo -e "#!/bin/sh\nchmod +x /opt/dote\n/opt/dote \$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh && \
+  echo -e "#!/bin/bash\nchmod +x /opt/dote\n/opt/dote \$DOTE_OPTS -d\n" > /etc/cont-init.d/10-dote.sh && \
   chmod +x /etc/cont-init.d/10-dote.sh
