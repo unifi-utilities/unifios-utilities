@@ -175,7 +175,7 @@ cd /data/on_boot.d
 if [ -f "$file" ] ; then
     rm "$file"
 fi
-curl -LO https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/nspawn/nspawn-container/scripts/0-setup-system.sh
+curl -LO https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/nspawn/nspawn-container/scripts/10-setup-network.sh
 chmod +x 10-setup-network.sh
 
 cat <<EOF > /etc/systemd/nspawn/"$container_name".nspawn
