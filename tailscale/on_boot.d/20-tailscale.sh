@@ -15,7 +15,7 @@ start() {
       tailscale/tailscale \
       tailscaled --state=mem:
       # Changing sysctls inside the container to support running an exit node
-    cat <<'INIT' | podman exec --privileged ${CONTAINER} /bin/sh
+    cat <<'INIT' | podman exec --privileged ${CONTAINER} /bin/bash
 echo '1' > /proc/sys/net/ipv4/ip_forward ;
 echo '1' > /proc/sys/net/ipv6/conf/all/forwarding ;
 INIT

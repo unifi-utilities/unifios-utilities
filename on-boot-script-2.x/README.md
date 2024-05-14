@@ -22,7 +22,7 @@
 You can execute in UDM/Pro/SE and UDR with:
 
 ```bash
-curl -fsL "https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/on-boot-script-2.x/remote_install.sh" | /bin/sh
+curl -fsL "https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/on-boot-script-2.x/remote_install.sh" | /bin/bash
 ```
 
 This is a force to install script so will uninstall any previous version and install on_boot keeping your on boot files.
@@ -37,11 +37,11 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
    unifi-os shell
    ```
 
-2. Download [udm-boot-2x_1.0.1_all.deb](packages/udm-boot_1.0.0-2x_all.deb) and install it and go back to the UDM.
+2. Download [udm-boot-2x_1.0.1_all.deb](packages/udm-boot-2x_1.0.1_all.deb) and install it and go back to the UDM.
 
    ```bash
-   curl -L [[https://udm-boot.boostchicken.dev](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb)](https://unifi.boostchicken.io/udm-boot-2x_1.0.0_all.deb) -o udm-boot-2x_1.0.0_all.deb
-   dpkg -i udm-boot-2x_1.0.0_all.deb
+   curl -L [[https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb](https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb)](https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb) -o udm-boot-2x_1.0.1_all.deb
+   dpkg -i udm-boot-2x_1.0.1_all.deb
    systemctl enable udm-boot
    exit
    ```

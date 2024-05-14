@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bssh
 
 ## Configure shell profile
 PROFILE_SOURCE=/data/settings/profile/global.profile.d

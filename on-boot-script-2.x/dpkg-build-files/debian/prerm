@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # prerm script for udm-boot
 #
 # see: dh_installdeb(1)

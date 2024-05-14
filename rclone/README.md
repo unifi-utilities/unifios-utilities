@@ -29,5 +29,5 @@
 1. Login to run rclone commands locally to create and test configs
 
    ```sh
-   podman exec -ti rclone /bin/sh
+   podman exec -ti rclone /
    ```
