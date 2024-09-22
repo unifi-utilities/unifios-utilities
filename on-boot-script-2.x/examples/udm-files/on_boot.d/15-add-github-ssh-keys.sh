@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Get DataDir location
-DATA_DIR="/data"case "$(ubnt-device-info firmware || true)" in
+DATA_DIR="/data"
+case "$(ubnt-device-info firmware || true)" in
 1*)
     DATA_DIR="/mnt/data"
     ;;
