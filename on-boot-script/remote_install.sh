@@ -52,7 +52,7 @@ depends_on() {
 
 udm_model() {
   case "$(ubnt-device-info model || true)" in
-  "UniFi Dream Machine SE")
+  "UniFi Dream Machine SE" | "UniFi Dream Machine Pro Max")
     echo "udmse"
     ;;
   "UniFi Dream Machine Pro")
