@@ -76,6 +76,9 @@ udm_model() {
     echo "udmpromax"
     ;;
   *)
+  "UniFi Cloud Gateway Ultra")
+    echo "ucgultra"
+    ;;
     echo "unknown"
     ;;
   esac
@@ -179,7 +182,7 @@ udmlegacy | udmprolegacy)
 
   echo "UDM Boot Script installed"
   ;;
-udr | udmse | udm | udmpro | udmpromax)
+udr | udmse | udm | udmpro | udmpromax | ucgultra)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
