@@ -1,5 +1,7 @@
 # How to Create a Custom Container on UnifiOS 3.x+
 
+**Warning** If you recently migrated (or planning) to Unifi's [Zone Based Firewall](https://help.ui.com/hc/en-us/articles/115003173168-Zone-Based-Firewalls-in-UniFi) (available on Network Application >= 9), then clients may not be able to reach container network. [Step 2A.3](#step-2a-configure-the-container-to-use-an-isolated-macvlan-network) provides further details. 
+
 This is a guide that shows you how to create your own container on UnifiOS 3.0+, and how to install custom services in your container (such as pihole or adguard home).
 
 Starting with UnifiOS 3.0, podman/docker support has been removed due to a kernel change. However, you can still create a container with systemd-nspawn, which is what this guide will focus on. 
@@ -116,12 +118,28 @@ This configuration is only needed if you want to isolate the container's network
     vim 10-setup-network.sh
     ```
 
-    * Modify `VLAN` to an existing VLAN network that you want your container to be on. The default is VLAN 5. Make sure this VLAN network is created in Unifi first with a unique subnet and IP (do not use the same IP as you will use for IPV4_IP or IPV4_GW in this script).
-    * Modify `IPV4_GW` to set the gateway interface's IP. The default is 10.0.5.1/24, but you can use whatever subnet you want as long as it's different than any Unifi subnet. 
+    * Modify `VLAN` to an existing VLAN ID that you want your container to be on. The default is VLAN 5 and subnet 10.0.5.0/24 with gateway configured as 10.0.5.1. Make sure this VLAN and network is created in Unifi first with a unique subnet and IP.
+    * Modify `IPV4_GW` to reflect the gateway interface's IP (the IP defined in unifi in the previous step). The default is 10.0.5.1/24, but you can use whatever subnet you want as long as it's already created in unifi. 
     * Modify `IPV4_IP` to your preferred container IP. The default is 10.0.5.3, but you can use whatever you want as long as its on the same subnet as the gateway subnet `IPV4_GW`. 
     * Also modify `IPV6_GW` and `IPV6_IP` if you need IPV6 support. Leave them empty for no IPV6 support. 
 
-2. Create or modify your `/etc/systemd/nspawn/debian-custom.nspawn` file with the following parameters. This will tell nspawn to isolate the network and create a macvlan interface in the container from our VLAN bridge. This interface will be called mv-br5.
+3. Configure Firewall
+    * if you running network application < 9, or not using Zone-Based-Firewall yet, then go to step `4`.
+    * if your network does not have Inter-VLAN restrictions then go to step 4.
+    * visit `Uniti Dashboard -> Settings -> Profiles -> Network Objects` (object names below are examples, you can type any name).
+      * Create new object `Devices/IPv4: Pi-Hole DNS Servers` and add your container IP address (`10.0.5.3` in this example)
+      * Create new object `Ports: DNS` and add following ports: `53`, `853`, `5053`
+    * visit your Unifi dashboard -> Nework Application -> Settings -> Security -> Firewall tab
+      * Scroll down and press `Create Policy`
+      * Give it a reasonable name, for example `VLANs to Internal DNS`
+      * Source Zone `Internal`
+      * Action `Allow`
+      * Destination Zone `External` (thats correct, even tho IP is internal, however, ZBF works with Unifi networks, and our VLAN (5 in this example) is not technically Unifi network and rules from `Internal` zone do not apply to it).
+      * Check `IP` -> `Object`,  then from dropdown select address network object we've created above (`Devices/IPv4: Pi-Hole DNS Servers`).
+      * Check `Port` -> `Object` and from dropdown select port network object we've create above (`Ports: DNS`)
+      * Press `Add Policy`
+      * In `Zone Matrix`, filter policies by `Internal` (Source) and `External` (Destination) and make sure new policy is above all block rules, if not, scroll down, press `Reorder` and move new rule up
+4. Create or modify your `/etc/systemd/nspawn/debian-custom.nspawn` file with the following parameters. This will tell nspawn to isolate the network and create a macvlan interface in the container from our VLAN bridge. This interface will be called mv-br5.
 
     ```ini
     [Exec]
@@ -134,7 +152,7 @@ This configuration is only needed if you want to isolate the container's network
 
     * Change br5 to brX where X = VLAN number you used in `10-setup-network.sh`. 
 
-3. Configure your container to set the IP and gateway you defined in `10-setup-network.sh` by creating a network file in the folder `/etc/systemd/network` under your container's directory. Name this file `mv-brX.network` where X = VLAN number you used (e.g. `mv-br5.network`).
+4. Configure your container to set the IP and gateway you defined in `10-setup-network.sh` by creating a network file in the folder `/etc/systemd/network` under your container's directory. Name this file `mv-brX.network` where X = VLAN number you used (e.g. `mv-br5.network`).
 
     ```sh
     cd /data/custom/machines/debian-custom/etc/systemd/network
@@ -159,7 +177,7 @@ This configuration is only needed if you want to isolate the container's network
     * Change `Address` and `Gateway` accordingly if you changed the settings in `10-setup-network.sh`.
     * You can remove the last 2 lines with IPv6 addresses if you don't need IPv6. 
 
-4. Run the `10-setup-network.sh` script, start the container, open a shell on the container, and check the network. 
+5. Run the `10-setup-network.sh` script, start the container, open a shell on the container, and check the network. 
 
     ```sh
     chmod +x /data/on_boot.d/10-setup-network.sh
@@ -174,7 +192,7 @@ This configuration is only needed if you want to isolate the container's network
     * If you still don't see any IP on mv-br5, then double-check you're using the correct VLAN and put the configuration in the correct location. You can also check `journalctl -eu systemd-networkd` for any errors.
     * If pinging 1.1.1.1 doesn't work from within the container, double-check you set the correct container IP in your 10-setup-network.sh. 
     
-5. The script `10-setup-network.sh` in `/data/on_boot.d` needs to be started on boot. 
+6. The script `10-setup-network.sh` in `/data/on_boot.d` needs to be started on boot. 
     * If you've installed the udm-boot service, it should automatically run any scripts in `/data/on_boot.d` and no further setup is needed. 
     * If you prefer not to use udm-boot and instead use your own systemd boot service, [here is an example systemd service](scripts/setup-network.service) to run this script at boot. Save it to `/etc/systemd/system/setup-network.service` in the host OS (not container) and then enable it with `systemctl enable setup-network`. 
 
