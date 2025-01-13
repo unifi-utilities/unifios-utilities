@@ -75,6 +75,9 @@ udm_model() {
   "UniFi Dream Machine Pro Max")
     echo "udmpromax"
     ;;
+  "Gateway Max")
+    echo "uxgmax"
+    ;;
   *)
     echo "unknown"
     ;;
@@ -179,7 +182,7 @@ udmlegacy | udmprolegacy)
 
   echo "UDM Boot Script installed"
   ;;
-udr | udmse | udm | udmpro | udmpromax)
+udr | udmse | udm | udmpro | udmpromax | uxgmax)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
