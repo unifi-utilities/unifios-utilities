@@ -35,8 +35,9 @@ if [ $count_skipped -gt 0 ]; then
 	echo "${count_skipped} already added keys skipped"
 fi
 
-# Convert ssh key to dropbear for shell interaction
-echo "Converting SSH private key to dropbear format"
-dropbearconvert openssh dropbear ${DATA_DIR}/ssh/id_rsa /root/.ssh/id_dropbear
-
+if command -v dropbearconvert >/dev/null 2>&1; then
+  # Convert ssh key to dropbear for shell interaction
+  echo "Converting SSH private key to dropbear format"
+  dropbearconvert openssh dropbear ${DATA_DIR}/ssh/id_rsa /root/.ssh/id_dropbear
+fi
 exit 0
