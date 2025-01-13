@@ -29,24 +29,26 @@ This is a force to install script so will uninstall any previous version and ins
 
 This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/UDR remember that you must install podman manually because there is no podman.
 
-## Manually Install Steps
+## Manually Install Steps - Updated 2024-05-15
 
-1. Get into the unifios shell on your udm
+1. SSH into your udm
 
-   ```bash
-   unifi-os shell
-   ```
-
-2. Download [udm-boot-2x_1.0.1_all.deb](packages/udm-boot-2x_1.0.1_all.deb) and install it and go back to the UDM.
+2. Download udm boot package and install it.
 
    ```bash
-   curl -L [[https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb](https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb)](https://unifi.boostchicken.io/udm-boot-v2+/udm-boot-2x_1.0.1_all.deb) -o udm-boot-2x_1.0.1_all.deb
+   curl -L https://github.com/unifi-utilities/unifios-utilities/raw/main/on-boot-script-2.x/packages/udm-boot-2x_1.0.1_all.deb -o udm-boot-2x_1.0.1_all.deb
    dpkg -i udm-boot-2x_1.0.1_all.deb
+   systemctl daemon-reload
    systemctl enable udm-boot
-   exit
+   ```
+3. Start the service (this will create the /data/on_boot.d directory if it does not already exist)
+   ```
+   systemctl start udm-boot
    ```
 
-3. Copy any shell scripts you want to run to /data/on_boot.d on your UDM (not the unifi-os shell) and make sure they are executable and have the correct shebang (#!/bin/bash). Additionally, scripts need to have a `.sh` extention in their filename.
+4. Copy any scripts you want to run to the /data/on_boot.d directory. 
+Files here will be executed in a sorted order. Scripts with the X flag set will be executed, scripts without the X flag but ending in `.sh` will be sourced. 
+All other files will be ignored.
 
    Examples:
 
