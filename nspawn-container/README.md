@@ -118,8 +118,8 @@ This configuration is only needed if you want to isolate the container's network
     vim 10-setup-network.sh
     ```
 
-    * Modify `VLAN` to an existing VLAN network that you want your container to be on. The default is VLAN 5. Make sure this VLAN network is created in Unifi first with a unique subnet and IP (do not use the same IP as you will use for IPV4_IP or IPV4_GW in this script).
-    * Modify `IPV4_GW` to set the gateway interface's IP. The default is 10.0.5.1/24, but you can use whatever subnet you want as long as it's different than any Unifi subnet. 
+    * Modify `VLAN` to an existing VLAN ID that you want your container to be on. The default is VLAN 5 and subnet 10.0.5.0/24 with gateway configured as 10.0.5.1. Make sure this VLAN and network is created in Unifi first with a unique subnet and IP.
+    * Modify `IPV4_GW` to reflect the gateway interface's IP (the IP defined in unifi in the previous step). The default is 10.0.5.1/24, but you can use whatever subnet you want as long as it's already created in unifi. 
     * Modify `IPV4_IP` to your preferred container IP. The default is 10.0.5.3, but you can use whatever you want as long as its on the same subnet as the gateway subnet `IPV4_GW`. 
     * Also modify `IPV6_GW` and `IPV6_IP` if you need IPV6 support. Leave them empty for no IPV6 support. 
 
