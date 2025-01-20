@@ -81,6 +81,9 @@ udm_model() {
   "Gateway Max")
     echo "uxgmax"
     ;;
+  "UniFi Express")
+    echo "ux"
+    ;;
   *)
     echo "unknown"
     ;;
@@ -186,7 +189,7 @@ udmlegacy | udmprolegacy)
   echo "UDM Boot Script installed"
   ;;
 
-udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult)
+udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult | ux)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
