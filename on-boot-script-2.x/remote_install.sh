@@ -78,7 +78,7 @@ udm_model() {
   "UniFi Cloud Gateway Ultra")
     echo "ucgult"
     ;;
-  "Gateway Max")
+  "UniFi Cloud Gateway Max")
     echo "uxgmax"
     ;;
   "UniFi Express")
