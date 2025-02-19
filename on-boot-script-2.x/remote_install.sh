@@ -17,7 +17,7 @@ esac
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
-
+SERVICE_META_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/refs/heads/main/on-boot-script-2.x/dpkg-build-files/udm-boot.service"
 CNI_PLUGINS_SCRIPT_RAW_URL="https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/cni-plugins/05-install-cni-plugins.sh"
 CNI_PLUGINS_ON_BOOT_FILENAME="$(basename "$CNI_PLUGINS_SCRIPT_RAW_URL")"
 
@@ -130,31 +130,18 @@ install_on_boot_udm_series() {
   unset download_url tmp_path
 }
 
-# Credits @peacey: https://github.com/unifi-utilities/unifios-utilities/issues/214#issuecomment-886869295
-udmse_on_boot_systemd() {
-  cat <<EOF
-[Unit]
-Description=Run On Startup UDM
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=forking
-ExecStart=bash -c 'mkdir -p ${DATA_DIR}/on_boot.d && find -L ${DATA_DIR}/on_boot.d -mindepth 1 -maxdepth 1 -type f -print0 | sort -z | xargs -0 -r -n 1 -- bash -c \'if test -x "\$0"; then echo "%n: running \$0"; "\$0"; else case "\$0" in *.sh) echo "%n: sourcing \$0"; . "\$0";; *) echo "%n: ignoring \$0";; esac; fi\''
-
-[Install]
-WantedBy=multi-user.target
-
-EOF
-}
-
 install_on_boot_udr_se() {
   systemctl disable udm-boot
   systemctl daemon-reload
   rm -f "$SYMLINK_SYSTEMCTL"
 
   echo "Creating systemctl service file"
-  udmse_on_boot_systemd >"$SYSTEMCTL_PATH" || return 1
+  
+  if ! download_on_path  "$SYSTEMCTL_PATH" "$SERVICE_META_URL"; then    
+    echo
+    echo "Failed to download on-boot script service" 1>&2
+    exit 1
+  fi
   sleep 1s
 
   echo "Enabling UDM boot..."
@@ -164,9 +151,6 @@ install_on_boot_udr_se() {
 
   [ -e "$SYMLINK_SYSTEMCTL" ]
 }
-
-# --- main ---
-
 header
 
 depends_on ubnt-device-info
