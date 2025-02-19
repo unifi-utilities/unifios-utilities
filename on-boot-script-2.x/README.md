@@ -36,8 +36,8 @@ This will also install CNI Plugins & CNI Bridge scripts. If you are using UDMSE/
 2. Download udm boot package and install it.
 
    ```bash
-   curl -L https://github.com/unifi-utilities/unifios-utilities/raw/main/on-boot-script-2.x/packages/udm-boot-2x_1.0.1_all.deb -o udm-boot-2x_1.0.1_all.deb
-   dpkg -i udm-boot-2x_1.0.1_all.deb
+   curl -L https://github.com/unifi-utilities/unifios-utilities/raw/main/on-boot-script-2.x/packages/udm-boot-2x_1.0.2_all.deb -o udm-boot-2x_1.0.2_all.deb
+   dpkg -i udm-boot-2x_1.0.2_all.deb
    systemctl daemon-reload
    systemctl enable udm-boot
    ```
@@ -57,6 +57,11 @@ All other files will be ignored.
    - Add a persistent ssh key for the root user [on_boot.d/15-add-root-ssh-keys.sh](examples/udm-files/on_boot.d/15-add-root-ssh-keys.sh)
 
 ## Version History
+
+### 1.0.2
+
+- Update service info
+
 
 ### 1.0.0
 
