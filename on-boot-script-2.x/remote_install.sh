@@ -84,6 +84,9 @@ udm_model() {
   "UniFi Express")
     echo "ux"
     ;;
+  "UniFi Cloud Gateway Fiber")
+    echo "ucgfiber"
+    ;;	
   *)
     echo "unknown"
     ;;
@@ -173,7 +176,7 @@ udmlegacy | udmprolegacy)
   echo "UDM Boot Script installed"
   ;;
 
-udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult | ux)
+udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult | ucgfiber | ux)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
