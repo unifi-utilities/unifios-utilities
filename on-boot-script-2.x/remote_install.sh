@@ -72,6 +72,9 @@ udm_model() {
   "UniFi Dream Router")
     echo "udr"
     ;;
+  "UniFi Dream Router 7")
+    echo "udr"
+    ;;
   "UniFi Dream Machine Pro Max")
     echo "udmpromax"
     ;;
