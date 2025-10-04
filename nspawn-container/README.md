@@ -33,11 +33,12 @@ The following commands are all perfomed on the Unifi router in SSH.
     ```sh
     mkdir -p /data/custom/machines
     cd /data/custom/machines
-    debootstrap --include=systemd,dbus unstable debian-custom
+    debootstrap --include=systemd,dbus bookworm debian-custom
     ```
     * This process can take up to 10 minutes to download and install all the packages.
     * The container folder will be 390MB after installation, but can increase to 1GB+ after installing many services (storage management is up to you).
     * Note: Instead of debootstrap, you can also use pacstrap or other distributions' tools to create an Arch Linux, Fedora, or other container instead of a debian container (see [examples here](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html#Examples)).
+    * Note: Currently pined to **bookworm** due to incompatibility with host kernerl on unifi devices.
 
 3. Finally, let's bring up a shell on this container, set the root password, and enable the networking service. Run each command one-by-one.
 
