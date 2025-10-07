@@ -58,6 +58,9 @@ udm_model() {
   "UniFi Dream Machine SE")
     echo "udmse"
     ;;
+  "UniFi Dream Machine Pro Max")
+    echo "udmpromax"
+    ;;
   "UniFi Dream Machine Pro")
     if test $(ubnt-device-info firmware) \< "2.0.0"; then
       echo "udmprolegacy"
