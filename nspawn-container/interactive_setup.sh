@@ -108,7 +108,7 @@ apt -y install systemd-container debootstrap
 echo "Creating container required directories"
 mkdir -p /data/custom/machines
 cd /data/custom/machines
-debootstrap --include=systemd,dbus bookworm  "$container_name"
+debootstrap --include=systemd,dbus bookworm "$container_name"
 
 ### Finally, let's bring up a shell on this container
 echo "Set container Root password, Network setting and enable systemd-networkd"
