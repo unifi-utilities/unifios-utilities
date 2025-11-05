@@ -73,7 +73,7 @@ udm_model() {
     echo "udr"
     ;;
   "UniFi Dream Router 7")
-    echo "udr"
+    echo "udr7"
     ;;
   "UniFi Dream Machine Pro Max")
     echo "udmpromax"
@@ -87,9 +87,18 @@ udm_model() {
   "UniFi Express")
     echo "ux"
     ;;
+  "UniFi Express 7")
+    echo "ux7"
+    ;;
   "UniFi Cloud Gateway Fiber")
     echo "ucgfiber"
-    ;;	
+    ;;
+  "UniFi NeXt-Gen Gateway Fiber")
+    echo "uxgfiber"
+    ;;
+  "Enterprise Fortress Gateway")
+    echo "udment"
+    ;;
   *)
     echo "unknown"
     ;;
@@ -142,8 +151,8 @@ install_on_boot_udr_se() {
   rm -f "$SYMLINK_SYSTEMCTL"
 
   echo "Creating systemctl service file"
-  
-  if ! download_on_path  "$SYSTEMCTL_PATH" "$SERVICE_META_URL"; then    
+
+  if ! download_on_path  "$SYSTEMCTL_PATH" "$SERVICE_META_URL"; then
     echo
     echo "Failed to download on-boot script service" 1>&2
     exit 1
@@ -179,7 +188,7 @@ udmlegacy | udmprolegacy)
   echo "UDM Boot Script installed"
   ;;
 
-udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult | ucgfiber | ux)
+udr | udmse | udm | udmpro | udmpromax | uxgmax | ucgult | ucgfiber | ux | uxgfiber | udr7 | ux7 | udment)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
