@@ -5,14 +5,14 @@ case "$(ubnt-device-info firmware || true)" in
 1*)
     DATA_DIR="/mnt/data"
     ;;
-2* | 3* | 4*)
+2* | 3* | 4* | 5*)
     DATA_DIR="/data"
     ;;
 *)
     echo "ERROR: No persistent storage found." 1>&2
     exit 1
     ;;
-esac 
+esac
 mkdir -p ${DATA_DIR}/.home
 
 for file in .ash_history .bash_history; do

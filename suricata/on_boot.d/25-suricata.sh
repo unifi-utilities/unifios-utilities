@@ -5,7 +5,7 @@ case "$(ubnt-device-info firmware || true)" in
 1*)
     DATA_DIR="/mnt/data"
     ;;
-2* | 3* | 4*)
+2* | 3* | 4* | 5*)
     DATA_DIR="/data"
     ;;
 *)
@@ -34,9 +34,9 @@ do
         bname=$(basename ${file})
         cp "${file}" "/run/ips/rules/${bname}"
         # Check if the existing filename is already in the rules.yaml based upon a previous update
-        grep -wq "${bname}" /run/ips/config/rules.yaml 
+        grep -wq "${bname}" /run/ips/config/rules.yaml
         # Don't add twice if it is in the file already
-        if [ $? -ne 0 ]; then 
+        if [ $? -ne 0 ]; then
             echo " - ${bname}" >> /run/ips/config/rules.yaml
         fi
     fi
@@ -45,7 +45,7 @@ CONTAINER=suricata
 if podman container exists ${CONTAINER}; then
   podman rm -f ${CONTAINER}
 fi
-podman run --network=host --privileged --name ${CONTAINER} --rm -it -v /run:/var/run/ -v /run:/run  -v /usr/share/ubios-udapi-server/ips/:/usr/share/ubios-udapi-server/ips/ jasonish/suricata:5.0.3-arm64v8 /usr/bin/suricata "$@" 
+podman run --network=host --privileged --name ${CONTAINER} --rm -it -v /run:/var/run/ -v /run:/run  -v /usr/share/ubios-udapi-server/ips/:/usr/share/ubios-udapi-server/ips/ jasonish/suricata:5.0.3-arm64v8 /usr/bin/suricata "$@"
 
 EOF
 

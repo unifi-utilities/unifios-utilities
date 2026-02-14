@@ -6,7 +6,7 @@ case "$(ubnt-device-info firmware || true)" in
 1*)
     DATA_DIR="/mnt/data"
     ;;
-2* | 3* | 4*)
+2* | 3* | 4* | 5*)
     DATA_DIR="/data"
     ;;
 *)
