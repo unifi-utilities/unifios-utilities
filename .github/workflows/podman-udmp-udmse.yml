@@ -53,7 +53,7 @@ jobs:
         uses: flynshue/version-action@v0.0.1
 
       - name: Upload Podman Install
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@v7.0.0
         with:
           path: ${{ steps.extract.outputs.destination }}
           name: podman-udmse-udmpro-${{ steps.version.outputs.version }}
