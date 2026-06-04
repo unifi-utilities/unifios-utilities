@@ -1,12 +1,9 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
-    directories:
-      - "/"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: friday
-      time: '08:00'
+      interval: daily
       timezone: Etc/UTC
     groups:
       github-actions:
