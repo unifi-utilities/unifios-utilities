@@ -66,6 +66,9 @@ udm_model() {
   "UniFi Dream Router 7")
     echo "udr7"
     ;;
+  "UniFi Dream Wall")
+    echo "udw"
+    ;;
   "UniFi Express")
     echo "ux"
     ;;
@@ -121,7 +124,7 @@ depends_on curl
 ON_BOOT_D_PATH="${DATA_DIR}/on_boot.d"
 
 case "$(udm_model)" in
-udment | ucgfiber | uxgmax | ucgult | udm | udmbeast | udmpro | udmpromax | udmse | udr | udr7 | ux | ux7 | uxgfiber)
+udment | ucgfiber | uxgmax | ucgult | udm | udmbeast | udmpro | udmpromax | udmse | udr | udr7 | udw | ux | ux7 | uxgfiber)
   echo "$(ubnt-device-info model) version $(ubnt-device-info firmware) was detected"
   echo "Installing on-boot script..."
   depends_on systemctl
