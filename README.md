@@ -4,7 +4,8 @@ Allows you to run shell scripts at S95 anytime your UniFi device starts up.
 
 Useful for starting scripts, applying custom config, or any other boot-time work.
 
-Targets **UniFi OS 4.x and above** (systemd runs natively on the host).
+> [!IMPORTANT]
+> Targets **UniFi OS 4.x and above** (systemd runs natively on the host).
 
 ## Install
 
@@ -25,6 +26,7 @@ Head over to the addons repository to find some scripts to run at boot:
 
 ## Missing something?
 
-We have moved the old repository to a new repository to make it easier to maintain and add new addons. If you have an addon that you would like to see added, please open an issue or submit a pull request.
+> [!TIP]
+> We have moved the old addons to a new repository to make it easier to maintain and add new addons. If you have an addon that you would like to see added, please open an issue or submit a pull request.
 
-https://github.com/unifi-utilities/unifios-utilities-archived
+<https://github.com/unifi-utilities/unifios-utilities-archived>
