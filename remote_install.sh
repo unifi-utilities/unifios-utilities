@@ -1,12 +1,15 @@
 #!/usr/bin/env sh
 
+# Exact commit hash to install can be provided as an argument. Otherwise, defaults to HEAD.
+COMMIT="${1:-HEAD}"
+
 # UniFi Data Directory
 DATA_DIR="/data"
 
 # A change in the name udm-boot would need to be reflected as well in systemctl calls.
 SYSTEMCTL_PATH="/etc/systemd/system/udm-boot.service"
 SYMLINK_SYSTEMCTL="/etc/systemd/system/multi-user.target.wants/udm-boot.service"
-SERVICE_META_URL="https://raw.githubusercontent.com/unifi-utilities/unifi-common/HEAD/udm-boot.service"
+SERVICE_META_URL="https://raw.githubusercontent.com/unifi-utilities/unifi-common/${COMMIT}/udm-boot.service"
 
 # --- Functions ---
 
